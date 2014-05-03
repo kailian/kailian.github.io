@@ -1,8 +1,8 @@
 ---
 layout: post
-category : lessons
+category : 心情随记
 tagline: "Supporting tagline"
-tags : [record]
+tags : [心情, 随记]
 ---
 
 ## github
