@@ -17,10 +17,18 @@ ul {
   list-style: none;
 }
 
+.blog-center {
+  text-align: center;
+}
+
 .icon-margin {
   margin-right: 10px;
 }
 
 .lable-margin {
   margin-right: 10px; 
+}
+
+.tag-color {
+  color: #fff;
 }
