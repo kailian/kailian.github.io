@@ -9,7 +9,7 @@ pygments: true
 # so be sure to set them if your theme uses them.
 #
 title : kailian blog
-tagline: Site Tagline
+tagline: kailian
 author :
   name : kailian
   email : kailian2010lin@gmail.com

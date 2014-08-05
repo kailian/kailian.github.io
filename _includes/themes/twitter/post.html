@@ -2,9 +2,14 @@
   <div class="panel-heading">
     <span class="glyphicon glyphicon-align-justify icon-margin"></span>
     <strong>{{ page.title }}</strong>
+    {% if page.tagline %}
+    <small>{{page.tagline}}</small>
+    {% endif %}
   </div>
   <div class="panel-body">
     <div class="blog-center">
+      <span class="glyphicon glyphicon-user icon-margin"></span>
+      <span class="lable-margin">{{ site.author.name }}</span>
       <span class="glyphicon glyphicon-time icon-margin"></span>
       <span>{{ page.date | date: "%F" }}</span>
     </div>
