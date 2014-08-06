@@ -64,9 +64,16 @@ tagline: ''
   			    {% endfor %}
   		  </div>
   		</div>
-  	</div>
-
-  	
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-th icon-margin"></span>
+          关于
+        </div>
+        <div class="panel-body">
+          博客文章统计：
+        </div>
+      </div>
+  	</div>  	
   </div>
 </div>
 

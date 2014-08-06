@@ -32,6 +32,68 @@ tags : [问题, 博客, jekyll]
 
 	\{\{ post.content  | | split:'<!--break-->' | first }}
 
+## 关于搜索
+
+需要加入的文件
+
+	jquery.js
+	jquery-ui.js
+	jquery-ui.css
+
+在根目录下新建一个search.xml
+
+	\---
+	layout: none
+	\---
+	<\?xml version="1.0" encoding="UTF-8" \?>
+	<articles>
+	    {\% for post in site.posts %\}
+	    <article>
+	        <title>{\{ post.title }\}</title>
+	        <url>{\{ site.url }\}{\{ post.url }\}</url>
+	        <date>{\{ post.date | date_to_utc | date: '%Y-%m-%d'}\}</date>
+	    </article>
+	    {\% endfor %\}
+	</articles>
+
+注意去掉\
+
+导航加上搜索框
+
+	<div class="navbar-form navbar-right">       
+		<input class="form-control" type="text"  id="blog-search" size="30" placeholder="Search" required />
+	</div>
+
+新建search.js
+
+	$(function() {
+	  $.ajax({
+	    url: "/search.xml",
+	    dataType: "xml",
+	    success: function( xmlResponse ) {
+	     var data = $( "article", xmlResponse ).map(function() {
+	        return {
+	          value: $( "title", this ).text() + ", " +
+	              ( $.trim( $( "date", this ).text() ) ),
+	          url: $("url", this).text()
+	        };
+	      }).get();
+
+	      $( "#blog-search" ).autocomplete({
+	        source: data,
+	        minLength: 0,
+	        select: function( event, ui ) {
+	          window.location.href = ui.item.url;
+	        }
+	      });
+	    }
+	  });
+	});
+
+搜索实现完毕
+
+
+
 
 
 
