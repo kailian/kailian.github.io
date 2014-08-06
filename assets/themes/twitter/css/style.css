@@ -21,12 +21,17 @@ ul {
   text-align: center;
 }
 
+.blog-left {
+	float: left;
+}
+
 .icon-margin {
   margin-right: 10px;
 }
 
 .lable-margin {
-  margin-right: 10px; 
+  margin-right: 10px;
+  margin-top: 5px; 
 }
 
 .tag-color {

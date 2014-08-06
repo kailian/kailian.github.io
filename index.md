@@ -4,7 +4,7 @@ title: 主页
 tagline: ''
 ---
 {% include JB/setup %}
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-md-8">
     	<div class="panel panel-default">
@@ -37,7 +37,7 @@ tagline: ''
 		</div>
 		<div class="panel panel-default">
 		  <div class="panel-heading">
-		  	<span class="glyphicon glyphicon-book icon-margin"></span>
+		  	<span class="glyphicon glyphicon-folder-open icon-margin"></span>
 		  	分类目录
 		  </div>
 		  <div class="panel-body">
@@ -56,10 +56,16 @@ tagline: ''
 		  	标签
 		  </div>
 		  <div class="panel-body">
-		    <ul>
-			  {% assign tags_list = site.tags %}  
-			  {% include JB/tags_list %}
-			</ul>
+		    	{% for tag in site.tags %} 
+			    <div class="lable-margin blog-left">
+			      <button class="btn btn-primary btn-sm" type="button">
+			        <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
+			          <span class="tag-color">{{ tag[0] }}</span>
+			          <span class="badge">{{ tag[1].size }}</span>
+			        </a>
+			      </button>
+			    </div>
+			    {% endfor %}
 		  </div>
 		</div>
   	</div>
