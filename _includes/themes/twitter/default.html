@@ -61,9 +61,9 @@
     <div class="container">
       {{ content }}
     </div>
-    <footer>
+    <footer class="blog-footer">
       <div class="container blog-center">
-        &copy; {{ site.time | date: '%Y' }} {{ site.author.name }}  
+        Copyright &copy; 2014-{{ site.time | date: '%Y' }} <a href="https://github.com/kailian">{{ site.author.name }}</a> All Rights Reserved
       </div>
     </footer>
   <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>

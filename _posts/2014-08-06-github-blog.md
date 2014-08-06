@@ -9,6 +9,7 @@ tags : [github, 博客, jekyll]
 <div class="alert alert-danger" role="alert">
 	目的只是在github上建博客，只包含win环境相关软件的配置使用，暂不包括linux的相关环境配置。
 </div>
+
 ## 一、使用ssh连接github，省去每次上传都要输用户密码的麻烦
 
 Win上使用git bash进入命令行界面
@@ -27,6 +28,8 @@ Win上使用git bash进入命令行界面
 	#提交代码需要配置
 	git config --global user.name "你的名字"
 	git config --global user.email "your_email@youremail.com"
+
+<!--break-->
 
 ## 二、接下来先新建一个repository
 2.1、name为xxx.github.io 或者xxx.github.me之类的
@@ -78,6 +81,8 @@ http://rubyinstaller.org/downloads/上下载DevKit-tdm-32-4.5.2-20111229-1559-sf
 	Git clone git@github.com:plusjade/jekyll-bootstrap.git
 	则进入git项目目录，执行jekyll server，其他命令执行jekyll help
 	默认访问localhost:4000即可
+
+![Alt kailian.github.io](/images/kailian.png)
 
 https://github.com/jekyll/jekyll/wiki/sites 
 
