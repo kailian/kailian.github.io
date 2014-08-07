@@ -8,11 +8,12 @@
   </div>
   <div class="panel-body">
     <div class="blog-center">
-      <a href="{{ page.url }}#disqus_thread">Link</a>
       <span class="glyphicon glyphicon-user icon-margin"></span>
       <span class="lable-margin">{{ site.author.name }}</span>
       <span class="glyphicon glyphicon-time icon-margin"></span>
-      <span>{{ page.date | date: "%F" }}</span>
+      <span class="lable-margin">{{ page.date | date: "%F" }}</span>
+      <span class="glyphicon glyphicon-edit icon-margin"></span>
+      <span><a href="{{ site.production_url }}{{ page.url }}#disqus_thread">评论</a></span>
     </div>
     <div class="content">
       {{ content }}
