@@ -31,13 +31,13 @@ Usage:
     {% endfor %}
   {% else %}
     {% for tag in tags_list %} 
-    	<span class="lable-margin">
-      <button class="btn btn-primary btn-sm" type="button">
-        <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
-          <span class="tag-color">{{ tag[0] }}</span>
-          <span class="badge">{{ tag[1].size }}</span>
-        </a>
-      </button> 
+    	<span class="lable-margin blog-left">
+        <button class="btn btn-primary btn-sm" type="button">
+          <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
+            <span class="tag-color">{{ tag[0] }}</span>
+            <span class="badge">{{ tag[1].size }}</span>
+          </a>
+        </button> 
       </span>
     {% endfor %}
   {% endif %}

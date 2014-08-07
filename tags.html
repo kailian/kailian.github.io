@@ -6,11 +6,12 @@ group: navigation
 ---
 {% include JB/setup %}
 
-<ul>
+<div class="col-md-12">
   {% assign tags_list = site.tags %}  
   {% include JB/tags_list %}
-</ul>
+</div>
 
+<hr>
 
 {% for tag in site.tags %}
 <span class="col-md-4"> 
