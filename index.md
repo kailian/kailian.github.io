@@ -22,7 +22,7 @@ tagline: ''
             </h3>           
           </div>
           <div class="col-md-12"> 
-            {{ post.content  | | split:'<!--break-->' | first }}
+            {{ post.content  | split:'<!--break-->' | first }}
             <a href="{{ post.url }}">.....</a>
           </div>
         {% endfor %}
@@ -70,7 +70,7 @@ tagline: ''
           关于
         </div>
         <div class="panel-body">
-          博客文章统计：
+          博客文章统计：{{ paginator.total_posts }}
         </div>
       </div>
   	</div>  	

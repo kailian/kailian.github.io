@@ -6,6 +6,11 @@ tagline: ""
 tags : [问题, 博客, jekyll]
 ---
 
+<div class="alert alert-danger alert-margin" role="alert">
+	更具体的问题可以参考
+	<a herf="http://jekyllrb.com/docs/">官方文档</a>
+</div>
+
 ## 关于中文目录
 
 使用UTF-8编码时当category为中文时，在通过url进入文章时报错
@@ -30,7 +35,7 @@ tags : [问题, 博客, jekyll]
 
 然后使用（记得将\去掉）
 
-	\{\{ post.content  | | split:'<!--break-->' | first }}
+	\{\{ post.content | split:'<!--break-->' | first }}
 
 ## 关于搜索
 
