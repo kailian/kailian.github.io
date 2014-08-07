@@ -97,6 +97,10 @@ tags : [问题, 博客, jekyll]
 
 搜索实现完毕
 
+## 关于分页
+
+[相关代码](http://jekyllrb.com/docs/pagination/)
+
 
 
 
