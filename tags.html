@@ -6,26 +6,24 @@ group: navigation
 ---
 {% include JB/setup %}
 
-<div class="col-md-12">
+<div class="col-md-12 tag-buttom">
   {% assign tags_list = site.tags %}  
   {% include JB/tags_list %}
 </div>
 
-<hr>
-
 {% for tag in site.tags %}
-<span class="col-md-4"> 
-<div class="panel panel-default">
-  <div class="panel-heading">
-  	<span class="glyphicon glyphicon-align-justify icon-margin"></span>
-  	<strong id="{{ tag[0] }}-ref">{{ tag[0] }}</strong>
-  </div>
-  <div class="panel-body">
-	<ul>
-    {% assign pages_list = tag[1] %}  
-    {% include JB/pages_list %}
-  	</ul>
+<div class="col-md-4"> 
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    	<span class="glyphicon glyphicon-align-justify icon-margin"></span>
+    	<strong id="{{ tag[0] }}-ref">{{ tag[0] }}</strong>
+    </div>
+    <div class="panel-body">
+  	<ul>
+      {% assign pages_list = tag[1] %}  
+      {% include JB/pages_list %}
+    	</ul>
+    </div>
   </div>
 </div>
-</span>
 {% endfor %}

@@ -6,17 +6,34 @@ group: navigation
 ---
 {% include JB/setup %}
 
-<ul class="tag_box inline">
-  {% assign categories_list = site.categories %}
-  {% include JB/categories_list %}
-</ul>
+<div class="col-md-12">
+	<div class="list-group col-md-3">
+		{% for category in site.categories %} 
+		<a class="list-group-item" href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category | first }}-ref">
+		{{ category | first }} 
+		<span class="badge">{{ category | last | size }}</span>
+	    </a>
+	    {% endfor %}
+	</div>
+	<div class="list-group col-md-9">		
+		{% for category in site.categories %} 
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	<h2 id="{{ category[0] }}-ref">
+		  	{{ category[0] | join: "/" }}
+		  	</h2>
+		  </div>
+		  <div class="panel-body">
+		    <ul>
+		    {% assign pages_list = category[1] %}  
+		    {% include JB/pages_list %}
+		  	</ul>
+		  </div>
+		</div>    
+		{% endfor %}
+	</div>
+</div>
 
 
-{% for category in site.categories %} 
-  <h2 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h2>
-  <ul>
-    {% assign pages_list = category[1] %}  
-    {% include JB/pages_list %}
-  </ul>
-{% endfor %}
+
 
