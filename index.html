@@ -1,108 +1,125 @@
 ---
 layout: content
-title: 主页
+title: kailian
 tagline: ''
 ---
 {% include JB/setup %}
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-    	<div class="panel panel-default">
-		  <div class="panel-heading">
-		  	<span class="glyphicon glyphicon-home"></span>
-		  	最新文章
-		  </div>
-		  <div class="panel-body">
-        {% for post in paginator.posts %}
-          <div class="col-md-12 page-header">    
-            <h3>
-              <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a><small> 
-              {{ post.date | date: "%F" }}
-              </small>
-            </h3>           
-          </div>
-          <div class="col-md-12"> 
-            {{ post.content  | split:'<!--break-->' | first }}
-            <a href="{{ post.url }}">.....</a>
-          </div>
-        {% endfor %}
-        {% if paginator.total_pages > 1 %}
-        <div class="blog-center">
-        <ul class="pagination">
-          {% if paginator.previous_page %}
-            <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo;</a></li>
-          {% else %}
-            <li class="disabled"><a href="#">&laquo;</a></li>
-          {% endif %}
-          {% for page in (1..paginator.total_pages) %}
-            {% if page == paginator.page %}
-              <li class="active"><a href="#">{{ page }}</a></li>
-            {% elsif page == 1 %}
-              <li>
-                <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-              </li>
-            {% else %}
-              <li>
-                <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-              </li>
-            {% endif %}
+    <div class="col-md-12 pin-container">
+      <div class="col-md-8">
+      	<div class="panel panel-default">
+  		  <div class="panel-heading">
+  		  	<span class="glyphicon glyphicon-home"></span>
+  		  	最新文章
+  		  </div>
+  		  <div class="panel-body">
+          {% for post in paginator.posts %}
+            <div class="col-md-12 page-header">    
+              <h3>
+                <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a><small> 
+                {{ post.date | date: "%F" }}
+                </small>
+              </h3>           
+            </div>
+            <div class="col-md-12"> 
+              {{ post.content  | split:'<!--break-->' | first }}
+              <a href="{{ post.url }}">.....</a>
+            </div>
           {% endfor %}
-          {% if paginator.next_page %}
-            <li><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
-          {% else %}
-            <li class="disabled"><a href="#">&raquo;</a></li>
+          {% if paginator.total_pages > 1 %}
+          <div class="blog-center">
+          <ul class="pagination">
+            {% if paginator.previous_page %}
+              <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><a href="#">&laquo;</a></li>
+            {% endif %}
+            {% for page in (1..paginator.total_pages) %}
+              {% if page == paginator.page %}
+                <li class="active"><a href="#">{{ page }}</a></li>
+              {% elsif page == 1 %}
+                <li>
+                  <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+                </li>
+              {% else %}
+                <li>
+                  <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+            {% if paginator.next_page %}
+              <li><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><a href="#">&raquo;</a></li>
+            {% endif %}
+          </ul >
           {% endif %}
-        </ul >
-        {% endif %}
-        </div>
-		  </div>
-		</div>
-    </div>
-  	<div class="col-md-4"> 		
-  		<div class="panel panel-default">
-  		  <div class="panel-heading">
-  		  	<span class="glyphicon glyphicon-folder-open icon-margin"></span>
-  		  	分类目录
-  		  </div>
-  		  <div class="panel-body">
-  		    <div class="list-group">
-  			  {% for category in site.categories %} 
-            <a class="list-group-item" href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category | first }}-ref">
-		    		{{ category | first }} 
-            <span class="badge">{{ category | last | size }}</span>
-  		    	</a>
-  		      {% endfor %}
-  			  </div>
+          </div>
   		  </div>
   		</div>
-  		<div class="panel panel-default">
-  		  <div class="panel-heading">
-  		  	<span class="glyphicon glyphicon-tags icon-margin"></span>
-  		  	标签
-  		  </div>
-  		  <div class="panel-body">
-  		    	{% for tag in site.tags %} 
-  			    <div class="lable-margin blog-left">
-  			      <button class="btn btn-primary btn-sm" type="button">
-  			        <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
-  			          <span class="tag-color">{{ tag[0] }}</span>
-  			          <span class="badge">{{ tag[1].size }}</span>
-  			        </a>
-  			      </button>
-  			    </div>
-  			    {% endfor %}
-  		  </div>
-  		</div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <span class="glyphicon glyphicon-th icon-margin"></span>
-          关于
-        </div>
-        <div class="panel-body">
-          博客文章统计：{{ paginator.total_posts }}         
-        </div>
       </div>
-  	</div>  	
+    	<div class="col-md-4">
+        <div class="pinned"> 		
+      		<div class="panel panel-default">
+      		  <div class="panel-heading">
+      		  	<span class="glyphicon glyphicon-folder-open icon-margin"></span>
+      		  	分类目录
+      		  </div>
+      		  <div class="panel-body">
+      		    <div class="list-group">
+      			  {% for category in site.categories %} 
+                <a class="list-group-item" href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category | first }}-ref">
+    		    		{{ category | first }} 
+                <span class="badge">{{ category | last | size }}</span>
+      		    	</a>
+      		      {% endfor %}
+      			  </div>
+      		  </div>
+      		</div>
+      		<div class="panel panel-default">
+      		  <div class="panel-heading">
+      		  	<span class="glyphicon glyphicon-tags icon-margin"></span>
+      		  	标签
+      		  </div>
+      		  <div class="panel-body">
+      		    	{% for tag in site.tags %} 
+      			    <div class="lable-margin blog-left">
+      			      <button class="btn btn-primary btn-sm" type="button">
+      			        <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
+      			          <span class="tag-color">{{ tag[0] }}</span>
+      			          <span class="badge">{{ tag[1].size }}</span>
+      			        </a>
+      			      </button>
+      			    </div>
+      			    {% endfor %}
+      		  </div>
+      		</div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <span class="glyphicon glyphicon-tasks icon-margin"></span>
+              关于
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-paperclip icon-margin"></span>RSS： 
+                  <a type="button" class="btn btn-default btn-sm" href="/rss.xml" target="_blank">订阅</a>
+                </li>         
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-envelope icon-margin"></span>
+                  Mail：kailian2010lin@163.com 
+                </li>
+                <li class="list-group-item">
+                  <span class="glyphicon glyphicon-list-alt icon-margin"></span>
+                  博客文章统计：{{ paginator.total_posts }}
+                </li>
+               </ul>
+            </div>
+          </div>
+      	</div>
+      </div>
+    </div> 	
   </div>
 </div>
 

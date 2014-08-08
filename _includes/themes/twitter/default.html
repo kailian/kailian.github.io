@@ -70,13 +70,12 @@
     返回顶部</a>
     </div>
   <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ ASSET_PATH }}/js/jquery.pin.js"></script>
 <script>
 $(document).ready(function(){ 
   var bt = $('#toolBackTop');
   var sw = $(document.body)[0].clientWidth;
   var cw = $(".container")[0].clientWidth;
-  console.log(sw)
-  console.log(cw)
   var limitsw = (sw - cw) / 2 - 50;
   if (limitsw > 0) {
     limitsw = parseInt(limitsw);
@@ -91,6 +90,11 @@ $(document).ready(function(){
       bt.hide();
     }
   });
+
+  $(".pinned").pin({
+    containerSelector: ".pin-container",
+    minWidth: 940
+  })
 })
 
 /**
