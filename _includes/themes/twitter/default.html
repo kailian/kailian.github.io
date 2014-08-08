@@ -65,8 +65,43 @@
         Copyright &copy; 2014-{{ site.time | date: '%Y' }} <a href="https://github.com/kailian">{{ site.author.name }}</a> All Rights Reserved
       </div>
     </footer>
+    <div style="display:none;" class="back-to" id="toolBackTop">
+      <a title="返回顶部" onclick="back_to_top();" href="#top" class="back-top">
+    返回顶部</a>
+    </div>
   <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
 <script>
+$(document).ready(function(){ 
+  var bt = $('#toolBackTop');
+  var sw = $(document.body)[0].clientWidth;
+  var cw = $(".container")[0].clientWidth;
+  console.log(sw)
+  console.log(cw)
+  var limitsw = (sw - cw) / 2 - 50;
+  if (limitsw > 0) {
+    limitsw = parseInt(limitsw);
+    bt.css("right",limitsw);
+  }
+
+  $(window).scroll(function() {
+    var st = $(window).scrollTop();
+    if(st > 130){
+      bt.show();
+    }else{
+      bt.hide();
+    }
+  });
+})
+
+/**
+ * 返回顶部
+ */
+function back_to_top() {
+  $("html,body").animate({scrollTop:"0px"},200);
+  return false;
+}
+
+
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
