@@ -38,6 +38,11 @@ ul {
 	margin-top: 5px;
 }
 
+.time-margin {
+  margin-left: 10px;
+  color: #999;
+}
+
 .alert-margin {
 	margin-top: 5px;
 }
@@ -48,6 +53,17 @@ ul {
 
 .tag-color {
 	color: #fff;
+}
+
+.article-header {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.article-border {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #DDD;
 }
 
 /**

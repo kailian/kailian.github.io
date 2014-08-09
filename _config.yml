@@ -18,7 +18,7 @@ author :
   feedburner : feedname
 
 # 每一页显示的文章数
-paginate: 5
+paginate: 10
 paginate_path: "/page:num"
 
 # The production_url is only used when full-domain names are needed

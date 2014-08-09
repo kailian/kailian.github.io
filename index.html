@@ -15,14 +15,16 @@ tagline: ''
   		  </div>
   		  <div class="panel-body">
           {% for post in paginator.posts %}
-            <div class="col-md-12 page-header">    
-              <h3>
-                <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a><small> 
+            <div class="col-md-12 article-header">    
+              <h4>
+                <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+              </h4>
+              <div class="time-margin">
+                <span class="glyphicon glyphicon-time"></span> 
                 {{ post.date | date: "%F" }}
-                </small>
-              </h3>           
+              </div>                        
             </div>
-            <div class="col-md-12"> 
+            <div class="col-md-12 article-border"> 
               {{ post.content  | split:'<!--break-->' | first }}
               <a href="{{ post.url }}">显示全文</a>
             </div>
