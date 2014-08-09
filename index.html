@@ -24,7 +24,7 @@ tagline: ''
             </div>
             <div class="col-md-12"> 
               {{ post.content  | split:'<!--break-->' | first }}
-              <a href="{{ post.url }}">.....</a>
+              <a href="{{ post.url }}">显示全文</a>
             </div>
           {% endfor %}
           {% if paginator.total_pages > 1 %}
@@ -60,7 +60,25 @@ tagline: ''
   		</div>
       </div>
     	<div class="col-md-4">
-        <div class="pinned"> 		
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-tags icon-margin"></span>
+            标签
+          </div>
+          <div class="panel-body">
+              {% for tag in site.tags %} 
+              <div class="lable-margin blog-left">
+                <button class="btn btn-primary btn-sm" type="button">
+                  <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
+                    <span class="tag-color">{{ tag[0] }}</span>
+                    <span class="badge">{{ tag[1].size }}</span>
+                  </a>
+                </button>
+              </div>
+              {% endfor %}
+          </div>
+        </div> 
+        <div class="pinned">		
       		<div class="panel panel-default">
       		  <div class="panel-heading">
       		  	<span class="glyphicon glyphicon-folder-open icon-margin"></span>
@@ -77,24 +95,7 @@ tagline: ''
       			  </div>
       		  </div>
       		</div>
-      		<div class="panel panel-default">
-      		  <div class="panel-heading">
-      		  	<span class="glyphicon glyphicon-tags icon-margin"></span>
-      		  	标签
-      		  </div>
-      		  <div class="panel-body">
-      		    	{% for tag in site.tags %} 
-      			    <div class="lable-margin blog-left">
-      			      <button class="btn btn-primary btn-sm" type="button">
-      			        <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
-      			          <span class="tag-color">{{ tag[0] }}</span>
-      			          <span class="badge">{{ tag[1].size }}</span>
-      			        </a>
-      			      </button>
-      			    </div>
-      			    {% endfor %}
-      		  </div>
-      		</div>
+        		
           <div class="panel panel-default">
             <div class="panel-heading">
               <span class="glyphicon glyphicon-tasks icon-margin"></span>
@@ -116,8 +117,8 @@ tagline: ''
                 </li>
                </ul>
             </div>
-          </div>
-      	</div>
+      	  </div>
+        </div>  
       </div>
     </div> 	
   </div>
