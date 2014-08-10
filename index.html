@@ -15,7 +15,8 @@ tagline: ''
   		  </div>
   		  <div class="panel-body">
           {% for post in paginator.posts %}
-            <div class="col-md-12 article-header">    
+          <div class="blog-list col-md-12">
+            <div class="article-header">    
               <h4>
                 <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
               </h4>
@@ -24,10 +25,11 @@ tagline: ''
                 {{ post.date | date: "%F" }}
               </div>                        
             </div>
-            <div class="col-md-12 article-border"> 
+            <div class="article-margin blog-content">
               {{ post.content  | split:'<!--break-->' | first }}
               <a href="{{ post.url }}">显示全文</a>
             </div>
+          </div>
           {% endfor %}
           {% if paginator.total_pages > 1 %}
           <div class="blog-center">

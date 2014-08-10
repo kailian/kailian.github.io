@@ -16,6 +16,8 @@ tags : [工具]
 
 当浏览器检查到协议为JavaScript，就将后面的字符串作为JavaScript脚本来执行，并用执行结果产生一个新页面。
 
+<!--break-->
+
 	javascript:(function(){
 	/* Statements returning a non-undefined type, e.g. assignments */
 	})();
