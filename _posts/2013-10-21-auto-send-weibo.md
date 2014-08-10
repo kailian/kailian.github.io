@@ -1,7 +1,7 @@
 ---
 layout: post
 category : web
-title: '【web】PHP自动发微博'
+title: 'PHP自动发微博'
 tagline: ""
 tags : [php, web]
 ---

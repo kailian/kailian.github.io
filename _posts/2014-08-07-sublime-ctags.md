@@ -1,7 +1,7 @@
 ---
 layout: post
 category : 工具
-title: '【工具】sublime text2 ctags'
+title: 'sublime text2 ctags'
 tagline: ""
 tags : [sublime, 工具]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 category : 随意记录
-title: '【随意记录】总结一下github上搭建blog'
+title: '总结一下github上搭建blog'
 tagline: ""
 tags : [博客, 网站建设]
 ---

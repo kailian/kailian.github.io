@@ -1,7 +1,7 @@
 ---
 layout: post
 category : 读书笔记
-title: '【读书笔记】黑客与画家'
+title: '黑客与画家'
 tagline: ""
 tags : [黑客与画家, 读书笔记]
 ---

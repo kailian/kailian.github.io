@@ -80,6 +80,23 @@ a:active {  text-decoration:none; }
   border-bottom: 1px solid #eee;
 }
 
+.tag-box {
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.tag-span {
+  vertical-align: super;
+  font-size: 0.8em;
+}
+
+.v-fork-me {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
+}
+
 /**
  * 返回顶部
  */

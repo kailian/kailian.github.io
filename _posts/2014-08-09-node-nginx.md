@@ -1,7 +1,7 @@
 ---
 layout: post
 category : web
-title: '【web】node配置域名'
+title: 'node配置域名'
 tagline: ""
 tags : [node, web]
 ---

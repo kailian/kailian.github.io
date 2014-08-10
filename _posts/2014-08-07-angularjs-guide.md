@@ -1,7 +1,7 @@
 ---
 layout: post
 category : web
-title: '【web】angularJS guide'
+title: 'angularJS guide'
 tagline: ""
 tags : [angularjs, web]
 ---

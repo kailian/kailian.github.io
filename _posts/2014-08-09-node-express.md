@@ -1,7 +1,7 @@
 ---
 layout: post
 category : web
-title: '【web】安装node-express'
+title: '安装node-express'
 tagline: ""
 tags : [node, web]
 ---

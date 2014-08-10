@@ -1,7 +1,7 @@
 ---
 layout: post
 category : 读书笔记
-title: '【读书笔记】高性能网站建设指南'
+title: '高性能网站建设指南'
 tagline: ""
 tags : [读书笔记, 网站建设, 性能]
 ---

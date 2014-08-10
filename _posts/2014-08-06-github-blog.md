@@ -1,7 +1,7 @@
 ---
 layout: post
 category : jekyll
-title: '【jekyll】在github搭建博客'
+title: '在github搭建博客'
 tagline: ""
 tags : [github, 博客, jekyll]
 ---

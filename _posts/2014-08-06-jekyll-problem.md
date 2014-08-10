@@ -1,7 +1,7 @@
 ---
 layout: post
 category : jekyll
-title: '【jekyll】搭建博客遇到的问题'
+title: '搭建博客遇到的问题'
 tagline: ""
 tags : [问题, 博客, jekyll]
 ---

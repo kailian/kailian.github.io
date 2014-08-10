@@ -20,11 +20,18 @@
     </div>
 
     {% unless page.tags == empty %}
-      <ul class="tag_box inline blog-list">
-        <li><i class="icon-tags"></i></li>
-        {% assign tags_list = page.tags %}
-        {% include JB/tags_list %}
-      </ul>
+      <div class="tag_box inline blog-list">
+        {% for tag in page.tags %} 
+          <span class="tag-box blog-left">
+            <button class="btn btn-primary btn-sm">
+              <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref">
+                <span class="tag-color">{{ tag }}</span>
+                <span class="badge">{{ site.tags[tag].size }}</span>
+              </a>
+             </button>  
+          </span>
+        {% endfor %}
+      </div>
     {% endunless %}  
 
       <hr>
@@ -35,7 +42,7 @@
         {% else %}
           <li class="prev disabled"><a>&larr; 上一篇</a></li>
         {% endif %}
-          <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">目录</a></li>
+          <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">归档</a></li>
         {% if page.next %}
           <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">下一篇 &rarr;</a></li>
         {% else %}
