@@ -15,12 +15,12 @@
       <span class="glyphicon glyphicon-edit icon-margin"></span>
       <span><a href="{{ site.production_url }}{{ page.url }}#comment">评论</a></span>
     </div>
-    <div class="content">
+    <div class="blog-content">
       {{ content }}
     </div>
 
     {% unless page.tags == empty %}
-      <ul class="tag_box inline">
+      <ul class="tag_box inline blog-list">
         <li><i class="icon-tags"></i></li>
         {% assign tags_list = page.tags %}
         {% include JB/tags_list %}

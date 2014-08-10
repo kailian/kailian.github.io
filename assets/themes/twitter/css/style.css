@@ -13,8 +13,16 @@ a:visited {text-decoration:none;}
 a:hover {  text-decoration:none; }
 a:active {  text-decoration:none; }
 
-ul {
+.blog-list {
 	list-style: none;
+}
+
+.blog-content ul {
+  margin-left: 18px;
+}
+
+.blog-content ol {
+  margin-left: 18px;
 }
 
 .blog-center {
