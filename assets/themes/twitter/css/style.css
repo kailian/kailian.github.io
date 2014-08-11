@@ -13,6 +13,12 @@ a:visited {text-decoration:none;}
 a:hover {  text-decoration:none; }
 a:active {  text-decoration:none; }
 
+.navbar-inverse {
+	-webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.175);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.175);
+	border-radius: 0;
+}
+
 .blog-list {
 	list-style: none;
 }
