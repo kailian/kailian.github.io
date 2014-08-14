@@ -18,7 +18,9 @@ tags : [设计模式]
 > 希望对象只创建一个实例，并且提供一个全局的访问点。
 
 1.私有构造函数 - 其他类不能实例化一个新的对象。
+
 2.私有化引用 - 不能进行外部修改。
+
 3.公有静态方法是唯一可以获得对象的方式。
 
 ### 懒汉模式
@@ -26,6 +28,7 @@ tags : [设计模式]
 > 调用取得实例方法的时候才会实例化对象
 
 ```java
+
 public class Singleton {
     private Singleton(){}
     private static Singleton instance = null;
@@ -36,6 +39,7 @@ public class Singleton {
 　　　　return instance;
     }
 }
+
 ```
 
 ### 饿汉模式
@@ -43,6 +47,7 @@ public class Singleton {
 > 加载类的时候会连带着创建实例
 
 ```java
+
 public class Singleton {
     private Singleton(){}
     private static Singleton instance = new Singleton();
@@ -50,6 +55,7 @@ public class Singleton {
 　　　　return instance;
     }
 }
+
 ```
 ## 工厂模式
 
@@ -61,6 +67,7 @@ public class Singleton {
 > 抽象工厂模式是在工厂模式的基础上增加的一层抽象概念。如果比较抽象工厂模式和工厂模式，我们不难发现前者只是增加了一层抽象的概念。抽象工厂是一个父类工厂，可以创建其它工厂类。故我们也叫它“工厂的工厂”。
 
 ```java
+
 interface CPU {
     void process();
 }
@@ -115,6 +122,7 @@ public class Client {
             return new IntelFactory();
     }
 }
+
 ```
 
 

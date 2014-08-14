@@ -51,6 +51,7 @@ tags : [设计模式]
 3.接口方法：调用方法参数中，有一个参数是接口
 
 ```java
+
 interface IReader{  
     public String getContent();  
 }
@@ -80,6 +81,7 @@ public class Client{
         mother.narrate(new Newspaper());  
     }  
 } 
+
 ```
 
 ### 接口隔离原则
