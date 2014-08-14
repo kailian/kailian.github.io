@@ -7,11 +7,18 @@ tags : [设计模式]
 ---
 
 1.单一职责原则（Single Responsibility Principle）
+
 2.里氏替换原则（Liskov Substitution Principle）
+
 3.依赖倒置原则（Dependence Inversion Principle）
+
 4.接口隔离原则（Interface Segregation Principle）
+
 5.迪米特法则（Law Of Demeter）
+
 6.开闭原则（Open Close Principle）
+
+<!--break-->
 
 ### 单一职责原则
 
@@ -50,39 +57,37 @@ tags : [设计模式]
 2.SET方法：在类中，增加一个public的SET的方法，调用SET方法是，进行赋值
 3.接口方法：调用方法参数中，有一个参数是接口
 
-```java
 
-interface IReader{  
-    public String getContent();  
-}
+    interface IReader{  
+        public String getContent();  
+    }
 
-class Newspaper implements IReader {  
-    public String getContent(){  
-        return "林书豪17+9助尼克斯击败老鹰……";  
+    class Newspaper implements IReader {  
+        public String getContent(){  
+            return "林书豪17+9助尼克斯击败老鹰……";  
+        }  
     }  
-}  
-class Book implements IReader{  
-    public String getContent(){  
-        return "很久很久以前有一个阿拉伯的故事……";  
+    class Book implements IReader{  
+        public String getContent(){  
+            return "很久很久以前有一个阿拉伯的故事……";  
+        }  
     }  
-}  
-  
-class Mother{  
-    public void narrate(IReader reader){  
-        System.out.println("妈妈开始讲故事");  
-        System.out.println(reader.getContent());  
+      
+    class Mother{  
+        public void narrate(IReader reader){  
+            System.out.println("妈妈开始讲故事");  
+            System.out.println(reader.getContent());  
+        }  
     }  
-}  
-  
-public class Client{  
-    public static void main(String[] args){  
-        Mother mother = new Mother();  
-        mother.narrate(new Book());  
-        mother.narrate(new Newspaper());  
-    }  
-} 
+      
+    public class Client{  
+        public static void main(String[] args){  
+            Mother mother = new Mother();  
+            mother.narrate(new Book());  
+            mother.narrate(new Newspaper());  
+        }  
+    } 
 
-```
 
 ### 接口隔离原则
 

@@ -75,7 +75,8 @@
   <script src="{{ ASSET_PATH }}/js/jquery.pin.js"></script>
 <script>
 $(document).ready(function(){
-  prettyPrint(); 
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+  window.prettyPrint && prettyPrint();
   var bt = $('#toolBackTop');
   var sw = $(document.body)[0].clientWidth;
   var cw = $(".container")[0].clientWidth;

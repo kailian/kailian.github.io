@@ -17,6 +17,8 @@ tags : [设计模式]
 
 > 希望对象只创建一个实例，并且提供一个全局的访问点。
 
+<!--break-->
+
 1.私有构造函数 - 其他类不能实例化一个新的对象。
 
 2.私有化引用 - 不能进行外部修改。
@@ -27,36 +29,30 @@ tags : [设计模式]
 
 > 调用取得实例方法的时候才会实例化对象
 
-```java
-
-public class Singleton {
-    private Singleton(){}
-    private static Singleton instance = null;
-    public static synchronized Singleton getInstance() {
-　　　　if (instance == null) {
-　　　　    instance = new Singleton();
-　　　　}
-　　　　return instance;
+    public class Singleton {
+        private Singleton(){}
+        private static Singleton instance = null;
+        public static synchronized Singleton getInstance() {
+    　　　　if (instance == null) {
+    　　　　    instance = new Singleton();
+    　　　　}
+    　　　　return instance;
+        }
     }
-}
 
-```
 
 ### 饿汉模式
 
 > 加载类的时候会连带着创建实例
 
-```java
-
-public class Singleton {
-    private Singleton(){}
-    private static Singleton instance = new Singleton();
-    public static Singleton getInstance() {
-　　　　return instance;
+    public class Singleton {
+        private Singleton(){}
+        private static Singleton instance = new Singleton();
+        public static Singleton getInstance() {
+    　　　　return instance;
+        }
     }
-}
 
-```
 ## 工厂模式
 
 > 定义一个用于创建对象的接口，让子类决定实例化哪一个类
@@ -66,64 +62,62 @@ public class Singleton {
 > 为创建一组相关或相互依赖的对象提供一个接口，而且无需指定他们的具体类
 > 抽象工厂模式是在工厂模式的基础上增加的一层抽象概念。如果比较抽象工厂模式和工厂模式，我们不难发现前者只是增加了一层抽象的概念。抽象工厂是一个父类工厂，可以创建其它工厂类。故我们也叫它“工厂的工厂”。
 
-```java
 
-interface CPU {
-    void process();
-}
- 
-interface CPUFactory {
-    CPU produceCPU();
-}
- 
-class AMDFactory implements CPUFactory {
-    public CPU produceCPU() {
-        return new AMDCPU();
+    interface CPU {
+        void process();
     }
-}
- 
-class IntelFactory implements CPUFactory {
-    public CPU produceCPU() {
-        return new IntelCPU();
+     
+    interface CPUFactory {
+        CPU produceCPU();
     }
-}
- 
-class AMDCPU implements CPU {
-    public void process() {
-        System.out.println("AMD is processing...");
+     
+    class AMDFactory implements CPUFactory {
+        public CPU produceCPU() {
+            return new AMDCPU();
+        }
     }
-}
- 
-class IntelCPU implements CPU {
-    public void process() {
-        System.out.println("Intel is processing...");
+     
+    class IntelFactory implements CPUFactory {
+        public CPU produceCPU() {
+            return new IntelCPU();
+        }
     }
-}
- 
-class Computer {
-    CPU cpu;
- 
-    public Computer(CPUFactory factory) {
-        cpu = factory.produceCPU();
-        cpu.process();
+     
+    class AMDCPU implements CPU {
+        public void process() {
+            System.out.println("AMD is processing...");
+        }
     }
-}
- 
-public class Client {
-    public static void main(String[] args) {
-        new Computer(createSpecificFactory());
+     
+    class IntelCPU implements CPU {
+        public void process() {
+            System.out.println("Intel is processing...");
+        }
     }
- 
-    public static CPUFactory createSpecificFactory() {
-        int sys = 0; // 基于特定要求
-        if (sys == 0) 
-            return new AMDFactory();
-        else
-            return new IntelFactory();
+     
+    class Computer {
+        CPU cpu;
+     
+        public Computer(CPUFactory factory) {
+            cpu = factory.produceCPU();
+            cpu.process();
+        }
     }
-}
+     
+    public class Client {
+        public static void main(String[] args) {
+            new Computer(createSpecificFactory());
+        }
+     
+        public static CPUFactory createSpecificFactory() {
+            int sys = 0; // 基于特定要求
+            if (sys == 0) 
+                return new AMDFactory();
+            else
+                return new IntelFactory();
+        }
+    }
 
-```
 
 
 

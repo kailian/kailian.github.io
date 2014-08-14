@@ -10,62 +10,79 @@ tags : [angularjs, web]
 
 #### 目录
 
-	1．简介
-	2．核心概念与基本用法
-	3．实战与技巧
-	4．学习资料
+1．简介
+
+2．核心概念与基本用法
+
+3．实战与技巧
+
+4．学习资料
 
 #### 简介
 
-	1．简称ng
-	2．目前最新版本1.3.0
-	3．放弃兼容IE8
-	4．Why AngularJS？
+1．简称ng
+
+2．目前最新版本1.3.0
+
+3．放弃兼容IE8
+
+4．Why AngularJS？
 
 <!--break-->	
 
 #### Why AngularJS
 
 
-	1、适合
-	后台存在大量的表单和数据报表，AngularJS可以很好地用来开发表单/报表类的应用程序
-	2、 简单，可读性强
-	声明式而非命令式编程，用声明的方式描述的UI界面可随着应用状态的改变而变化，从DOM操作代码中解脱
-	3、 强大的后台（Google）
-	相对靠谱的API文档（需翻墙）
+1、适合
+
+后台存在大量的表单和数据报表，AngularJS可以很好地用来开发表单/报表类的应用程序
+
+2、 简单，可读性强
+
+声明式而非命令式编程，用声明的方式描述的UI界面可随着应用状态的改变而变化，从DOM操作代码中解脱
+
+3、 强大的后台（Google）
+
+相对靠谱的API文档（需翻墙）
 
 备注：
 
-	Why AngularJS?
-	HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop.
-	用angular写同样的功能一般是jquery代码量的一半以下
+> Why AngularJS?
+> HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop.
+
+用angular写同样的功能一般是jquery代码量的一半以下
 
 #### 缺点
 
-	1．兼容性
-	2．性能问题
+1．兼容性
+2．性能问题
 
 备注：
 
-	1、兼容性，不兼容ie8以下，这个只能鄙视老土浏览器了，开发的时候直接放弃兼容（直接放弃治疗了）
-	2、一般后台数据量和用户量是不至于存在性能问题的，据说超过2000+个双向数据绑定才会在加载时出现卡的情况
-		1）后端分页限制数据量，缺点是不能实现纯前端搜索
-		2）前端分页
-		3）单向绑定1.3+版本
-	3、缺少实践方案或者推荐的最佳方案
+1、兼容性，不兼容ie8以下，这个只能鄙视老土浏览器了，开发的时候直接放弃兼容（直接放弃治疗了）
+
+2、一般后台数据量和用户量是不至于存在性能问题的，据说超过2000+个双向数据绑定才会在加载时出现卡的情况
+
+1）后端分页限制数据量，缺点是不能实现纯前端搜索
+
+2）前端分页
+
+3）单向绑定1.3+版本
+
+3、缺少实践方案或者推荐的最佳方案
 
 #### 核心特性
 
-	1．MVC或MVVM
-	2．模块化
-	3．双向数据绑定
-	4．过滤器Filter
-	5．指令系统
+1．MVC或MVVM
+2．模块化
+3．双向数据绑定
+4．过滤器Filter
+5．指令系统
 
 备注：
 
-	指令就是一些附加在HTML元素上的自定义标记（例如：属性，元素，或css类）
-	Angular内置了一整套指令，如ngBind, ngModel, 和ngView。 就像你可以创建控制器和服务那样，你也可以创建自己的指令来让Angular使用。 当Angular 启动器引导你的应用程序时， HTML编译器就会遍历整个DOM，以匹配DOM元素里的指令。
+指令就是一些附加在HTML元素上的自定义标记（例如：属性，元素，或css类）
+Angular内置了一整套指令，如ngBind, ngModel, 和ngView。 就像你可以创建控制器和服务那样，你也可以创建自己的指令来让Angular使用。 当Angular 启动器引导你的应用程序时， HTML编译器就会遍历整个DOM，以匹配DOM元素里的指令。
 
 <table class="table">
 	<thead>
@@ -140,39 +157,48 @@ tags : [angularjs, web]
 	
 AngularJS同样的示例用jquery如何实现？
 
-	双向数据绑定
-	过滤器
-	指令系统
+- 双向数据绑定
+- 过滤器
+- 指令系统
 
 #### 实战与技巧
 
-	UI工具
-	Angular-bootstrap
-	Bootstrap components written in pure AngularJS by the AngularUI Team
-	Angular showcase
-	一个基于angular的界面元素范例程序
+- UI工具
+- Angular-bootstrap
+- Bootstrap components written in pure AngularJS by the AngularUI Team
+- Angular showcase
+- 一个基于angular的界面元素范例程序
 
-	表单示例
-	渲染数据表格
-	分页
+- 表单示例
+- 渲染数据表格
+- 分页
 
 Angular的实现
 
-依赖数据，依靠声明式的标签实现
+> 依赖数据，依靠声明式的标签实现
 
 #### 注意事项
 
 
-	1、ng-if代替ng-show ng-hide
-	（ng-if之后的代码不会执行，ng-show会，提高性能）
-	2、用过滤器处理数据而不是在controller里写方法实现
-	（可复用）
-	3、用service获取数据而不是在controller里写方法实现
-	（理由类似MVC中M和C的分离，数据和业务逻辑分开，可复用）
-	4、在table要ng-repeat两次
-	（ ng-repeat-start、ng-repeat-end ）
-	5、 html
-	（ ng-bind-html  $sce的trustAsHtml() ）
+1、ng-if代替ng-show ng-hide
+
+（ng-if之后的代码不会执行，ng-show会，提高性能）
+
+2、用过滤器处理数据而不是在controller里写方法实现
+
+（可复用）
+
+3、用service获取数据而不是在controller里写方法实现
+
+（理由类似MVC中M和C的分离，数据和业务逻辑分开，可复用）
+
+4、在table要ng-repeat两次
+
+（ ng-repeat-start、ng-repeat-end ）
+
+5、 html
+
+（ ng-bind-html  $sce的trustAsHtml() ）
 
 
 Angularjs
