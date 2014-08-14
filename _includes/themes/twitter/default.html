@@ -13,6 +13,7 @@
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/jquery-ui.css" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ ASSET_PATH }}/google-code-prettify/prettify.css" rel="stylesheet">
 
   <!-- Update these with your own images
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -70,9 +71,11 @@
     返回顶部</a>
     </div>
   <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ ASSET_PATH }}/google-code-prettify/prettify.js"></script>
   <script src="{{ ASSET_PATH }}/js/jquery.pin.js"></script>
 <script>
-$(document).ready(function(){ 
+$(document).ready(function(){
+  prettyPrint(); 
   var bt = $('#toolBackTop');
   var sw = $(document.body)[0].clientWidth;
   var cw = $(".container")[0].clientWidth;
