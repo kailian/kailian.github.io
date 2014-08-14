@@ -1,14 +1,16 @@
 ---
 layout: post
 category : 设计模式
-title: '单例模式'
+title: '创建型模式'
 tagline: ""
-tags : [设计模式]
+tags : [设计模式, 创建型模式]
 ---
 
-创建型模式：
+## 创建型模式
 
-## 单例模式Singleton
+ABFPS（AbstractFactory、Builder、Factory Method、Prototype、Singleton）
+
+## 单例模式（Singleton）
 
 > 确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例
 
@@ -54,11 +56,66 @@ tags : [设计模式]
         }
     }
 
-## 工厂模式
+## 工厂模式（Factory Method）
 
 > 定义一个用于创建对象的接口，让子类决定实例化哪一个类
 
-## 抽象工厂模式
+- 通过工厂模式，将产品的实例化封装起来
+
+- 调用者只关心产品的接口就可以了，至于具体的实现，调用者根本无需关心
+
+- 降低耦合度
+
+
+        interface IProduct {  
+            public void productMethod();  
+        }  
+          
+        class Product implements IProduct {  
+            public void productMethod() {  
+                System.out.println("产品");  
+            }  
+        }  
+          
+        interface IFactory {  
+            public IProduct createProduct();  
+        }  
+          
+        class Factory implements IFactory {  
+            public IProduct createProduct() {  
+                return new Product();  
+            }  
+        }  
+          
+        public class Client {  
+            public static void main(String[] args) {  
+                IFactory factory = new Factory();  
+                IProduct prodect = factory.createProduct();  
+                prodect.productMethod();  
+            }  
+        } 
+
+angular的工厂调用
+
+    angular.module('myModule', []).  
+      config(['depProvider', function(depProvider){  
+        ...  
+      }]).  
+      factory('serviceId', ['depService', function(depService) {  
+        ...  
+      }]).  
+      directive('directiveName', ['depService', function(depService) {  
+        ...  
+      }]).  
+      filter('filterName', ['depService', function(depService) {  
+        ...  
+      }]).  
+      run(['depService', function(depService) {  
+        ...  
+      }]);  
+
+
+## 抽象工厂模式（AbstractFactory）
 
 > 为创建一组相关或相互依赖的对象提供一个接口，而且无需指定他们的具体类
 > 抽象工厂模式是在工厂模式的基础上增加的一层抽象概念。如果比较抽象工厂模式和工厂模式，我们不难发现前者只是增加了一层抽象的概念。抽象工厂是一个父类工厂，可以创建其它工厂类。故我们也叫它“工厂的工厂”。
@@ -96,6 +153,7 @@ tags : [设计模式]
         }
     }
      
+    //创建工厂的工厂
     class Computer {
         CPU cpu;
      
