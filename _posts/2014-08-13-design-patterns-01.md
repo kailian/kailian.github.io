@@ -93,7 +93,58 @@ ABFPS（AbstractFactory、Builder、Factory Method、Prototype、Singleton）
                 IProduct prodect = factory.createProduct();  
                 prodect.productMethod();  
             }  
+        }
+
+> 组装汽车
+
+不使用工厂模式
+
+        class Engine {  
+            public void getStyle(){  
+                System.out.println("这是汽车的发动机");  
+            }  
+        }  
+        class Underpan {  
+            public void getStyle(){  
+                System.out.println("这是汽车的底盘");  
+            }  
+        }  
+        class Wheel {  
+            public void getStyle(){  
+                System.out.println("这是汽车的轮胎");  
+            }  
+        }  
+        public class Client {  
+            public static void main(String[] args) {  
+                Engine engine = new Engine();  
+                Underpan underpan = new Underpan();  
+                Wheel wheel = new Wheel();  
+                ICar car = new Car(underpan, wheel, engine);  
+                car.show();  
+            }  
         } 
+
+工厂模式
+
+        interface IFactory {  
+            public ICar createCar();  
+        }  
+        class Factory implements IFactory {  
+            public ICar createCar() {  
+                Engine engine = new Engine();  
+                Underpan underpan = new Underpan();  
+                Wheel wheel = new Wheel();  
+                ICar car = new Car(underpan, wheel, engine);  
+                return car;  
+            }  
+        }  
+        public class Client {  
+            public static void main(String[] args) {  
+                IFactory factory = new Factory();  
+                ICar car = factory.createCar();  
+                car.show();  
+            }  
+        }
 
 angular的工厂调用
 
@@ -177,7 +228,8 @@ angular的工厂调用
         }
     }
 
+## 创建者模式（Builder）
 
-
+> 将一个复杂对象的构建和表示分离，使得同样的构建过程可以构建不同的表示。
 
 
