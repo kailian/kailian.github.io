@@ -14,3 +14,5 @@ tags : [工具]
 
 	javascript:$('[name=name]').val('localpc');$('[name=email]').val('localpc@admin.com');$('[name=username]').val('root');$('[name=password]').val('root');
 
+> 吐槽一下，用浏览器自带的密码填充或扩展不就好了
+

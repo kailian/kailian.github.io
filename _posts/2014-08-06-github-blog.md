@@ -92,4 +92,10 @@ https://github.com/jekyll/jekyll/wiki/sites
 
 文章支持使用markdown，命名按jekyll的命名要求即可
 
-评论可使用第三方插件
+> 评论
+
+可使用第三方插件（多说）
+
+> jekyll博客主题
+
+[HPSTR Theme](http://mmistakes.github.io/hpstr-jekyll-theme/)

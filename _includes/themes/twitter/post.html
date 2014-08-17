@@ -16,8 +16,9 @@
       <span><a href="{{ site.production_url }}{{ page.url }}#comment">评论</a></span>
     </div>
     <div class="blog-content">
+      <div class="article-content">
       {{ content }}
-
+      </div>
       {% unless page.tags == empty %}
       <div class="tag_box blog-list">
         {% for tag in page.tags %} 
