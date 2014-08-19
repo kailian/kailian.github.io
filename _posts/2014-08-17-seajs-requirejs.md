@@ -19,6 +19,7 @@ tags : [web, 前端]
 
 [前端加载require.js](http://www.ruanyifeng.com/blog/2012/11/require_js.html)
 
+<!--break-->
 
 ## seaJS vs requireJS
 
