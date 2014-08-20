@@ -35,6 +35,10 @@ a:active {  text-decoration:none; }
   font-size: 17px;
 }
 
+blockquote {
+  border-left-color: #5bc0de;
+}
+
 .article-list {
   margin-top: 35px;
   border: 1px solid #fff;
