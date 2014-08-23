@@ -71,9 +71,14 @@ blockquote {
 	margin-top: 5px;
 }
 
-.time-margin {
+.show-icon-margin {
+  font-size: 11px; 
   margin-left: 10px;
   color: #999;
+}
+
+.show-icon-margin a {
+  color: #999; 
 }
 
 .alert-margin {
@@ -186,4 +191,20 @@ blockquote {
 	color: #777;
 	text-align: center;
 	border-top: 1px solid #e5e5e5;
+}
+
+.tag {
+  padding: 3px 8px 3px 8px;
+  margin: 0 3px 3px 0;
+  background: #e6eaed;
+  color: #07b;  
+  font-size: 11px;
+  line-height: 20px;
+  vertical-align: middle;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset;
+}
+
+.sup {
+  vertical-align:super;
 }

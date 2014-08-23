@@ -23,10 +23,22 @@ tagline: ''
               <h4>
                 <a href="{{ BASE_PATH }}{{ post.url }}">【{{ post.categories }}】{{ post.title }}</a>
               </h4>
-              <div class="time-margin">
-                <span class="glyphicon glyphicon-time"></span> 
+              <span class="show-icon-margin">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                <a href="/tags.html#{{ post.categories }}-ref">{{ post.categories }}</a>
+              </span>
+              <span class="show-icon-margin"> 
+                <span class="glyphicon glyphicon-time show-icon-margin"></span> 
                 {{ post.date | date: "%F" }}
-              </div>                        
+              </span>
+              <span class="show-icon-margin"> 
+                <span class="glyphicon glyphicon-tag"></span>
+                {% unless post.tags == empty %}
+                  {% for tag in post.tags %} 
+                    <a class="icon-margin" href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref">{{ tag }}</a>
+                  {% endfor %}
+                {% endunless %}
+              </span>          
             </div>
             <div class="article-margin blog-content">
               {{ post.content  | split:'<!--break-->' | first }}
@@ -75,12 +87,9 @@ tagline: ''
           <div class="panel-body">
               {% for tag in site.tags %} 
               <div class="lable-margin blog-left">
-                <button class="btn btn-primary btn-sm" type="button">
-                  <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
-                    <span class="tag-color">{{ tag[0] }}</span>
-                    <span class="badge">{{ tag[1].size }}</span>
+                  <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref" class="tag">
+                    {{ tag[0] }}<span class="sup">{{ tag[1].size }}</span>
                   </a>
-                </button>
               </div>
               {% endfor %}
           </div>

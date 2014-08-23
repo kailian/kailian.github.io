@@ -20,31 +20,26 @@
       {{ content }}
       </div>
       {% unless page.tags == empty %}
-      <div class="tag_box blog-list">
         {% for tag in page.tags %} 
           <span class="tag-box">
-            <button class="btn btn-primary btn-sm">
-              <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref">
-                <span class="tag-color">{{ tag }}</span>
-                <span class="badge">{{ site.tags[tag].size }}</span>
-              </a>
-             </button>  
+            <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref" class="tag">
+              {{ tag }}<span class="sup">{{ site.tags[tag].size }}</span>
+            </a>
           </span>
         {% endfor %}
-      </div>
       {% endunless %}
     </div>
 
     <div class="blog-center">
-      <ul class="pagination">
+      <ul class="pager">
       {% if page.previous %}
-        <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; 上一篇</a></li>
+        <li class="previous"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; 上一篇 {{ page.previous.title }}</a></li>
       {% else %}
-        <li class="prev disabled"><a>&larr; 上一篇</a></li>
+        <li class="previous disabled"><a>&larr; 上一篇</a></li>
       {% endif %}
         <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">归档</a></li>
       {% if page.next %}
-        <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">下一篇 &rarr;</a></li>
+        <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{page.next.title}} 下一篇 &rarr;</a></li>
       {% else %}
         <li class="next disabled"><a>下一篇 &rarr;</a>
       {% endif %}
