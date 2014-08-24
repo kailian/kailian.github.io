@@ -20,6 +20,16 @@ img {
   max-width: 600px;
 }
 
+@media (max-width:625px) {
+  video {
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
 a {text-decoration: none;}
 a:link {text-decoration:none;}
 a:visited {text-decoration:none;}
