@@ -5,7 +5,7 @@ header: Posts By Tag
 group: navigation
 ---
 {% include JB/setup %}
-
+<div class="container">
 <div class="col-md-12 tag-buttom">
   <div class="col-md-4">
     <div class="panel panel-default">
@@ -54,5 +54,10 @@ group: navigation
     {% endfor %}
   </div>
 </div>
-
+</div>
+<footer class="blog-footer">
+  <div class="container blog-center">
+    Copyright &copy; 2014-{{ site.time | date: '%Y' }} <a href="https://github.com/kailian">{{ site.author.name }}</a> All Rights Reserved
+  </div>
+</footer>
 

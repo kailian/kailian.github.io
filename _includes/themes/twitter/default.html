@@ -13,7 +13,7 @@
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/jquery-ui.css" rel="stylesheet" type="text/css" media="all">
-    <link href="{{ ASSET_PATH }}/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/google-code-prettify/desert.css" rel="stylesheet">
 
   <!-- Update these with your own images
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -58,14 +58,8 @@
       </div>
     </nav>
 
-    <div class="container">
-      {{ content }}
-    </div>
-    <footer class="blog-footer">
-      <div class="container blog-center">
-        Copyright &copy; 2014-{{ site.time | date: '%Y' }} <a href="https://github.com/kailian">{{ site.author.name }}</a> All Rights Reserved
-      </div>
-    </footer>
+    {{ content }}
+    
     <div style="display:none;" class="back-to" id="toolBackTop">
       <a title="返回顶部" onclick="back_to_top();" href="#top" class="back-top">
     返回顶部</a>

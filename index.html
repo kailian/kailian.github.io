@@ -4,6 +4,7 @@ title: kailian
 tagline: ''
 ---
 {% include JB/setup %}
+<div id="blog-container">
 <div class="container">
   <div class="row">
     <a class="v-fork-me" href="https://github.com/kailian/kailian.github.io" target="_blank">
@@ -80,13 +81,18 @@ tagline: ''
       </div>
     	<div class="col-md-4">
         <div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/images/badapple.gif">
+          </div>
+        </div> 
+        <div class="panel panel-default">
           <div class="panel-heading">
             <span class="glyphicon glyphicon-tags icon-margin"></span>
             标签
           </div>
           <div class="panel-body">
               {% for tag in site.tags %} 
-              <div class="lable-margin blog-left">
+              <div class="tag-box blog-left">
                   <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref" class="tag">
                     {{ tag[0] }}<span class="sup">{{ tag[1].size }}</span>
                   </a>
@@ -122,7 +128,7 @@ tagline: ''
                 <li class="list-group-item">
                   <span class="glyphicon glyphicon-paperclip icon-margin"></span>RSS： 
                   <a type="button" class="btn btn-default btn-sm" href="/rss.xml" target="_blank">订阅</a>
-                </li>         
+                </li>
                 <li class="list-group-item">
                   <span class="glyphicon glyphicon-envelope icon-margin"></span>
                   Mail：kailian2010lin@163.com 
@@ -143,7 +149,12 @@ tagline: ''
     </div> 	
   </div>
 </div>
-
+<footer class="blog-footer">
+  <div class="container blog-center">
+    Copyright &copy; 2014-{{ site.time | date: '%Y' }} <a href="https://github.com/kailian">{{ site.author.name }}</a> All Rights Reserved
+  </div>
+</footer>
+</div>
 
 
 

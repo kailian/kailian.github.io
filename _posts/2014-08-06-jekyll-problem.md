@@ -101,6 +101,40 @@ tags : [问题, 博客, jekyll]
 
 [相关代码](http://jekyllrb.com/docs/pagination/)
 
+## 代码高亮有两种
+
+> 使用google-code-prettify
+
+https://code.google.com/p/google-code-prettify/downloads/list
+
+[下载](https://code.google.com/p/google-code-prettify/downloads/list) `google-code-prettify`
+
+博客中使用的样式是 `desert.css`
+
+```html
+<link href="{{ ASSET_PATH }}/google-code-prettify/desert.css" rel="stylesheet">
+<script src="{{ ASSET_PATH }}/google-code-prettify/prettify.js"></script>
+```
+
+```javascript
+$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+window.prettyPrint && prettyPrint();
+```
+
+修改为全部显示行号
+
+```css
+li.L0, li.L1, li.L2, li.L3,li.L5, li.L6, li.L7, li.L8{ list-style-type: decimal !important }
+```
+
+> 使用Pygment 
+
+[参考](http://pygments.org/docs/cmdline/)
+
+
+
+
+
 
 
 

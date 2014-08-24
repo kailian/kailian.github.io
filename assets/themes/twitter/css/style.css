@@ -7,6 +7,15 @@ body, html {
 	font-family: Arial,微软雅黑;
 }
 
+#blog-container {
+  margin: 0 auto;
+  padding: 0;
+  background-image: url(/images/snowf.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom left
+}
+
 a {text-decoration: none;}
 a:link {text-decoration:none;}
 a:visited {text-decoration:none;}
@@ -48,6 +57,7 @@ blockquote {
 
 .blog-center {
 	text-align: center;
+  margin: auto;
 }
 
 .blog-left {
@@ -107,6 +117,22 @@ blockquote {
 .tag-span {
   vertical-align: super;
   font-size: 0.8em;
+}
+
+.tag-box .tag {
+  padding: 3px 8px 3px 8px;
+  margin: 0 3px 3px 0;
+  background: #e6eaed;
+  color: #07b;  
+  font-size: 11px;
+  line-height: 20px;
+  vertical-align: middle;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset;
+}
+
+.sup {
+  vertical-align:super;
 }
 
 .v-fork-me {
@@ -193,18 +219,3 @@ blockquote {
 	border-top: 1px solid #e5e5e5;
 }
 
-.tag {
-  padding: 3px 8px 3px 8px;
-  margin: 0 3px 3px 0;
-  background: #e6eaed;
-  color: #07b;  
-  font-size: 11px;
-  line-height: 20px;
-  vertical-align: middle;
-  border-radius: 3px;
-  box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset;
-}
-
-.sup {
-  vertical-align:super;
-}
