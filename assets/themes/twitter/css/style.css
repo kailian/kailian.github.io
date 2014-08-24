@@ -116,6 +116,7 @@ blockquote {
 .tag-box {
   margin-right: 10px;
   margin-top: 5px;
+  display: inline-block;
 }
 
 .tag-span {

@@ -94,7 +94,7 @@ tagline: ''
           </div>
           <div class="panel-body">
               {% for tag in site.tags %} 
-              <div class="tag-box blog-left">
+              <div class="tag-box">
                   <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref" class="tag">
                     {{ tag[0] }}<span class="sup">{{ tag[1].size }}</span>
                   </a>
