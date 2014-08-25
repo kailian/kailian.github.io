@@ -33,23 +33,24 @@ tags : [经纬度]
 计算出来的结果单位为千米。
 
 ```php
-function fn_rad($d) { 
-	return $d * pi() / 180.0;
-}
 
-// 2点间计算
-function P2PDistance($lng1, $lat1, $lng2, $lat2) {
-	// 纬度1,经度1 ~ 纬度2,经度2
-	$EARTH_RADIUS = 6378.137;
-	$a =  fn_rad($lat1) -  fn_rad($lat2);
-	$b = fn_rad($lng1) - fn_rad($lng2);
-	$s = 2 * asin(sqrt(pow(sin($a/2),2) + cos($radLat1)*cos($radLat2)*pow(sin($b/2),2)));
-	$s = $s * $EARTH_RADIUS;
-	var_dump(number_format($s,5));
-	$s = round($s * 10000) / 10000;
-	var_dump(number_format($s,5));
-	return number_format($s,2);
-}
+	function fn_rad($d) { 
+		return $d * pi() / 180.0;
+	}
+
+	// 2点间计算
+	function P2PDistance($lng1, $lat1, $lng2, $lat2) {
+		// 纬度1,经度1 ~ 纬度2,经度2
+		$EARTH_RADIUS = 6378.137;
+		$a =  fn_rad($lat1) -  fn_rad($lat2);
+		$b = fn_rad($lng1) - fn_rad($lng2);
+		$s = 2 * asin(sqrt(pow(sin($a/2),2) + cos($radLat1)*cos($radLat2)*pow(sin($b/2),2)));
+		$s = $s * $EARTH_RADIUS;
+		var_dump(number_format($s,5));
+		$s = round($s * 10000) / 10000;
+		var_dump(number_format($s,5));
+		return number_format($s,2);
+	}
 ```
 
 [百度地图API](http://developer.baidu.com/map/carapi-6.htm)
