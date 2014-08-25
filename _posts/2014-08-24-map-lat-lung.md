@@ -32,7 +32,7 @@ tags : [经纬度]
 
 计算出来的结果单位为千米。
 
-```php
+
 
 	function fn_rad($d) { 
 		return $d * pi() / 180.0;
@@ -51,7 +51,7 @@ tags : [经纬度]
 		var_dump(number_format($s,5));
 		return number_format($s,2);
 	}
-```
+
 
 [百度地图API](http://developer.baidu.com/map/carapi-6.htm)
 
