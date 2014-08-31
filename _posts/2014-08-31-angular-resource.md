@@ -14,6 +14,8 @@ tags : [web, angular]
 
 国内的API
 
+[http://docs.angularjs.cn/api](http://docs.angularjs.cn/api)
+
 [http://www.ngnice.com/docs/api](http://www.ngnice.com/docs/api)
 
 ### UI
