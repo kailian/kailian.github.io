@@ -72,6 +72,14 @@ AngularJS应用的最佳实践和风格指南
 
 [http://www.iteye.com/news/28651-AngularJS-Google-resource](http://www.iteye.com/news/28651-AngularJS-Google-resource)
 
+### 多语言
+
+[https://github.com/angular-translate/angular-translate](https://github.com/angular-translate/angular-translate)
+
+### 动画
+
+[https://hendrixer.github.io/](https://hendrixer.github.io/)
+
 ### HELP
 
 [http://stackoverflow.com/](http://stackoverflow.com/search?q=angular)
