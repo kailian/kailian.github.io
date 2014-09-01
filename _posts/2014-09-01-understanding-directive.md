@@ -6,6 +6,8 @@ tagline: ""
 tags : [web, angular]
 ---
 
+[自定义指令](http://www.ngnice.com/docs/guide/directive)
+
 > Injecting（注入）, Compiling（编译）, and Linking functions
 
 当你创建指令，本质上你要定义三个函数层
@@ -234,6 +236,8 @@ restrict的含义
 - C 表示该指令是`c`lass; 
 
 - M 表示该指令是注释co`m`ments
+
+可以组合，如'AE' - 既匹配属性名又匹配元素名
 
 scope的含义
 
