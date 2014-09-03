@@ -8,7 +8,7 @@ tags : [web, angular]
 
 ### 官网
 
-[http://angularjs.org](http://angularjs.org)
+[http://angularjs.org](http://angularjs.org)翻墙
 
 ### API
 
@@ -53,6 +53,14 @@ checkbox插件
 下拉刷新插件
 
 [http://binarymuse.github.io/ngInfiniteScroll/](http://binarymuse.github.io/ngInfiniteScroll/)
+
+验证插件
+
+[https://github.com/why520crazy/w5c-validator-angular](https://github.com/why520crazy/w5c-validator-angular)
+
+更多
+
+[http://ngmodules.org/](http://ngmodules.org/)翻墙
 
 ### 代码组织 
 
