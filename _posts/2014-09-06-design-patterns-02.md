@@ -26,7 +26,7 @@ tags : [设计模式, 行为型模式]
 
 - 具体策略：具体策略角色通常由一组封装了算法的类来担任，这些类之间可以根据需要自由替换。
 
-### 代码实现
+### 代码示例
 
 	interface IStrategy {  
 	    public function doSomething();  
@@ -176,7 +176,7 @@ tags : [设计模式, 行为型模式]
 
 - 具体的观察者：观察者接口的具体实现
 
-### php示例
+### 代码示例
 
 	abstract class Subject {  
 	    private $obsArr = array();  
@@ -257,7 +257,7 @@ tags : [设计模式, 行为型模式]
 
 - 迭代器实现：实现迭代器接口中定义的方法，完成集合的迭代。
 
-### 代码实现
+### 代码示例
 
 	interface Iterators {  
 	    public function next();  
@@ -346,7 +346,7 @@ Iterator是迭代器接口，主要有两个方法：取得迭代对象方法nex
 
 责任链模式，有多个对象，每个对象持有对下一个对象的引用，这样就会形成一条链，请求在这条链上传递，直到某一对象决定处理该请求。但是发出者并不清楚到底最终那个对象会处理该请求，所以，责任链模式可以实现，在隐瞒客户端的情况下，对系统进行动态的调整。
 
-代码示例： 
+### 代码示例 
 
 	interface Handler {  
 	    public function operator();  
