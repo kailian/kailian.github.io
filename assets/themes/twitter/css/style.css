@@ -161,6 +161,12 @@ blockquote {
   z-index: 999;
 }
 
+@media only screen and (max-width:800px) {
+  .v-fork-me {
+    display: none;
+  } 
+}
+
 /**
  * 返回顶部
  */
