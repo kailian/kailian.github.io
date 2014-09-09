@@ -38,7 +38,9 @@ ABFPS（AbstractFactory、Builder、Factory Method、Prototype、Singleton）
         private static $instance = null;
 
         public static function getInstance() {
-            self::$instance = new self();   
+            if ( ! (self::$instance ) ) {
+                self::$instance = new self();
+            }  
             return self::$instance;
         }
 
