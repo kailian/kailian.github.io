@@ -93,3 +93,23 @@ ng-repeat当key-value的key不是顺序索引时，会导致排序失效
 
 php数据先用array_merge()重新索引或前端重新索引
 
+### 前端搜索完全匹配
+
+比如：不想1匹配出11、12而只能匹配1
+
+In HTML Template Binding
+
+	{{ filter_expression | filter : expression : comparator}}
+
+In JavaScript
+
+	$filter('filter')(array, expression, comparator)
+
+`comparator`为`true`的时候只有完成匹配才是匹配结构
+
+true: A shorthand for function(actual, expected) { return angular.equals(expected, actual)}. this is essentially strict comparison of expected and actual.
+
+举个栗子：
+
+	lists | filter:search:true
+
