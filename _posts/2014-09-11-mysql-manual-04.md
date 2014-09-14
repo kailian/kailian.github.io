@@ -401,17 +401,366 @@ MySQL二进制日志占据硬盘空间。要想释放空间，应随时清空。
 
 5.9.3.1. 指定恢复时间
 
+在mysqlbinlog语句中通过--start-date和--stop-date选项指定DATETIME格式的起止时间。
+
+举例说明，假设在今天上午10:00(今天是2005年4月20日)，执行SQL语句来删除一个大表。要想恢复表和数据，**可以恢复前晚上的备份，并输入**：
+
+	mysqlbinlog --stop-date="2005-04-20 9:59:59" /var/log/mysql/bin.123456 \
+	 | mysql -u root -pmypwd
+
+	mysqlbinlog --start-date="2005-04-20 10:01:00" /var/log/mysql/bin.123456 \
+	 | mysql -u root -pmypwd \	
+
+第一行恢复截止到在--stop-date选项中以DATETIME格式给出的日期和时间的所有数据。
+
+第二行从上午10:01登录的SQL语句将运行。
+
 5.9.3.2. 指定恢复位置
+
+使用mysqlbinlog的选项--start-position和--stop-position来指定日志位置。
+
+作用与起止日选项相同，不同的是给出了从日志起的位置号。
+
+使用日志位置是更准确的恢复方法，特别是当由于破坏性SQL语句同时发生许多事务的时候。
+
+要想确定位置号，可以运行mysqlbinlog寻找执行了不期望的事务的时间范围，但应将结果重新指向文本文件以便进行检查。操作方法为：
+
+	mysqlbinlog --start-date="2005-04-20 9:55:00" --stop-date="2005-04-20 10:05:00" \
+	 /var/log/mysql/bin.123456 > /tmp/mysql_restore.sql
+
+该命令将在/tmp目录创建小的文本文件，将显示执行了错误的SQL语句时的SQL语句。
+
+可以用文本编辑器打开该文件，寻找不要想重复的语句。
+
+如果二进制日志中的位置号用于停止和继续恢复操作，应进行注释。
+
+用log_pos加一个数字来标记位置。
+
+使用位置号恢复了以前的备份文件后，你应从命令行输入下面内容：
+
+	mysqlbinlog --stop-position="368312" /var/log/mysql/bin.123456 \
+	    | mysql -u root -pmypwd 
+	 
+	mysqlbinlog --start-position="368315" /var/log/mysql/bin.123456 \
+	    | mysql -u root -pmypwd \ 
+
+上面的第1行将恢复到停止位置为止的所有事务。
+
+下一行将恢复从给定的起始位置直到二进制日志结束的所有事务。
+
+因为mysqlbinlog的输出包括每个SQL语句记录之前的SET TIMESTAMP语句，恢复的数据和相关MySQL日志将反应事务执行的原时间。
 
 #### 5.9.4. 表维护和崩溃恢复
 
+使用myisamchk来检查或维护MyISAM表(对应.MYI和.MYD文件的表)。
+
 ### 5.10. MySQL本地化和国际应用
+
+查看默认字符集
+
+	mysql> SHOW VARIABLES LIKE 'character%';
+	+--------------------------+----------------------------------+
+	| Variable_name            | Value                            |
+	+--------------------------+----------------------------------+
+	| character_set_client     | latin1                           |
+	| character_set_connection | latin1                           |
+	| character_set_database   | utf8                             |
+	| character_set_filesystem | binary                           |
+	| character_set_results    | latin1                           |
+	| character_set_server     | utf8                             |
+	| character_set_system     | utf8                             |
+	| character_sets_dir       | /usr/local/mysql/share/charsets/ |
+	+--------------------------+----------------------------------+
+	8 rows in set (0.00 sec)
+
+默认情况下，MySQL使用**cp1252(Latin1)字符集**根据Swedish/Finnish规则进行排序。
+
+1. 编译MySQL 时，指定了一个默认的字符集，这个字符集是 latin1；
+
+2. 安装MySQL 时，可以在配置文件 (my.ini) 中指定一个默认的的字符集，如果没指定，这个值继承自编译时指定的；
+
+3. 启动mysqld 时，可以在命令行参数中指定一个默认的的字符集，如果没指定，这个值继承自配置文件中的配置，此时 character_set_server 被设定为这个默认的字符集；
+
+4. 当创建一个新的数据库时，除非明确指定，这个数据库的字符集被缺省设定为character_set_server；
+
+5. 当选定了一个数据库时，character_set_database 被设定为这个数据库默认的字符集；
+
+6. 在这个数据库里创建一张表时，表默认的字符集被设定为 character_set_database，也就是这个数据库默认的字符集；
+
+7. 当在表内设置一栏时，除非明确指定，否则此栏缺省的字符集就是表默认的字符集；
+
+
+**修改默认字符集**
+
+修改mysql的my.ini文件中的字符集键值，如：
+
+	default-character-set = utf8
+	character_set_server =  utf8
+
+修改完后，重启mysql的服务。
+
+或者使用mysql的命令
+
+	mysql> SET character_set_client = utf8 ;
+	mysql> SET character_set_connection = utf8 ;
+	mysql> SET character_set_database = utf8 ;
+	mysql> SET character_set_results = utf8 ;
+	mysql> SET character_set_server = utf8 ;
+	mysql> SET collation_connection = utf8 ;
+	mysql> SET collation_database = utf8 ;
+	mysql> SET collation_server = utf8 ;
+
+character_set_client：客户端发送过来文字的字符集
+character_set_results：发送给客户端的结果所使用的字符集
+character_set_connection：用于连接的字符集
+
 
 ### 5.11. MySQL日志文件
 
+> 程序中记录日志一般有两个目的：Troubleshooting(故障排除)和显示程序运行状态。
+
+日志文件   | 记入文件中的信息类型
+---------- | --------------------
+错误日志   | 记录启动、运行或停止mysqld时出现的问题。
+查询日志   | 记录建立的客户端连接和执行的语句。
+更新日志   | 记录更改数据的语句。不赞成使用该日志。
+二进制日志 | 记录所有更改数据的语句。还用于复制。
+慢日志     | 记录所有执行时间超过long_query_time秒的所有查询或不使用索引的查询。
+
+默认情况下，所有**日志创建于mysqld数据目录中**。通过刷新日志，你可以强制mysqld来关闭和重新打开日志文件（或者在某些情况下切换到一个新的日志）。当你执行一个`FLUSH LOGS`语句或执行`mysqladmin flush-logs`或`mysqladmin refresh`时，出现**日志刷新**。
+
+查询当前日志记录的状况： 
+
+	mysql> show variables like 'log_%';（是否启用了日志）
+	mysql> show master status;（怎样知道当前的日志）
+	mysql> show master logs;（显示二进制日志的数目）
+
+	mysql> show variables like 'log_%';
+	+---------------------------------+------------------------------+
+	| Variable_name                   | Value                        |
+	+---------------------------------+------------------------------+
+	| log_bin                         | ON                           |
+	| log_bin_trust_function_creators | OFF                          |
+	| log_error                       | /usr/local/mysql/var/lkl.err |
+	| log_output                      | FILE                         |
+	| log_queries_not_using_indexes   | OFF                          |
+	| log_slave_updates               | OFF                          |
+	| log_slow_queries                | OFF                          |
+	| log_warnings                    | 1                            |
+	+---------------------------------+------------------------------+
+
+	mysql> show master status;
+	+------------------+----------+--------------+------------------+
+	| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
+	+------------------+----------+--------------+------------------+
+	| mysql-bin.000025 |  1986367 |              |                  |
+	+------------------+----------+--------------+------------------+
+
+	mysql> show master logs;
+	+------------------+-----------+
+	| Log_name         | File_size |
+	+------------------+-----------+
+	| mysql-bin.000001 |     27284 |
+	| mysql-bin.000002 |   1038693 |
+	| mysql-bin.000003 |      1263 |
+	| mysql-bin.000004 |       126 |
+	| mysql-bin.000005 |       150 |
+	| mysql-bin.000006 |       126 |
+	| mysql-bin.000007 |     26239 |
+	| mysql-bin.000008 |   1038693 |
+	| mysql-bin.000009 |       126 |
+	| mysql-bin.000010 |       126 |
+	| mysql-bin.000011 |       150 |
+	| mysql-bin.000012 |       126 |
+	| mysql-bin.000013 |       395 |
+	| mysql-bin.000014 | 118660415 |
+	| mysql-bin.000015 |      1868 |
+	| mysql-bin.000016 |    712781 |
+	| mysql-bin.000017 |     31461 |
+	| mysql-bin.000018 |   2818724 |
+	| mysql-bin.000019 |       126 |
+	| mysql-bin.000020 |    201758 |
+	| mysql-bin.000021 |   1567758 |
+	| mysql-bin.000022 |    216192 |
+	| mysql-bin.000023 |       126 |
+	| mysql-bin.000024 |  13110010 |
+	| mysql-bin.000025 |   1986613 |
+	+------------------+-----------+
+
+	mysql> reset master;
+	+------------------+-----------+
+	| Log_name         | File_size |
+	+------------------+-----------+
+	| mysql-bin.000001 |       107 |
+	+------------------+-----------+
+
+日志量大计划任务定时清理
+
+#### 5.11.1. 错误日志
+
+错误日志文件包含了当mysqld启动和停止时，以及服务器在运行过程中发生任何严重错误时的相关信息。
+
+如果mysqld莫名其妙地死掉并且mysqld_safe需要重新启动它，mysqld_safe在错误日志中写入一条restarted mysqld消息。
+
+如果mysqld注意到需要自动检查或着修复一个表，则错误日志中写入一条消息。
+
+用`--log-error[=file_name]`选项来指定mysqld保存**错误日志文件的位置**。如果没有给定file_name值，mysqld使用错误日志名host_name.err 并在数据目录中写入日志文件。
+
+如果你执行`FLUSH LOGS`，错误日志用-old重新命名后缀并且mysqld创建一个新的空日志文件。(如果未给出--log-error选项，则不会重新命名）。
+
+#### 5.11.2. 通用查询日志
+
+用`--log[=file_name]`或`-l [file_name]`选项启动。没有给定file_name的值， 默认名是host_name.log。
+
+**所有连接和语句被记录到日志文件**。
+
+**mysqld按照它接收的顺序记录语句到查询日志**。这可能与执行的顺序不同。
+
+查询日志还包含所有语句，而二进制日志不包含只查询数据的语句。
+
+服务器重新启动和日志刷新不会产生新的一般查询日志文件
+
+重新命名文件并创建一个新文件
+
+	shell> mv hostname.log hostname-old.log
+	shell> mysqladmin flush-logs
+	shell> cp hostname-old.log to-backup-directory
+	shell> rm hostname-old.log
+
+
+#### 5.11.3. 二进制日志
+
+二进制日志以一种更有效的格式，并且是**事务安全的方式**包含更新日志中可用的所有信息。
+
+二进制日志的主要目的是在恢复使能够最大可能地更新数据库，因为二进制日志包含备份后进行的所有更新。(取代更新日志)
+
+二进制日志还用于在主复制服务器上记录所有将发送给从服务器的语句。	
+
+运行服务器时若启用二进制日志则性能大约慢1%。但是，二进制日志的好处，即用于恢复并允许设置复制超过了这个小小的性能损失。
+
+用`--log-bin[=file_name]`选项启动，mysqld写入包含所有更新数据的SQL命令的日志文件。
+
+mysqld在每个二进制日志名后面添加一个数字扩展名。每次你启动服务器或刷新日志时该数字则增加。
+
+如果当前的日志大小达到max_binlog_size，还会自动创建新的二进制日志。如果你正使用大的事务，二进制日志还会超过max_binlog_size：事务全写入一个二进制日志中，绝对不要写入不同的二进制日志中。
+
+mysqld还创建一个二进制日志索引文件，默认情况下与二进制日志文件的文件名相同，扩展名为`.index`。你可以用`--log-bin-index[=file_name]`选项更改二进制日志索引文件的文件名。
+
+可以用`RESET MASTER`语句删除所有二进制日志文件，或用`PURGE MASTER LOGS`只删除部分二进制文件。
+
+#### 5.11.4. 慢速查询日志
+
+用`--log-slow-queries[=file_name]`选项启动时，mysqld写一个包含所有执行时间超过`long_query_time`秒的SQL语句的日志文件。获得初使表锁定的时间不算作执行时间。
+
+语句执行完并且所有锁释放后记入慢查询日志。记录顺序可以与执行顺序不相同。
+
+慢查询日志可以用来找到`执行时间长的查询，可以用于优化`。但是，检查又长又慢的查询日志会很困难。要想容易些，你可以使用mysqldumpslow命令获得日志中显示的查询摘要来处理慢查询日志。
+
+> 慢日志的查询可以部署MTOP，跑计划任务然后通过可视化web界面进行查看。
+
+5.11.5. 日志文件维护
+
+MySQL服务器可以创建各种不同的日志文件，必须定期清理这些文件，确保日志不会占用太多的硬盘空间。
+
+通过脚本从cron等入手处理日志文件。
+
+通过mysqladmin flush-logs或SQL语句FLUSH LOGS来强制MySQL开始使用新的日志文件。
+
+日志清空操作做下列事情：
+
+- 使用标准日志(--log)或慢查询日志(--log-slow-queries)，关闭并重新打开日志文件。
+
+- 使用更新日志(--log-update)或二进制日志(--log-bin)，关闭日志并且打开有更高序列号的新日志文件。
+
+
 ### 5.12. 在同一台机器上运行多个MySQL服务器
 
+可能想要测试一个新的MySQL发布，同时不影响现有产品的设置。或者，你可能想使不同的用户访问来访问不同的mysqld服务器以便他们自己来管理。
+
+在一个单独的机器上运行多个服务器，每个服务器必须有**唯一的各运行参数值**。这些值可以在**命令行中设置或在选项文件中设置**。
+
+下面的选项对每个服务器必须是不同的：
+
+- --port=port_num
+
+- --socket=path
+
+- --shared-memory-base-name=name
+
+- --pid-file=path
+
+- --log=path
+
+- --log-bin=path
+
+- --log-update=path
+
+- --log-error=path
+
+- --bdb-logdir=path
+
+- --tmpdir=path
+
+- --bdb-tmpdir=path
+
+
+在不同的位置有多个MySQL的安装，一般情况可以用--basedir=path选项为每个服务器指定基本安装目录，使每个服务器使用不同的数据目录、日志文件和PID文件。（所有这些值的 默认值相对于根目录来确定）。那样的话， 你唯一需要指定的其它选项是--socket和--port选项。
+
+使用各个安装服务器相应的根目录中的bin/mysqld_safe命令来启动服务器。mysqld_safe确定正确的--basedir选项传递给mysqld，你仅需要为mysqld_safe指定--socket和--port选项。
+
+5.12.2. 在Unix中运行多个服务器
+
+在Unix中运行多个服务器最容易的方法是使用不同的TCP/IP端口s和Unix套接字文件编译，因此每个实例在不同的网络接口侦听。
+
+另外，每个安装应在不同的基础目录中编译，那将自动为你的每个服务器产生使用不同的编译进来的数据目录、日志文件和PID文件位置。
+
+假设一个现有的4.1.8版本服务器配置为默认TCP/IP端口号(3306)和Unix套接字文件(/tmp/mysql.sock)。要想配置一个新的5.1.2-alpha版的服务器来使用不同的操作参数，使用一个configure命令，大概象这样使用：
+
+	shell> ./configure --with-tcp-port=port_number \
+	        --with-unix-socket-path=file_name \
+	        --prefix=/usr/local/mysql-5.1.2-alpha
+
+port_number和file_name必须不同于默认TCP/IP端口号和Unix套接字文件路径名，并且--prefix值应指定一个不同于现有MySQL安装目录的安装目录。
+
+用一个不同的Unix套接字文件和TCP/IP端口号启动，不必编译新的MySQL服务器。还可以在运行时指定这些值。
+
+	shell> mysqld_safe --socket=file_name --port=port_number
+
 ### 5.13. MySQL查询高速缓冲
+
+查询缓存存储SELECT查询的文本以及发送给客户端的相应结果。
+
+如果随后收到一个相同的查询，服务器从查询缓存中重新得到查询结果，而不再需要解析和执行查询。
+
+是否启用
+
+	mysql>  SHOW VARIABLES LIKE 'have_query_cache';
+	+------------------+-------+
+	| Variable_name    | Value |
+	+------------------+-------+
+	| have_query_cache | YES   |
+	+------------------+-------+
+
+查询解析之前进行比较，因此下面的两个查询被查询缓存认为是不相同的：
+
+	SELECT * FROM tbl_name
+	Select * from tbl_name
+
+查询必须是完全相同的(逐字节相同)才能够被认为是相同的。另外，同样的查询字符串由于其它原因可能认为是不同的。使用不同的数据库、不同的协议版本或者不同 默认字符集的查询被认为是不同的查询并且分别进行缓存。	
+
+- 查询缓存不返回旧的数据。当表更改后，查询缓存值的相关条目被清空。
+
+- 如果你有许多mysqld服务器更新相同的MyISAM表，在这种情况下查询缓存不起作用。
+
+- 查询缓存不适用于服务器方编写的语句。如果正在使用服务器方编写的语句，要考虑到这些语句将不会应用查询缓存
+
+为了监视查询缓存性能，使用SHOW STATUS查看缓存状态变量：
+
+	mysql> SHOW STATUS LIKE 'Qcache%';
+
+
+
+注：程序的缓存使用Memcached缓存
 
 
 
