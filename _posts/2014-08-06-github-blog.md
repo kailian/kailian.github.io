@@ -7,7 +7,6 @@ tags : [github, 博客, jekyll]
 ---
 
 * auto-gen TOC:
-
 {:toc}
 
 <div class="alert alert-danger alert-margin" role="alert">

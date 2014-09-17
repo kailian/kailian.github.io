@@ -7,7 +7,6 @@ tags : [angularjs, web]
 ---
 
 * auto-gen TOC:
-
 {:toc}
 
 ### {{Angular.js}}代码更少，乐趣更多
