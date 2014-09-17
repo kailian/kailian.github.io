@@ -99,6 +99,14 @@ blockquote {
 	float: right;
 }
 
+.blog-index #markdown-toc {
+  display: none!important;
+}
+
+.blog-index .maruku_toc {
+  display: none!important;
+}
+
 .maruku_toc, #markdown-toc {
   font-size: 14px;
   position: fixed;

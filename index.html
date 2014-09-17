@@ -41,7 +41,7 @@ tagline: ''
                 {% endunless %}
               </span>          
             </div>
-            <div class="article-margin blog-content">
+            <div class="article-margin blog-content blog-index">
               {{ post.content  | split:'<!--break-->' | first }}
               <a href="{{ post.url }}">显示全文</a>
             </div>
