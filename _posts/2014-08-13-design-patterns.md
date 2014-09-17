@@ -7,7 +7,6 @@ tags : [设计模式]
 ---
 
 * auto-gen TOC:
-
 {:toc}
 
 1.单一职责原则（Single Responsibility Principle）

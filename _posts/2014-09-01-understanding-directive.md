@@ -7,7 +7,6 @@ tags : [web, angular]
 ---
 
 * auto-gen TOC:
-
 {:toc}
 
 [自定义指令](http://www.ngnice.com/docs/guide/directive)

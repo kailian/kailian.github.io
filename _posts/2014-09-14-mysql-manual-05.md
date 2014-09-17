@@ -7,7 +7,6 @@ tags : [数据库, Mysql]
 ---
 
 * auto-gen TOC:
-
 {:toc}
 
 ## 第6章：MySQL中的复制

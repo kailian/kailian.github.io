@@ -7,7 +7,6 @@ tags : [工具]
 ---
 
 * auto-gen TOC:
-
 {:toc}
 
 ### bookmarklet简介

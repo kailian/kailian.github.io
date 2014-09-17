@@ -7,7 +7,6 @@ tags : [代码, 思考]
 ---
 
 * auto-gen TOC:
-
 {:toc}
 
 原文[《优质代码十诫》](http://coolshell.cn/articles/1007.html)

@@ -7,7 +7,6 @@ tags : [web, angular]
 ---
 
 * auto-gen TOC:
-
 {:toc}
 
 ### directive是什么？
