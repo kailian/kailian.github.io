@@ -6,6 +6,10 @@ tagline: ""
 tags : [node, web]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 ## node安装
 
 ### linux

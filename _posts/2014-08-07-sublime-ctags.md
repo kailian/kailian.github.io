@@ -6,6 +6,10 @@ tagline: ""
 tags : [sublime, 工具]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 实现sublime text编辑器跳转
 
 #### Windows安装

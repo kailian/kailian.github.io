@@ -6,11 +6,17 @@ tagline: ""
 tags : [github, 博客, jekyll]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 <div class="alert alert-danger alert-margin" role="alert">
 	目的只是在github上建博客，只包含win环境相关软件的配置使用，暂不包括linux的相关环境配置。
 </div>
 
-## 一、使用ssh连接github，省去每次上传都要输用户密码的麻烦
+## 使用ssh连接github
+
+目的：省去每次上传都要输用户密码的麻烦
 
 Win上使用git bash进入命令行界面
 
@@ -31,7 +37,7 @@ Win上使用git bash进入命令行界面
 
 <!--break-->
 
-## 二、接下来先新建一个repository
+## 接下来先新建一个repository
 2.1、name为xxx.github.io 或者xxx.github.me之类的
 
 Create repository
@@ -48,7 +54,7 @@ Create repository
 
 即可访问到静态页面
 
-## 三、本地配置jekyll环境
+## 本地配置jekyll环境
 至于要生成博客，则需要jekyll，github支持的生成静态网页的工具
 
 Win安装jekyll
@@ -92,10 +98,10 @@ https://github.com/jekyll/jekyll/wiki/sites
 
 文章支持使用markdown，命名按jekyll的命名要求即可
 
-> 评论
+### 评论
 
 可使用第三方插件（多说）
 
-> jekyll博客主题
+### jekyll博客主题
 
 [HPSTR Theme](http://mmistakes.github.io/hpstr-jekyll-theme/)

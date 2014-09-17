@@ -6,6 +6,10 @@ tagline: ""
 tags : [问题, 博客, jekyll]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 <div class="alert alert-danger alert-margin" role="alert">
 	更具体的问题可以参考
 	<a href="http://jekyllrb.com/">官方文档</a>
@@ -130,6 +134,22 @@ li.L0, li.L1, li.L2, li.L3,li.L5, li.L6, li.L7, li.L8{ list-style-type: decimal 
 > 使用Pygment 
 
 [参考](http://pygments.org/docs/cmdline/)
+
+## TOC
+
+`* auto-gen TOC:`
+
+`{:toc}`
+
+## 段落首行缩进
+
+	p {
+	  text-indent:30px;
+	}
+
+	li P {
+	  text-indent:0px;
+	}
 
 
 

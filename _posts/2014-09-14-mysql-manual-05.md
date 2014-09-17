@@ -6,6 +6,10 @@ tagline: ""
 tags : [数据库, Mysql]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 ## 第6章：MySQL中的复制
 
 ### 6.1. 复制介绍

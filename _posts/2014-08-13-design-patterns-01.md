@@ -6,6 +6,10 @@ tagline: ""
 tags : [设计模式, 创建型模式]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 ## 创建型模式
 
 ABFPS（AbstractFactory、Builder、Factory Method、Prototype、Singleton）

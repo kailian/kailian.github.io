@@ -6,6 +6,10 @@ tagline: ""
 tags : [web, angular]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 ### 如何使用ng标签中使用html
 
 1、使用$sce和ng-bind-html

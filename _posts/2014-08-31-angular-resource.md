@@ -6,6 +6,10 @@ tagline: ""
 tags : [web, angular]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 ### 官网
 
 [http://angularjs.org](http://angularjs.org)翻墙
@@ -35,6 +39,12 @@ bootstrap UI
 ### 案例
 
 [http://www.ngnice.com/showcase/](http://www.ngnice.com/showcase/)
+
+### 单向绑定
+
+[https://github.com/Pasvaz/bindonce](https://github.com/Pasvaz/bindonce)
+
+[https://github.com/tadeuszwojcik/angular-once](https://github.com/tadeuszwojcik/angular-once)
 
 ### 插件
 

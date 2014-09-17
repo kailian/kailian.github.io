@@ -6,6 +6,10 @@ tagline: ""
 tags : [web, angular]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 ### directive是什么？
 
 > 一个指令用来引入新的HTML语法。指令是DOM元素上的标记，使元素拥有特定的行为。就是一些附加在HTML元素上的自定义标记（例如：属性，元素，或css类）

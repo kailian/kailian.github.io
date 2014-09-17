@@ -1,12 +1,16 @@
 ---
 layout: post
 category : 数据库
-title: 'Mysql5.1参考手册摘录06'
+title: 'Mysql5.1参考手册摘录07'
 tagline: ""
 tags : [数据库, Mysql]
 ---
 
-## 第7章：优化
+* auto-gen TOC:
+
+{:toc}
+
+## 第7章：优化01
 
 ### 7.1. 优化概述
 
@@ -192,6 +196,16 @@ EXPLAIN产生这个结果：
 
 #### 7.2.2. 估计查询性能
 
+B－树索引进行估计，需要
+
+	log(row_count)/log(index_block_length/3 * 2/(index_length + data_pointer_length))+1
+
+次搜索才能找到行。
+
+在MySQL中，索引块通常是1024个字节，数据指针通常是4个字节，这对于有一个长度为3(中等整数)的索引的500,000行的表，通过公式可以计算出`log(500,000)/log(1024/3*2/(3+4))+1= 4`次搜索。
+
+当表格变得更大时，所有内容缓存到OS或SQL服务器后，将仅仅或多或少地更慢。在数据变得太大不能缓存后，将逐渐变得更慢，直到应用程序只能进行磁盘搜索(以logN增加)。为了避免这个问题，随数据增加而增加 键高速缓冲区大小。对于MyISAM表, 由key_buffer_size系统变量控制高速缓冲区大小。
+
 #### 7.2.3. SELECT查询的速度
 
 > 要想使一个较慢速SELECT ... WHERE更快，应首先检查是否能增加一个索引。不同表之间的引用通常通过索引来完成。
@@ -199,3 +213,149 @@ EXPLAIN产生这个结果：
 **使用EXPLAIN语句来确定SELECT语句使用哪些索引。**
 
 #### 7.2.4. MySQL怎样优化WHERE子句
+
+去除不必要的括号：
+
+	((a AND b) AND c OR (((a AND b) AND (c AND d))))
+	优化 (a AND b AND c) OR (a AND b AND c AND d)
+
+常量重叠：	
+
+	(a<b AND b=c) AND a=5
+	优化 b>5 AND b=c AND a=5
+
+去除常量条件(由于常量重叠需要)：
+
+	(B>=5 AND B=5) OR (B=6 AND 5=5) OR (B=7 AND 5=6)
+	优化 B=5 OR B=6
+
+MySQL执行的部分优化：
+
+- 索引使用的常数表达式仅计算一次。
+
+- 无效常数表达式的早期检测。MySQL快速检测某些SELECT语句是不可能的并且不返回行。
+
+- 如果不使用GROUP BY或分组函数(COUNT()、MIN()……)，HAVING与WHERE合并。
+
+- 对于联接内的每个表，构造一个更简单的WHERE以便更快地对表进行WHERE计算并且也尽快跳过记录。
+
+- 所有常数的表在查询中比其它表先读出。常数表为：
+
+	- 空表或只有1行的表。
+
+	- 与在一个PRIMARY KEY或UNIQUE索引的WHERE子句一起使用的表，这里所有的索引部分使用常数表达式并且索引部分被定义为NOT NULL。
+
+- 如果有一个ORDER BY子句和不同的GROUP BY子句，或如果ORDER BY或GROUP BY包含联接队列中的第一个表之外的其它表的列，则创建一个临时表。
+
+- 如果使用SQL_SMALL_RESULT，MySQL使用内存中的一个临时表。
+
+- 每个表的索引被查询，并且使用最好的索引，除非优化器认为使用表扫描更有效。
+
+- 输出每个记录前，跳过不匹配HAVING子句的行
+
+**一些快速查询的例子：**
+
+	SELECT COUNT(*) FROM tbl_name;
+
+	SELECT MIN(key_part1),MAX(key_part1) FROM tbl_name;
+
+	SELECT MAX(key_part2) FROM tbl_name WHERE key_part1=constant;
+
+	SELECT ... FROM tbl_name ORDER BY key_part1,key_part2,... LIMIT 10;
+
+	SELECT ... FROM tbl_name ORDER BY key_part1 DESC, key_part2 DESC, ... LIMIT 10;
+
+下列查询仅使用索引树就可以解决(假设索引的列为数值型)：
+
+	SELECT key_part1,key_part2 FROM tbl_name WHERE key_part1=val;
+
+	SELECT COUNT(*) FROM tbl_name WHERE key_part1=val1 AND key_part2=val2;
+
+	SELECT key_part2 FROM tbl_name GROUP BY key_part1;
+
+下列查询使用索引按排序顺序检索行，不用另外的排序：
+
+	SELECT ... FROM tbl_name
+	    ORDER BY key_part1,key_part2,... ;
+	 
+	SELECT ... FROM tbl_name
+	    ORDER BY key_part1 DESC, key_part2 DESC, ... ;
+
+#### 7.2.5. 范围优化
+
+7.2.5.1. 单元素索引的范围访问方法
+
+对于单元素索引，可以用WHERE子句中的相应条件很方便地表示索引值区间，因此我们称为范围条件而不是“区间”。
+
+单元素索引范围条件的定义:
+
+- 对于BTREE和HASH索引，当使用=、<=>、IN、IS NULL或者IS NOT NULL操作符时，关键元素与常量值的比较关系对应一个范围条件。
+
+- 对于BTREE索引，当使用>、<、>=、<=、BETWEEN、!=或者<>，或者LIKE 'pattern'(其中 'pattern'不以通配符开始)操作符时，关键元素与常量值的比较关系对应一个范围条件。
+
+- 对于所有类型的索引，多个范围条件结合OR或AND则产生一个范围条件。
+
+一些WHERE子句中有范围条件的查询的例子：
+
+	SELECT * FROM t1 
+	    WHERE key_col > 1 
+	    AND key_col < 10;
+	 
+	SELECT * FROM t1 
+	    WHERE key_col = 1 
+	    OR key_col IN (15,18,20);
+	 
+	SELECT * FROM t1 
+	    WHERE key_col LIKE 'ab%' 
+	    OR key_col BETWEEN 'bar' AND 'foo';
+
+MySQL尝试为每个可能的索引从WHERE子句提取范围条件。
+
+MySQL尝试为每个可能的索引从WHERE子句提取范围条件。在提取过程中，不能用于构成范围条件的条件被放弃，产生重叠范围的条件组合到一起，并且产生空范围的条件被删除。
+
+	SELECT * FROM t1 WHERE
+	   (key1 < 'abc' AND (key1 LIKE 'abcde%' OR key1 LIKE '%b')) OR
+	   (key1 < 'bar' AND nonkey = 4) OR
+	   (key1 < 'uux' AND key1 > 'z');
+
+其中key1是有索引的列，nonkey没有索引
+
+删除nonkey = 4和key1 LIKE '%b'，因为它们不能用于范围扫描。删除它们的正确途径是用TRUE替换它们，以便进行范围扫描时不会丢失匹配的记录。
+
+	(key1 < 'abc' AND (key1 LIKE 'abcde%' OR TRUE)) OR
+	(key1 < 'bar' AND TRUE) OR
+	(key1 < 'uux' AND key1 > 'z')
+
+取消总是为true或false的条件：
+
+	(key1 LIKE 'abcde%' OR TRUE)总是true
+	(key1 < 'uux' AND key1 > 'z')总是false
+
+用常量替换这些条件，得到：
+
+	(key1 < 'abc' AND TRUE) OR (key1 < 'bar' AND TRUE) OR (FALSE)
+
+删除不必要的TRUE和FALSE常量，得到
+
+	(key1 < 'abc') OR (key1 < 'bar')
+
+将重叠区间组合成一个产生用于范围扫描的最终条件
+
+	(key1 < 'bar')
+
+用于范围扫描的条件比WHERE子句限制少。MySQL再执行检查以过滤掉满足范围条件但不完全满足WHERE子句的行。
+
+7.2.5.2. 多元素索引的范围访问方法
+
+多元素索引的范围条件是单元素索引的范围条件的扩展。多元素索引的范围条件将索引记录限制到一个或几个关键元组内。使用索引的顺序，通过一系列关键元组来定义关键元组区间。
+
+#### 7.2.6. 索引合并优化
+
+> 索引合并方法用于通过range扫描搜索行并将结果合成一个。合并会产生并集、交集或者正在进行的扫描的交集的并集。
+
+7.2.6.1. 索引合并交集访问算法
+
+7.2.6.2. 索引合并并集访问算法
+
+7.2.6.3. 索引合并排序并集访问算法
+

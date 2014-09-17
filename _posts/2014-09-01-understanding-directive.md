@@ -6,9 +6,13 @@ tagline: ""
 tags : [web, angular]
 ---
 
+* auto-gen TOC:
+
+{:toc}
+
 [自定义指令](http://www.ngnice.com/docs/guide/directive)
 
-> Injecting（注入）, Compiling（编译）, and Linking functions
+## Injecting（注入）, Compiling（编译）, and Linking functions
 
 当你创建指令，本质上你要定义三个函数层
 
@@ -48,7 +52,7 @@ tags : [web, angular]
 	  };
 	})
 
-> Pre vs Post Linking Functions
+## Pre vs Post Linking Functions
 
 PostLinkingFunction()是默认的
 	
@@ -63,9 +67,11 @@ PreLinkingFunction() 会先作用于父级，然后子级，PostLinkingFunction(
 
 看还行，翻译就不坑人了。其他的可以看原文：https://github.com/angular/angular.js/wiki/Understanding-Directives#footnotes
 
+## egghead-angularjs例子
+
 还是看例子直观些，感谢egghead-angularjs。
 
-> 自定义参数的directive和使用模板的directive
+### 自定义参数的directive和使用模板的directive
 
 	angular.module('app.directives', []).
 	  directive('appFoo', ['foo', function(foo) {
@@ -84,7 +90,7 @@ PreLinkingFunction() 会先作用于父级，然后子级，PostLinkingFunction(
 
 没有使用依赖注入，顺序固定，随便命名都可以
 
-> 给元素绑定事件
+### 给元素绑定事件
 
 	<div enter leave>I'm content</div>
 
@@ -104,7 +110,7 @@ PreLinkingFunction() 会先作用于父级，然后子级，PostLinkingFunction(
 	  };
 	});
 
-> 获取属性的值
+### 获取属性的值
 
 	<div enter="panel" leave>I'm content</div>
 	app.directive("enter", function () {
@@ -123,7 +129,7 @@ PreLinkingFunction() 会先作用于父级，然后子级，PostLinkingFunction(
 	  };
 	});
 
-> 执行属性上的函数
+### 执行属性上的函数
 
 	<div enter="deleteTweets()">Roll over to load more tweets</div>
 	
@@ -141,7 +147,7 @@ PreLinkingFunction() 会先作用于父级，然后子级，PostLinkingFunction(
       <superhero strength>The Hulk</superhero>
     </div>
 
-> dirctive里的controller
+### dirctive里的controller
 
     var app = angular.module('superApp', []);
 	app.directive("superhero", function () {
@@ -207,7 +213,7 @@ PreLinkingFunction() 会先作用于父级，然后子级，PostLinkingFunction(
       </div>
     </div>
 
-> directive模板调用controller方法
+### directive模板调用controller方法
 
     var app = angular.module('choreApp', []);
 	app.controller("ChoreCtrl", function($scope) {
@@ -227,7 +233,7 @@ PreLinkingFunction() 会先作用于父级，然后子级，PostLinkingFunction(
 	  };
 	});
 
-restrict的含义	
+### restrict的含义	
 
 - E 表示该指令是一个`e`lement;
 
@@ -261,7 +267,7 @@ scope的含义
 
 transclude: true的时候,指令将会创建一个名为transcluded的作用域,并且原型继承于父作用域
 
-> 只读父级作用域的属性 scope @	
+### 只读父级作用域的属性 scope @	
 
 	<div ng-controller="AppCtrl">
         <input type="text" ng-model="ctrlFlavor">
@@ -281,7 +287,7 @@ transclude: true的时候,指令将会创建一个名为transcluded的作用域,
 	  };
 	});
 
-> 综合示例
+### 综合示例
 
 	<div ng-controller="AppCtrl">
         <phone number="114-1234" network="network" make-call="leaveVoicemail(number,message)"></phone>
@@ -315,7 +321,7 @@ transclude: true的时候,指令将会创建一个名为transcluded的作用域,
 	  };
 	});
 
-> transclusion 默认为true
+### transclusion 默认为true
 
 [彻底弄懂AngularJS中的transclusion](http://www.html-js.com/article/1869)
 
