@@ -1,7 +1,7 @@
 ---
 layout: post
 category : 数据库
-title: 'Mysql5.1参考手册摘录07'
+title: 'Mysql5.1参考手册摘录06'
 tagline: ""
 tags : [数据库, Mysql]
 ---
