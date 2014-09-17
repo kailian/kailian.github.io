@@ -99,7 +99,7 @@ blockquote {
 	float: right;
 }
 
-.maruku_toc {
+.maruku_toc, .markdown-toc {
   font-size: 14px;
   position: fixed;
   left: 50px;
@@ -117,14 +117,14 @@ blockquote {
 }
 
 @media only screen and (max-width:1250px) {
-  .maruku_toc {
+  .maruku_toc, .markdown-toc {
     position: relative;
     float: right;
   } 
 }
 
 @media only screen and (max-width:700px) {
-  .maruku_toc {
+  .maruku_toc, .markdown-toc {
     display: none;
   } 
 }
