@@ -116,3 +116,22 @@ true: A shorthand for function(actual, expected) { return angular.equals(expecte
 
 	lists | filter:search:true
 
+### 使用数组处理函数报错
+
+You are running into dirty checking when the value is not defined yet. Simply check to make sure the value is not undefined before you run your function.
+
+	App.controller('validationController', ['$scope',
+	    function ($scope) {
+	        $scope.isInvalidDate = function () {
+	            if($scope.checkindate === undefined || $scope.checkoutdate === undefined){
+	                return false;
+	            }
+	            var checkin = $scope.checkindate.split('-');
+	            var checkout = $scope.checkoutdate.split('-');
+
+	            if ($scope.checkin[0] > $scope.checkout[0] || $scope.checkin[1] > $scope.checkout[1]) {
+	                return true;
+	            }
+
+	        }]);
+
