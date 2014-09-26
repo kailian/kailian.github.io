@@ -9,6 +9,12 @@ tags : [web, angular]
 * auto-gen TOC:
 {:toc}
 
+### web组件化
+
+目的：使用angular的directive构建web组件
+
+<!--break-->
+
 ### index.html
 
 	<!DOCTYPE html>
@@ -36,8 +42,6 @@ tags : [web, angular]
 	  <script type="text/javascript" src="controller.js"></script>
 	</body>
 	</html>
-
-<!--break-->	
 
 ### controller.js
 
