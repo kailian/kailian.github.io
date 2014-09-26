@@ -25,7 +25,9 @@ tags : [web, angular]
 
 <!--break-->
 
-## Angular对input元素的type进行了扩展，一共提供了以下10种类型
+## 验证类型
+
+> Angular对input元素的type进行了扩展，一共提供了以下10种类型
 
 text
 
