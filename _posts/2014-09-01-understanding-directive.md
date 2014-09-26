@@ -1,7 +1,7 @@
 ---
 layout: post
 category : web
-title: '初步理解angular directives'
+title: '初步理解angular directives 01'
 tagline: ""
 tags : [web, angular]
 ---
