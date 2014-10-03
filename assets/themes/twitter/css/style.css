@@ -36,11 +36,6 @@ a:visited {text-decoration:none;}
 a:hover {  text-decoration:none; }
 a:active {  text-decoration:none; }
 
-h2 {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #dbdbdb;
-}
-
 p {
   text-indent:30px;
 }
