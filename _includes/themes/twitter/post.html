@@ -1,24 +1,18 @@
 <div class="container post-container">
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h1>
+    <h1 class="post-title">
       <strong>{{ page.title }}</strong>
     </h1>
-    {% if page.tagline %}
-    <small>{{page.tagline}}</small>
-    {% endif %}
+    <small class="post-info">
+      <span class="glyphicon glyphicon-user icon-margin"></span>
+      {{ site.author.name }}
+      <span class="glyphicon glyphicon-time icon-margin"></span>
+      {{ page.date | date: "%F" }}
+    </small>    
   </div>
   <div class="panel-body">
-    <div class="blog-center">
-      <span class="glyphicon glyphicon-user icon-margin"></span>
-      <span class="lable-margin">{{ site.author.name }}</span>
-      <span class="glyphicon glyphicon-time icon-margin"></span>
-      <span class="lable-margin">{{ page.date | date: "%F" }}</span>
-      <span class="glyphicon glyphicon-edit icon-margin"></span>
-      <span><a href="{{ site.production_url }}{{ page.url }}#comment">评论</a></span>
-    </div>
-    <hr/>
-    <div class="blog-content">
+    <div class="blog-content">    
       <div class="article-content">
       {{ content }}
       </div>
@@ -40,7 +34,6 @@
       {% else %}
         <li class="previous disabled"><a>&larr; 上一篇</a></li>
       {% endif %}
-        <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">归档</a></li>
       {% if page.next %}
         <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{page.next.title}} 下一篇 &rarr;</a></li>
       {% else %}
