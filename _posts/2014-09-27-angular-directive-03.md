@@ -46,41 +46,41 @@ tags : [web, angular]
 ### controller.js
 
 	var appModule = angular.module('app', [
-		'mc.widget'
+	  'mc.widget'
 	]);
 
 	appModule.controller('appController', function( $scope ){
-		$scope.model="appController";
+	  $scope.model="appController";
 	});
 
 ### mc.directive.js
 
 	angular.module("mc.widget", [
-		"mc.widget.tpls",
-		"mc.widget.mcInputText"
+	  "mc.widget.tpls",
+	  "mc.widget.mcInputText"
 	]);
 
 	angular.module("mc.widget.tpls", [
-		"template/mcInputText.html",
+	  "template/mcInputText.html",
 	]);
 
 	angular.module('mc.widget.mcInputText', [])
 
 	.directive("mcInputText", function() {
-		return {
-		  restrict: "EA",
-		  scope: {
-		    inputModel: "=",
-		  },
-		  templateUrl: 'template/mcInputText.html',
-		  link: function (scope) {
-		    scope.inputModel="model";
-		  }
-		};
+	  return {
+	    restrict: "EA",
+	    scope: {
+	      inputModel: "=",
+	    },
+	    templateUrl: 'template/mcInputText.html',
+	    link: function (scope) {
+	      scope.inputModel="model";
+	    }
+	  };
 	});
 
 	angular.module("template/mcInputText.html", []).run(["$templateCache", function($templateCache) {
-		$templateCache.put("template/mcInputText.html",
-		  '<input type="text" class="form-control" ng-model="inputModel" required/>'
-		);
+	  $templateCache.put("template/mcInputText.html",
+	    '<input type="text" class="form-control" ng-model="inputModel" required/>'
+	  );
 	}]);
