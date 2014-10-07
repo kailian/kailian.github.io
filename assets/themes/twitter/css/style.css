@@ -51,6 +51,10 @@ li P,blockquote P {
 	border-radius: 0;
 }
 
+.navbar-inverse .navbar-brand {
+  color: #FFF;
+}
+
 .blog-list {
 	list-style: none;
 }
