@@ -81,6 +81,16 @@ ng-if可阻止渲染
   	$scope.perPage = 10;
   	$scope.totalItems = 64;//$scope.items.length
 
+    app.filter('offset', function() { 
+	  return function(input, start) {
+	    if( angular.isObject(input) ) {
+	      return input.slice(start)
+	    } else {
+	      return false;
+	    }
+	  };
+	});
+
 ### 使用第三方module或者引入ng的其他module
 
 记得在模块依赖加入依赖，尤其是在控制台没报错而代码确认没问题的时候。
@@ -122,22 +132,52 @@ true: A shorthand for function(actual, expected) { return angular.equals(expecte
 
 	lists | filter:search:true
 
+### 前端时间过滤
+
+可用于大小比较的数据过滤
+
+	logControllers.filter('filterByRange',function() {
+	  return function(input, start_time, end_time) {
+	    if( angular.isUndefined(input) ) {
+	      return input;
+	    }
+	    var retInputs = [];
+	    var lowRange = angular.isDefined( start_time ) ? getTime( start_time ) : 0;
+	    var highRange = angular.isDefined( end_time ) ? getTime( end_time ) : 2288323623006;
+	    for(var i = 0, len = input.length; i < len; ++i) {
+	      var singleInput = input[i];
+	      smtime = getTime( singleInput.mtime );
+	      if(smtime >= lowRange && smtime <= highRange) {
+	        retInputs.push(singleInput);
+	      }
+	    }
+	    return retInputs;
+	  }
+	})
+
+	function getTime( dateTime ) {
+	  var date = new Date(dateTime);
+	  var time = date.getTime();
+	  return time;
+	}
+
 ### 使用数组处理函数报错
 
 You are running into dirty checking when the value is not defined yet. Simply check to make sure the value is not undefined before you run your function.
 
-	App.controller('validationController', ['$scope',
-	    function ($scope) {
-	        $scope.isInvalidDate = function () {
-	            if($scope.checkindate === undefined || $scope.checkoutdate === undefined){
-	                return false;
-	            }
-	            var checkin = $scope.checkindate.split('-');
-	            var checkout = $scope.checkoutdate.split('-');
+	App.controller('validationController', ['$scope',function ($scope) {
+	    $scope.isInvalidDate = function () {
+	      if($scope.checkindate === undefined || $scope.checkoutdate === undefined) {
+	        return false;
+	      }
+	      var checkin = $scope.checkindate.split('-');
+	      var checkout = $scope.checkoutdate.split('-');
 
-	            if ($scope.checkin[0] > $scope.checkout[0] || $scope.checkin[1] > $scope.checkout[1]) {
-	                return true;
-	            }
+	      if ($scope.checkin[0] > $scope.checkout[0] || $scope.checkin[1] > $scope.checkout[1]) {
+	        return true;
+	      }
+	    }
+	}]);
 
-	        }]);
+注意，angular很多数据处理前为undefined，需要先判断
 
