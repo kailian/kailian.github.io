@@ -67,6 +67,61 @@ checkbox插件
 
 [https://github.com/why520crazy/w5c-validator-angular](https://github.com/why520crazy/w5c-validator-angular)
 
+### 一些组件地址
+
+[angular-file-upload](https://github.com/danialfarid/angular-file-upload)
+
+[angular-lazyload](https://github.com/ckken/angular-lazyload)
+
+[tc-angular-chartjs](https://github.com/carlcraig/tc-angular-chartjs)
+
+[angular-dragdrop](http://codef0rmer.github.io/angular-dragdrop/#/)
+
+[angular-moment](https://github.com/urish/angular-moment)
+
+[angular-foundation](http://pineconellc.github.io/angular-foundation/)
+
+[textangular](http://textangular.com/)
+
+[angular-xeditable](http://vitalets.github.io/angular-xeditable/)
+
+[angular-timer](https://github.com/siddii/angular-timer)
+
+[famous-angular](https://github.com/Famous/famous-angular)
+
+[angular-translate](http://angular-translate.github.io/)
+
+[material](https://material.angularjs.org/#/)
+
+[angularAMD](http://marcoslin.github.io/angularAMD/#/home)
+
+[forms-angular](http://www.forms-angular.org/#/)
+
+[Angular Local Storage](http://gregpike.net/demos/angular-local-storage/demo/demo.html)
+
+[Angular-Wizard](http://mgonto.github.io/angular-wizard/)
+
+[Formly for Angular](http://formly-js.github.io/angular-formly/#!/)
+
+[angular-semantic](http://caitp.github.io/angular-semantic/docs)
+
+[angular-ui-tree](http://jimliu.github.io/angular-ui-tree/)
+
+[angular-filter](https://github.com/a8m/angular-filter)
+
+[angular-slider](http://prajwalkman.github.io/angular-slider/)
+
+[angular-mobile-nav](http://ajoslin.github.io/angular-mobile-nav/#/)
+
+[angular-data](http://angular-data.pseudobry.com/)
+
+[angular-gridster](http://manifestwebdesign.github.io/angular-gridster/)
+
+[angular-validation](https://github.com/huei90/angular-validation)
+
+[Angular Loading Bar](https://chieffancypants.github.io/angular-loading-bar/)
+
+
 更多
 
 [http://ngmodules.org/](http://ngmodules.org/)翻墙

@@ -50,3 +50,11 @@ json数据友好显示插件
 从图片上截取文字
 
 [安装](https://chrome.google.com/webstore/detail/project-naptha/molncoemjfmpgdkbdlbjmhlcgniigdnf)
+
+### angularjs-batarang
+
+[github](https://github.com/angular/angularjs-batarang)
+
+### window resizer
+
+[安装](http://www.chromeextensions.org/appearance-functioning/window-resizer/#.VFjMeVWSySo)
