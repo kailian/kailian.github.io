@@ -3,7 +3,7 @@ layout: post
 category : web
 title: 'angularJS guide'
 tagline: ""
-tags : [angularjs, web]
+tags : [angular, web]
 ---
 
 * auto-gen TOC:
