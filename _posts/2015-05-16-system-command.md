@@ -1,9 +1,9 @@
 ---
 layout: post
-category : 工具
+category : linux
 title: '系统信息查看指令'
 tagline: ""
-tags : [工具]
+tags : [linux]
 ---
 
 

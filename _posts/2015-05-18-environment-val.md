@@ -1,9 +1,9 @@
 ---
 layout: post
-category : 工具
+category : linux
 title: '环境变量'
 tagline: ""
-tags : [工具]
+tags : [linux]
 ---
 
 * auto-gen TOC:
