@@ -36,10 +36,10 @@ mysql> grant replication slave on *.* to '帐号名'@'从机IP' identified by '�
 mysql> grant replication slave on *.* to 'account'@'192.168.15.216' identified by 'password';
 ```
 
-## master配置`my.cnf`
+## master配置
 
 ```
-vi /etc/
+vi /etc/my.cnf
 在[mysqld]加上：
  server-id=216
 #同步二进制文件，包含需要同步的数据 
