@@ -36,7 +36,7 @@ Rows的两侧都拥有独特的负15pxmargin值,如下图中蓝色部分.被当�
 
 列(col)的padding给内容提供了空白，使内容不会紧贴在浏览器边界上，列之间有padding不会互相紧贴在一起。
 
-container/row/column最终要达到的结果就是为了col的补白
+`container/row/column`最终要达到的结果就是为了col的补白
 
 ## Nesting嵌套
 
