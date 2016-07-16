@@ -6,9 +6,6 @@ tagline: ""
 tags : [mysql]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ## MySQL复制介绍
 
 MySQL复制就是一台MySQL服务器（slave）从另一台MySQL服务器（master）进行日志的复制然后再解析日志并应用到自身

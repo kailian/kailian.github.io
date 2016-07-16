@@ -6,9 +6,6 @@ tagline: ""
 tags : [问题, 博客, jekyll]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 <div class="alert alert-danger alert-margin" role="alert">
 	更具体的问题可以参考
 	<a href="http://jekyllrb.com/">官方文档</a>

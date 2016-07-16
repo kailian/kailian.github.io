@@ -6,9 +6,6 @@ tagline: ""
 tags : [数据库, Mysql]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 第2章：安装，并不在想学习的范围内，跳过
 
 ## 第3章：教程

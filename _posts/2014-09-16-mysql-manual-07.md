@@ -6,9 +6,6 @@ tagline: ""
 tags : [数据库, Mysql]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ## 第7章：优化02
 
 ### 7.2.7. MySQL如何优化IS NULL

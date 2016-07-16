@@ -6,9 +6,6 @@ tagline: ""
 tags : [工具]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ### bookmarklet简介
 
 小书签（bookmarklet），又叫书签小程序，是一种小型的程序(Applet)，以网址(URL)的形式被存为浏览器中的书签，也可以是网页上的一个链接。

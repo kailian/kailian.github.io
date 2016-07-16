@@ -6,9 +6,6 @@ tagline: ""
 tags : [web]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ## 开场
 
 2015阿里移动技术峰会（一）

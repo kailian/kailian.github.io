@@ -6,9 +6,6 @@ tagline: ""
 tags : [数据库, Mysql]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ## 第7章：优化01
 
 ### 7.1. 优化概述

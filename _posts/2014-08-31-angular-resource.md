@@ -6,9 +6,6 @@ tagline: ""
 tags : [web, angular]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ### 官网
 
 [http://angularjs.org](http://angularjs.org)翻墙

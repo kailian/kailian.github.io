@@ -6,8 +6,6 @@ tagline: ""
 tags : [web, angular]
 ---
 
-
-
 > 原文：[Tip: Accessing Filtered Array Outside Ng-repeat](http://angular-tips.com/blog/2014/08/tip-accessing-filtered-array-outside-ng-repeat/)
 
 场景：将数组`peple`在`ng-repeat`中过滤`filter`，然后使用处理过滤后的结果。

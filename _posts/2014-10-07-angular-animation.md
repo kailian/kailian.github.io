@@ -4,10 +4,7 @@ category : web
 title: 'angular nganimate'
 tagline: ""
 tags : [web, angular]
---- 
-
-* auto-gen TOC:
-{:toc}
+---
 
 ### Angular动画
 

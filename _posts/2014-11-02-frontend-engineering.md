@@ -4,10 +4,7 @@ category : web
 title: '前端组件化'
 tagline: ""
 tags : [web]
---- 
-
-* auto-gen TOC:
-{:toc}
+---
 
 2014-10-14的一次分享，记录一下
 

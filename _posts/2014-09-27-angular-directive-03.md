@@ -4,10 +4,7 @@ category : web
 title: 'angular directive 03'
 tagline: ""
 tags : [web, angular]
---- 
-
-* auto-gen TOC:
-{:toc}
+---
 
 ### web组件化
 

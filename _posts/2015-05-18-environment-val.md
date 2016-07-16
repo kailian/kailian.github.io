@@ -6,9 +6,6 @@ tagline: ""
 tags : [linux]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ## 登录的环境变量配置文件
 
 	/etc/profile（所有用户生效）

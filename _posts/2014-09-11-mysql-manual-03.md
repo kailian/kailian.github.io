@@ -6,9 +6,6 @@ tagline: ""
 tags : [数据库, Mysql]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ## 第4章：MySQL程序概述
 
 ### MYSQL服务器和服务器启动脚本： 

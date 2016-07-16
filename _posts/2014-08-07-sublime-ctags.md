@@ -6,12 +6,9 @@ tagline: ""
 tags : [sublime, 工具]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 实现sublime text编辑器跳转
 
-#### Windows安装
+## Windows安装
 
 1. 下载并解压ctags包中的ctags.exe到系统环境路径（默认压缩在c:\windows\system32就好了）
 
@@ -25,7 +22,7 @@ tags : [sublime, 工具]
 
 	ctags -R -f .tags
 
-### linux安装
+## linux安装
 
 1. 首先安装ctags工具：
 

@@ -6,9 +6,6 @@ tagline: ""
 tags : [web]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ## 资源缓存
 
 （1）浏览器使用缓存以减少HTTP请求的数量和大小（更新使用不用版本资源）

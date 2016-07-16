@@ -7,9 +7,6 @@ tags : [linux]
 ---
 
 
-* auto-gen TOC:
-{:toc}
-
 ### 查看内存
 
 	free

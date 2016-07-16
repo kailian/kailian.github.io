@@ -6,9 +6,6 @@ tagline: ""
 tags : [代码, 思考]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 原文[《优质代码十诫》](http://coolshell.cn/articles/1007.html)
 
 12年的时候第一次看优质代码十诫，偶然再看，引用原作者的告诫，附带自己的一些想法。

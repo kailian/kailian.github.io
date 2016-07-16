@@ -6,9 +6,6 @@ tagline: ""
 tags : [插件, 工具]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ### liveReload
 
 html代码编写自动刷新插件

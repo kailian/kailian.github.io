@@ -6,9 +6,6 @@ tagline: ""
 tags : [web, angular]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ### 结合前后端的权限控制
 
 1. 后端PHP，app，controller和action路由的接口形式

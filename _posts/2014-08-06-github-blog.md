@@ -6,9 +6,6 @@ tagline: ""
 tags : [github, 博客, jekyll]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 <div class="alert alert-danger alert-margin" role="alert">
 	目的只是在github上建博客，只包含win环境相关软件的配置使用，暂不包括linux的相关环境配置。
 </div>

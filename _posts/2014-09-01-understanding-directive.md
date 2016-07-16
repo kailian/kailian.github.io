@@ -6,9 +6,6 @@ tagline: ""
 tags : [web, angular]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 [自定义指令](http://www.ngnice.com/docs/guide/directive)
 
 ## Injecting（注入）, Compiling（编译）, and Linking functions

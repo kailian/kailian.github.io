@@ -6,9 +6,6 @@ tagline: ""
 tags : [web]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ## Container
 
 这个容器class为.container类有2个目的

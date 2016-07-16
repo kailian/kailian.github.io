@@ -6,9 +6,6 @@ tagline: ""
 tags : [angular, web]
 ---
 
-* auto-gen TOC:
-{:toc}
-
 ### {{Angular.js}}代码更少，乐趣更多
 
 #### 目录

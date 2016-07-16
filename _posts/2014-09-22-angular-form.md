@@ -6,9 +6,6 @@ tagline: ""
 tags : [web, angular]
 ---	
 
-* auto-gen TOC:
-{:toc}
-
 客户端的验证能让用户知道输入是否合法，提高用户体验。同时服务端的验证是必须的。
 
 浏览器form自带表单验证，使用`novalidate`屏蔽浏览器本身的验证功能。
