@@ -56,7 +56,7 @@ Create repository
 ## 本地配置jekyll环境
 至于要生成博客，则需要jekyll，github支持的生成静态网页的工具
 
-Win安装jekyll
+### Win安装jekyll
 
 详情见http://jekyllrb.com/docs/installation/
 
@@ -86,6 +86,19 @@ http://rubyinstaller.org/downloads/上下载DevKit-tdm-32-4.5.2-20111229-1559-sf
 	Git clone git@github.com:plusjade/jekyll-bootstrap.git
 	则进入git项目目录，执行jekyll server，其他命令执行jekyll help
 	默认访问localhost:4000即可
+
+## mac 安装jekyll环境
+
+安装xcode，已经安装了ruby，更换淘宝源，用gem安装
+
+```
+gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/
+gem sources -l
+sudo gem install jekyll
+sudo gem install jekyll-paginate
+#进入项目目录
+jekyll server
+```
 
 ![Alt kailian.github.io](/images/kailian.png)
 
