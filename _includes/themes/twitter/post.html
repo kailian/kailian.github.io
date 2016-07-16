@@ -1,5 +1,12 @@
-<div class="container post-container">
-<div class="panel panel-default">
+<div class="container">
+  <div class='row'>
+  <div class="col-md-3">
+    <nav id="doc-affix" class="bs-docs-sidebar" data-spy="affix">
+        <ul class="nav bs-docs-sidenav" id="category"></ul>
+    </nav>
+  </div>   
+  <div class="col-md-9">
+  <div class="panel panel-default">
   <div class="panel-heading">
     <h1 class="post-title">
       <strong>{{ page.title }}</strong>
@@ -56,7 +63,34 @@ var duoshuoQuery = {short_name:"kailianblog"};
     (document.getElementsByTagName('head')[0] 
      || document.getElementsByTagName('body')[0]).appendChild(ds);
   })();
+
+    $("h2,h3,h4,h5,h6").each(function(i,item){
+        var tag = $(item).get(0).localName;
+        $(item).attr("id","wow"+i);
+        $("#category").append('<li><a class="doc-'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></li>');
+        $(".doc-h2").css("margin-left",0);
+        $(".doc-h3").css("margin-left",20);
+        $(".doc-h4").css("margin-left",40);
+        $(".doc-h5").css("margin-left",60);
+        $(".doc-h6").css("margin-left",80);
+    });
+
+    $("#category").append("<li><a href='#top' id='backToTopBtn' >返回顶部</li>");
+    $('#backToTopBtn').click(function(){
+        $('html,body').animate({scrollTop:0},'slow');return false;
+    });
+
+    $('#doc-affix').affix({
+      offset: {
+        top: 80,
+        bottom: function () {
+          return (this.bottom = $('.footer').outerHeight(true))
+        }
+      }
+    })
 </script>
+</div>
+</div>
 </div>
 <footer class="blog-footer">
   <div class="container blog-center">
