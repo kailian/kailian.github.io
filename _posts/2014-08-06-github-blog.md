@@ -87,7 +87,7 @@ http://rubyinstaller.org/downloads/上下载DevKit-tdm-32-4.5.2-20111229-1559-sf
 	则进入git项目目录，执行jekyll server，其他命令执行jekyll help
 	默认访问localhost:4000即可
 
-## mac 安装jekyll环境
+### mac 安装jekyll环境
 
 安装xcode，已经安装了ruby，更换淘宝源，用gem安装
 
