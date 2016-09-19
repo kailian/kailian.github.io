@@ -14,6 +14,8 @@ php artisan make:model Models/Infos
 php artisan migrate
 ```
 
+<!--break-->
+
 ## 开发相关工具
 
 1. [PhpStorm-IDE-工具](https://confluence.jetbrains.com/display/PhpStorm/Laravel+Development+using+PhpStorm)
