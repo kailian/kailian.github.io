@@ -56,3 +56,5 @@ resources/views/errors/custom404.blade.php
 ```
 resources/views/errors/404.blade.php
 ```
+
+[Custom HTTP Error Pages文档](https://laravel.com/docs/5.3/errors#custom-http-error-pages)
