@@ -33,20 +33,19 @@ php artisan migrate
 （2）优化 Laravel 内置方法
 
 
-```
+````
 php artisan optimize
 php artisan route:cache  
 php artisan config:cache
-``` 
+````
 
 
 （3）composer 优化自动加载
 
 
-```
+````
 composer dump-autoload --optimize
-
-```
+````
 
 
 （4）sesssion和cache使用memcached
