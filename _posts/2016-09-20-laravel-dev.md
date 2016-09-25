@@ -16,6 +16,14 @@ php artisan migrate
 
 <!--break-->
 
+## 注意事项
+
+1. laravel的路由直接闭包返回会导致无法使用route cache
+
+2. 修改配置时间区`config/app.php`， `'timezone' => 'Asia/Shanghai'`
+
+3. route api中间件限制了api请求次数，需要按需求修改`app\Http\Kernel.php`
+
 ## 开发相关工具
 
 1. [PhpStorm-IDE-工具](https://confluence.jetbrains.com/display/PhpStorm/Laravel+Development+using+PhpStorm)
@@ -25,6 +33,12 @@ php artisan migrate
 3. [laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
 
 4. [laravel-ide-helper](http://laravel.so/tricks/ec6ad6d56c56deb494098781438c5192)
+
+## laravel第三方库
+
+1. [laravel-excel](https://github.com/Maatwebsite/Laravel-Excel)
+
+2. [larvael-captcha](https://github.com/Gregwar/Captcha)
 
 ## laravel性能优化配置
 
