@@ -1,6 +1,6 @@
 <div class="container">
   <div class='row'>
-  <div class="col-md-3">
+  <div id="col-affix" class="col-md-3">
     <nav id="doc-affix" class="bs-docs-sidebar" data-spy="affix">
         <ul class="nav bs-docs-sidenav" id="category"></ul>
     </nav>
@@ -83,9 +83,7 @@ var duoshuoQuery = {short_name:"kailianblog"};
     $('#doc-affix').affix({
       offset: {
         top: 80,
-        bottom: function () {
-          return (this.bottom = $('.footer').outerHeight(true))
-        }
+        bottom: 200
       }
     })
 </script>

@@ -20,8 +20,6 @@ brew install phantomjs
 
 A high-level browser automation library
 
-http://www.nightmarejs.org/
-
 ```
 npm install nightmare
 ```
