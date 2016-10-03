@@ -62,7 +62,7 @@ class BeforeMiddleware
 app/Http/Kernel.php
 
 protected $routeMiddleware = [
-	...
+    ...
     'admin.auth' => \App\Http\Middleware\AdminAuthMiddleware::class,
 ];
 ```
