@@ -9,6 +9,7 @@ tags : [web,php,laravel]
 ## laravel常用操作
 
 ```
+php artisan 查看开发命令
 php artisan make:migration create_infos_table --create=infos
 php artisan make:model Models/Infos
 php artisan migrate
