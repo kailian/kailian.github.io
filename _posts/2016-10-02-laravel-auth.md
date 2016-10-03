@@ -14,6 +14,8 @@ tags : [web,php,laravel]
 
 3. 增加权限中间件判断用户是否有controller-method的操作权限
 
+<!--break-->
+
 ## 配置中间件
 
 ```
