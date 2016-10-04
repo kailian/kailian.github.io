@@ -183,6 +183,6 @@ Pf 是指 pageFrame，2、transConfigToPf 替换或删除模板 tpl/pageFrameTpl
 
 转换wxml中的自定义tag为virtual_dom
 
-[virtual-dom](/images/201610/virtual-dom.png)
+![virtual-dom](/images/201610/virtual-dom.png)
 
 转换wxss为css
