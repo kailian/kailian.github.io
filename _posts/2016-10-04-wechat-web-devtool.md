@@ -8,7 +8,9 @@ tags : [web]
 
 ## 微信web开发者工具
 
-微信开发者工具是用[node-webkit](https://github.com/nwjs/nw.js)，基于node.js和chromium的应用程序实时运行环境开发的。界面功能用React编写，wxml、wxss经过编译生成html和css。微信小程序提供UI组件库和底层API，基于微信生态，目测只支持在微信上运行。
+微信开发者工具是用[node-webkit](https://github.com/nwjs/nw.js)，基于node.js和chromium的应用程序实时运行环境开发的。界面功能用React编写，wxml、wxss经过编译生成html和css。
+
+MINA(MINA IS NOT APP) 是在微信中开发小程序的框架。MINA提供了自己的视图层描述语言wxml和wxss，以及基于JavaScript的逻辑层框架，并在视图层与逻辑层间提供了数据传输和事件系统。同时小程序提供UI组件库和底层API，基于微信生态，目测只支持在微信上运行。
 
 <!--break-->
 
@@ -86,6 +88,8 @@ require("./lunch/lunch.js"), //登录
 require("./Create/create.js"), //创建项目
 require("./main.js"), //主界面
 ```
+
+功能组件用的是react+flux，代码毕竟是压缩转换过的，prettify之后可以浏览看看
 
 ### lib目录
 
@@ -186,3 +190,9 @@ Pf 是指 pageFrame，2、transConfigToPf 替换或删除模板 tpl/pageFrameTpl
 ![virtual-dom](/images/201610/virtual-dom.png)
 
 转换wxss为css
+
+## 其他
+
+1. wx小程序只能在工具内调试，而且不支持热更
+
+2. 习惯了其他的编辑器，用着提供的工具并不好用（不能定义主题，快捷键...当然不用就是了）
