@@ -74,7 +74,7 @@ nil 表示没有值
 
 常量和变量
 
-let来声明常量，使用var来声明变量。常量与变量名不能包含数学符号，箭头，保留的（或者非法的）Unicode 码位，连线与制表符。也不能以数字开头。声明一个可选常量或者变量但是没有赋值，它们会自动被设置为 nil。
+let来声明常量，使用var来声明变量。常量与变量名不能包含数学符号，箭头，保留的（或者非法的）Unicode 码位，连线与制表符。也不能以数字开头。声明一个可选常量或者变量但是没有赋值，它们会自动被设置为 nil。变量一旦定义，其类型不可更改。
 
 ```
 var myVariable = 42 
@@ -107,6 +107,28 @@ let appleSummary = "I have \(apples) apples."
 let fruitSummary = "I have \(apples + oranges) pieces of fruit."
 ```
 
+可选类型(Optional): 代表变量可能有值的情况。形式: var 变量 : 类型? ,默认是无值(nil)
+
+```
+var addr : String? = "addr"
+```
+
+### 元组（Tuples）
+
+把多个值组合成一个复合值
+
+```
+let http404Error = (404, "Not Found")
+let http200Status = (statusCode: 200, description: "OK")
+```
+
+将一个元组的内容分解（decompose）成单独的常量和变量，要忽略的部分用下划线（_）标记
+
+```
+let (statusCode, statusMessage) = http404Error
+let (justTheStatusCode, _) = http404Error
+```
+
 ### 注释
 
 ```
@@ -114,6 +136,10 @@ let fruitSummary = "I have \(apples + oranges) pieces of fruit."
 /* 这是一个,
 多行注释 */
 ```
+
+swfit 支持在注释中使用markdown编写文档
+
+[代码注释中使用 Markdown 并生成在线文档](http://www.jianshu.com/p/2388dd995e4e/comments/3074937)
 
 ### 错误处理
 
@@ -137,22 +163,6 @@ do {
 } catch SandwichError.missingIngredients(let ingredients) {
     buyGroceries(ingredients)
 }
-```
-
-### 元组（Tuples）
-
-把多个值组合成一个复合值
-
-```
-let http404Error = (404, "Not Found")
-let http200Status = (statusCode: 200, description: "OK")
-```
-
-将一个元组的内容分解（decompose）成单独的常量和变量，要忽略的部分用下划线（_）标记
-
-```
-let (statusCode, statusMessage) = http404Error
-let (justTheStatusCode, _) = http404Error
 ```
 
 ## 运算符（Operators）
@@ -1414,3 +1424,5 @@ struct Stack<Element>: Container {
 - [documentation](https://swift.org/documentation/)
 
 - [Swift 学习指引](http://swiftguide.cn/)
+
+- [jazzy](https://github.com/realm/jazzy)
