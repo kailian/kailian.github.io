@@ -182,6 +182,12 @@ webpack将CSS文件作为CSS模块
 }
 ```
 
+自定义hash类名
+
+```
+[name]__[local]___[hash:base64:5]
+```
+
 [react-css-modules](https://github.com/gajus/react-css-modules)
 
 ```
