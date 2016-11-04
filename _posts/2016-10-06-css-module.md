@@ -242,7 +242,9 @@ import customStyles from './table-custom-styles.css';
 
 ## 参考
 
-[understanding-the-css-modules-methodology](http://www.zcfy.cc/article/understanding-the-css-modules-methodology-1329.html?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+[CSS Modules 详解及 React 中实践](https://github.com/camsong/blog/issues/5)
+
+[understanding-the-css-modules-methodology](http://www.zcfy.cc/article/understanding-the-css-modules-methodology-1329.html)
 
 [github-css-modules](https://github.com/css-modules/css-modules)
 
