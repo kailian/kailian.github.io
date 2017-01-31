@@ -19,12 +19,12 @@
     </small>    
   </div>
   <div class="panel-body">
-    <div class="blog-content">    
+    <div class="blog-content">
       <div class="article-content">
       {{ content }}
       </div>
       {% unless page.tags == empty %}
-        {% for tag in page.tags %} 
+        {% for tag in page.tags %}
           <span class="tag-box">
             <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref" class="tag">
               {{ tag }}<span class="sup">{{ site.tags[tag].size }}</span>
@@ -53,8 +53,10 @@
 </div>
 <div id="comment"></div>
 <div class="ds-thread" data-thread-key="{{ page.url }}" data-title="{{ page.title }}" data-url="{{ site.production_url }}{{ page.url }}"></div>
+<link href="{{ ASSET_PATH }}/zoom/zoom.css" rel="stylesheet">
+<script src="{{ ASSET_PATH }}/zoom/zoom.min.js"></script>
 <script type="text/javascript">
-var duoshuoQuery = {short_name:"kailianblog"};
+  var duoshuoQuery = {short_name:"kailianblog"};
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
@@ -64,28 +66,30 @@ var duoshuoQuery = {short_name:"kailianblog"};
      || document.getElementsByTagName('body')[0]).appendChild(ds);
   })();
 
-    $("h2,h3,h4,h5,h6").each(function(i,item){
-        var tag = $(item).get(0).localName;
-        $(item).attr("id","wow"+i);
-        $("#category").append('<li><a class="doc-'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></li>');
-        $(".doc-h2").css("margin-left",0);
-        $(".doc-h3").css("margin-left",20);
-        $(".doc-h4").css("margin-left",40);
-        $(".doc-h5").css("margin-left",60);
-        $(".doc-h6").css("margin-left",80);
-    });
+  $("h2,h3,h4,h5,h6").each(function(i,item){
+      var tag = $(item).get(0).localName;
+      $(item).attr("id","wow"+i);
+      $("#category").append('<li><a class="doc-'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></li>');
+      $(".doc-h2").css("margin-left",0);
+      $(".doc-h3").css("margin-left",20);
+      $(".doc-h4").css("margin-left",40);
+      $(".doc-h5").css("margin-left",60);
+      $(".doc-h6").css("margin-left",80);
+  });
 
-    $("#category").append("<li><a href='#top' id='backToTopBtn' >返回顶部</li>");
-    $('#backToTopBtn').click(function(){
-        $('html,body').animate({scrollTop:0},'slow');return false;
-    });
+  $("#category").append("<li><a href='#top' id='backToTopBtn' >返回顶部</li>");
+  $('#backToTopBtn').click(function(){
+      $('html,body').animate({scrollTop:0},'slow');return false;
+  });
 
-    $('#doc-affix').affix({
-      offset: {
-        top: 80,
-        bottom: 200
-      }
-    })
+  $('#doc-affix').affix({
+    offset: {
+      top: 80,
+      bottom: 200
+    }
+  })
+
+  $('img').attr("data-action","zoom");
 </script>
 </div>
 </div>
@@ -95,5 +99,3 @@ var duoshuoQuery = {short_name:"kailianblog"};
     Copyright &copy; 2014-{{ site.time | date: '%Y' }} <a href="https://github.com/kailian">{{ site.author.name }}</a> All Rights Reserved
   </div>
 </footer>
-
-
