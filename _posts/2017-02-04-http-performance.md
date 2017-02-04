@@ -1,7 +1,7 @@
 ---
 layout: post
 category : web
-title: 'web性能优化'
+title: 'web performance'
 tagline: ""
 tags : [web]
 ---
@@ -27,48 +27,6 @@ DOM加载时长
 - Load：内容需要在1000ms 内加载出来，超过1000ms 会觉得加载缓慢。
 
 <!--break-->
-
-Navigation Timing API
-
-浏览器发出一系列可捕获的事件，捕获关键呈现路径的不同阶段，Navigation Timing 为评估关键呈现路径提供了细粒度的时间戳
-
-![dom-navtiming.png](/images/201702/dom-navtiming.png)
-
-- domLoading：这是整个过程开始的时间戳，浏览器开始解析 HTML 文档第一批收到的字节 document。
-
-- domInteractive：标记浏览器完成解析并且所有 HTML 和 `DOM 构建完毕`的时间点。
-
-- domContentLoaded：标记 DOM 准备就绪并且没有样式表阻碍 JavaScript 执行的时间点，可以开始构建呈现树。很多 JavaScript 框架等待此事件发生后，才开始执行它们自己的逻辑。因此，浏览器会通过捕获 EventStart 和 EventEnd 时间戳，跟踪执行逻辑所需的时间。
-
-- domComplete： 顾名思义，所有的处理完成，网页上所有资源（图片等） 下载完成 - 即加载旋转图标停止旋转。
-
-- loadEvent：作为每个网页加载的最后一步，浏览器会触发onLoad事件，以便触发附加的应用逻辑。
-
-```
-<html>
-  <head>
-    <title>Critical Path: Measure</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="style.css" rel="stylesheet">
-    <script>
-      function measureCRP() {
-        var t = window.performance.timing,
-          interactive = t.domInteractive - t.domLoading,
-          dcl = t.domContentLoadedEventStart - t.domLoading,
-          complete = t.domComplete - t.domLoading;
-        var stats = document.createElement('p');
-        stats.textContent = 'interactive: ' + interactive + 'ms, ' +
-            'dcl: ' + dcl + 'ms, complete: ' + complete + 'ms';
-        document.body.appendChild(stats);
-      }
-    </script>
-  </head>
-  <body onload="measureCRP()">
-    <p>Hello <span>web performance</span> students!</p>
-    <div><img src="awesome-photo.jpg"></div>
-  </body>
-</html>
-```
 
 ## 渲染引擎
 
@@ -149,6 +107,78 @@ CSSOM 树与 DOM 树融合成一棵渲染树，随后计算每个可见元素的
 把渲染树中的每个节点转换为屏幕上的实际像素，绘制元素样式，颜色、背景、大小、边框等。
 
 ![full-render.png](/images/201702/full-render.png)
+
+## 网络耗时统计
+
+Navigation Timing API
+
+[Navigation Timing](https://www.w3.org/TR/navigation-timing/)
+
+浏览器发出一系列可捕获的事件，捕获关键呈现路径的不同阶段，Navigation Timing 为评估关键呈现路径提供了细粒度的时间戳
+
+![timing-overview.png](/images/201702/timing-overview.png)
+
+![dom-navtiming.png](/images/201702/dom-navtiming.png)
+
+- domLoading：这是整个过程开始的时间戳，浏览器开始解析 HTML 文档第一批收到的字节 document。
+
+- domInteractive：标记浏览器完成解析并且所有 HTML 和 `DOM 构建完毕`的时间点。
+
+- domContentLoaded：标记 DOM 准备就绪并且没有样式表阻碍 JavaScript 执行的时间点，可以开始构建呈现树。很多 JavaScript 框架等待此事件发生后，才开始执行它们自己的逻辑。因此，浏览器会通过捕获 EventStart 和 EventEnd 时间戳，跟踪执行逻辑所需的时间。
+
+- domComplete： 顾名思义，所有的处理完成，网页上所有资源（图片等） 下载完成 - 即加载旋转图标停止旋转。
+
+- loadEvent：作为每个网页加载的最后一步，浏览器会触发onLoad事件，以便触发附加的应用逻辑。
+
+```
+<html>
+  <head>
+    <title>Critical Path: Measure</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <script>
+      function measureCRP() {
+        var t = window.performance.timing,
+          interactive = t.domInteractive - t.domLoading,
+          dcl = t.domContentLoadedEventStart - t.domLoading,
+          complete = t.domComplete - t.domLoading;
+        var stats = document.createElement('p');
+        stats.textContent = 'interactive: ' + interactive + 'ms, ' +
+            'dcl: ' + dcl + 'ms, complete: ' + complete + 'ms';
+        document.body.appendChild(stats);
+      }
+    </script>
+  </head>
+  <body onload="measureCRP()">
+    <p>Hello <span>web performance</span> students!</p>
+    <div><img src="awesome-photo.jpg"></div>
+  </body>
+</html>
+```
+
+Resource Timing API
+
+[Resource Timing](https://www.w3.org/TR/2014/CR-resource-timing-20140325/)
+
+![resource-timing-overview.png](/images/201702/resource-timing-overview.png)
+
+## 数据流程
+
+- 采集：页面注入js脚本、采集数据(domReady,onload,onerror,request)存入缓存池
+
+- 上报：加载上报js，消费数据池，调用特定的方法，上报数据到服务端
+
+- 接收：数据存入kafka数据队列(只做短暂存储，数据由业务方自己消费)
+
+- 清洗：数据清洗（重复数据，脏数据，异常数据等）
+
+- 消费：读取特定topic，消费数据，流计算，存入业务方数据库(hadoop/mysql)
+
+- 处理：定时读取源数据进行分析和过滤
+
+- 入库：将处理后的数据入库，以便数据展示(mysql)
+
+- 展示：数据查询、分析，数据报表输出、日志监控
 
 ## 优化关键呈现路径
 
@@ -344,7 +374,7 @@ dataSortWorker.addEventListener('message', function(evt) {
 
 ## 资源加载
 
-消除不必要的下载，通过各种压缩技术来优化资源的传输编码，并利用缓存来消除多余的下载
+消除不必要的下载，通过各种压缩技术来优化资源的传输编码，并利用缓存来消除多余的下载。  
 
 1. 最快和最好的优化资源是不需要下载的资源，抓住一切机会删除应用中不必要的资源
 
@@ -352,11 +382,13 @@ dataSortWorker.addEventListener('message', function(evt) {
 
 3. 接口只返回必须的数据
 
-4. 按需加载，模块化管理，只加载模块需要的资源
+4. 按需加载，模块化管理，只加载模块需要的资源，避免重复加载
 
 5. 在ajax请求中优先使用GET方法，POST方法在浏览器中分两步执行：先发送头部，然后发送数据
 
 6. 使用 GZIP 进行文本压缩，gzip on
+
+7. Content Delivery Network，CDN，将网站的内容发布到最接近用户的服务器。
 
 ## 优化图片
 
@@ -368,42 +400,60 @@ dataSortWorker.addEventListener('message', function(evt) {
 
 ## 资源缓存
 
+[web缓存](/2016/07/17/web-cache)
+
 1. 浏览器使用缓存以减少HTTP请求的数量和大小（更新使用不用版本资源），被缓存资源的请求服务器是 304响应，只有 Header没有Body ，可以节省带宽
 
 2. ajax请求数据缓存到本地，对比更新时间是否从缓存中获取
 
 3. 服务端使用memcached缓存，减少接口请求等待
 
+4. 离线缓存
+
 ## 链接重用
 
-1. 使用keepalive重用链接，减少资源消耗，缩短响应时间
+1. 使用keepalive重用链接（http1.0默认不启用，http1.1默认启用），减少资源消耗，缩短响应时间
 
 ## 并发请求
 
 1. 启用和主站不同的域名来放置静态资源，使用CDN或独立静态资源域名
 
-2. cookie free，请求静态资源用不用域名避免带上多余的cookie
+2. 合理使用静态资源域名，独立域名不会共享主域的 Cookie，cookie free策略，请求静态资源域名避免带上多余的cookie
 
 ## 异步处理
 
 1. 使用异步请求数据实现页面局部刷新，不用刷新整个页面
 
-2. 接口使用异步处理，比如操作完成后先返回数据再异步处理rtx弹窗
+2. 接口使用异步处理，比如先返回数据再异步写日志
 
 ## 更新http版本
 
 1. 升级http2
 
+[http2](/2016/07/17/http2)
+
 ## 利用工具
 
-避免重复性工作
+前端工程化：解决本地开发环境初始化、调试（环境变量，日志等）、编译（热刷新）、构建、打包部署、发布等问题
 
-简化繁琐的工作流程
+前端工具：gulp、[webpack](/2016/07/25/webpack)
 
-前端工具：gulp、webpack
+浏览器开发者工具：[chrome devtools](https://developers.google.com/web/tools/chrome-devtools/)、firebug
+
+抓包工具：Fiddler、wiresharp、tcpdump
+
+持续集成、自动发布：git（gitbucket、gitlab）、Jenkins、webhook
+
+自动化测试
+
+将常用操作编写为脚本执行，避免重复性工作，简化繁琐的工作流程
 
 ## 参考
 
 [critical-rendering-path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/)
 
 [渲染性能](https://github.com/sundway/blog/issues/2)
+
+[前端优化不完全指南](https://aotu.io/notes/2016/03/16/optimization/)
+
+[iebug](http://www.w3cplus.com/solution/iebug/iebug.html)
