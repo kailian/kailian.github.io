@@ -450,10 +450,10 @@ dataSortWorker.addEventListener('message', function(evt) {
 
 ## 参考
 
-[critical-rendering-path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/)
+- [critical-rendering-path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/)
 
-[渲染性能](https://github.com/sundway/blog/issues/2)
+- [渲染性能](https://github.com/sundway/blog/issues/2)
 
-[前端优化不完全指南](https://aotu.io/notes/2016/03/16/optimization/)
+- [前端优化不完全指南](https://aotu.io/notes/2016/03/16/optimization/)
 
-[iebug](http://www.w3cplus.com/solution/iebug/iebug.html)
+- [Hypertext Transfer Protocol](https://www.w3.org/Protocols/)
