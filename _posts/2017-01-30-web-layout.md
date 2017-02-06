@@ -276,7 +276,11 @@ chrome启动支持CSS Grid Layout
 
 chrome://flags/#enable-experimental-web-platform-features
 
+在项目当中使用grid布局方式，则需要安装[css-grid-polyfill](https://github.com/FremyCompany/css-grid-polyfill)
+
 ### demo
+
+等分
 
 ```
 <html>
@@ -332,16 +336,88 @@ body {
 </style>
 </head>
 <body>
-    <div class="container">
-        <div class="grid-item a1">A1</div>
-        <div class="grid-item b1">B1</div>
-        <div class="grid-item c1">C1</div>
-        <div class="grid-item d1">D1</div>
-        <div class="grid-item a2">A2</div>
-        <div class="grid-item b2">B2</div>
-    </div>
+  <div class="container">
+    <div class="grid-item a1">A1</div>
+    <div class="grid-item b1">B1</div>
+    <div class="grid-item c1">C1</div>
+    <div class="grid-item d1">D1</div>
+    <div class="grid-item a2">A2</div>
+    <div class="grid-item b2">B2</div>
+  </div>
 </body>
 </html>
+```
+
+垂直居中
+
+```
+<div class="vertical-container">
+    <div class="content">垂直居中</div>
+</div>
+```
+
+```
+.vertical-container {
+  height: 500px;
+  width: 500px;
+  display: grid;
+  display: -webkit-grid;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  background-color: green;
+}
+
+.content {
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+  text-align: center;
+  background-color: yellow;
+}
+```
+
+两栏/三栏布局
+
+```
+<div class="box box1">
+    <div class="left">left</div>
+    <div class="main">main</div>
+</div>
+<div class="box box2">
+    <div class="left">left</div>
+    <div class="main">main</div>
+    <div class="right">right</div>
+</div>
+```
+
+```
+.box {
+    display: grid;
+    height: 200px;
+    width: 100%;
+    margin-bottom: 30px;
+    grid-template-columns: 200px auto;
+}
+.box1 {
+    grid-template-columns: 200px auto;
+}
+.box2 {
+    grid-template-columns: 200px auto 100px;
+}
+.left {
+    background-color: yellow;
+    grid-area: 1/ 1/ 2/ 2;
+}
+.main {
+    background-color: green;
+    grid-area: 1/ 2/ 2/ 3;
+}
+.right {
+    background-color: blue;
+    grid-area: 1/ 3/ 2/ 4;
+}
 ```
 
 ## flexbox 弹性布局
@@ -361,6 +437,10 @@ flex container
 ```
 
 Flex布局以后，子元素的float、clear和vertical-align属性将失效
+
+![flex.png](/images/201701/flex.png)
+
+容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。 项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。
 
 设置在父级容器属性
 
@@ -539,43 +619,72 @@ flex子项单独在侧轴（纵轴）方向上的对齐方式
 
 ### demo
 
-```
-.container {
-  display: -webkit-flex;
-  display: flex;
-}
-.initial {
-  -webkit-flex: initial;
-          flex: initial;
-  width: 200px;
-  min-width: 100px;
-}
-.none {
-  -webkit-flex: none;
-          flex: none;
-  width: 200px;
-}
-.flex1 {
-  -webkit-flex: 1;
-          flex: 1;
-}
-.flex2 {
-  -webkit-flex: 2;
-          flex: 2;
-}
-```
-
 垂直居中布局
 
 ```
+<div class="vertical-container">
+    <div class="content">垂直居中</div>
+</div>
+```
+
+```
 .vertical-container {
-  height: 300px;
+  height: 500px;
+  width: 500px;
+  display: flex;
   display: -webkit-flex;
-  display:         flex;
+  align-items: center;
   -webkit-align-items: center;
-          align-items: center;
+  justify-content: center;
   -webkit-justify-content: center;
-          justify-content: center;
+  background-color: green;
+}
+
+.content {
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+  text-align: center;
+  background-color: yellow;
+}
+```
+
+两栏/三栏布局
+
+```
+<div class="box">
+  <div class="left">left</div>
+  <div class="main">main</div>
+</div>
+<div class="box">
+  <div class="left">left</div>
+  <div class="main">main</div>
+  <div class="right">right</div>
+</div>
+```
+
+```
+.box {
+  display: flex;
+  height: 200px;
+  margin-bottom: 30px;
+}
+.left {
+  background-color: yellow;
+  flex-basis: 200px;
+  /* flex-basis定义该项目在分配主轴空间之前提前获得200px的空间 */
+  flex-grow: 0;
+  /* flex-grow定义该项目不分配剩余空间 */
+}
+.main {
+  background-color: green;
+  flex-grow: 1;
+  /* flex-grow定义main占满剩余空间 */
+}
+.right {
+  background-color: blue;
+  flex-basis: 100px;
+  flex-grow: 0;
 }
 ```
 
@@ -588,3 +697,5 @@ flex子项单独在侧轴（纵轴）方向上的对齐方式
 - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 - [A Visual Guide to CSS3 Flexbox Properties](https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties)
+
+- [css-grid-flex](http://www.xingbofeng.com/css-grid-flex/)
