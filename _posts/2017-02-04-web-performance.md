@@ -162,6 +162,12 @@ Resource Timing API
 
 ![resource-timing-overview.png](/images/201702/resource-timing-overview.png)
 
+Chrome DevTools Timing
+
+![chrome_devtools_timing.png](/images/201702/chrome_devtools_timing.png)
+
+[devtools timing使用文档](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)
+
 ## 数据流程
 
 - 采集：页面注入js脚本、采集数据(domReady,onload,onerror,request)存入缓存池
@@ -198,7 +204,9 @@ Resource Timing API
 
 - 尽量减少关键字节数，以缩短下载时间（往返次数）
 
-## yahoo rules
+## 优化指南
+
+### yahoo rules
 
 [yahoo-rules](https://developer.yahoo.com/performance/rules.html)
 
@@ -283,6 +291,10 @@ JavaScript
 - 保持单个内容小于25KB
 
 - 打包组件成Multipart文档
+
+### Google PageSpeed Insights
+
+[Google PageSpeed Insights](https://developers.google.com/speed/docs/insights/rules)
 
 ## 阻塞渲染的 CSS
 
@@ -457,3 +469,5 @@ dataSortWorker.addEventListener('message', function(evt) {
 - [前端优化不完全指南](https://aotu.io/notes/2016/03/16/optimization/)
 
 - [Hypertext Transfer Protocol](https://www.w3.org/Protocols/)
+
+- [pagespeed](https://varvy.com/pagespeed/)
