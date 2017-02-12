@@ -108,6 +108,72 @@ CSSOM 树与 DOM 树融合成一棵渲染树，随后计算每个可见元素的
 
 ![full-render.png](/images/201702/full-render.png)
 
+## 重排和重绘
+
+当DOM的变化影响了元素的几何属性(宽或高)，浏览器需要重新计算元素的几何属性，同时其他元素的几何属性和位置也会受到影响。浏览器会使渲染树中受到影响的部分失效，并重新构造渲染树，这个过程称为重排。完成重排后，浏览器会重新绘制受到影响的部分到屏幕，这个过程称为重绘。
+
+由于浏览器的流布局，对渲染树的计算通常只需要遍历一次就可以完成。table及其内部元素除外，它可能需要多次计算才能确定好其在渲染树中节点的属性，通常要花三倍同等元素的时间。
+
+[会触发重绘的css属性](https://csstriggers.com/)
+
+### 触发重排和重绘的情况
+
+- 添加或删除可见的DOM元素（脚本操作 DOM）
+
+- 元素位置改变
+
+- 元素尺寸改变
+
+- 元素内容改变（比如用户在input框中输入文字）
+
+- 页面渲染初始化
+
+- 浏览器窗口尺寸改变
+
+- 改变字体
+
+- 激活 CSS 伪类（比如 :hover）
+
+- 增加或者移除样式表
+
+- 设置 style 属性的值
+
+- 计算 offsetWidth 和 offsetHeight 属性
+
+- 渲染树变化的排队和刷新
+
+获取布局信息的操作
+
+- offsetTop,offsetLeft,offsetWidth,offsetHeight
+
+- scrollTop,scrollLeft,scrollWidth,scrollHeight
+
+- clientTop,clientLeft,clientWidth,clientHeight
+
+- getComputeStyle(),currentStyle(IE)
+
+浏览器执行渲染队列中的`待处理变化`并触发重排以返回正确的值
+
+### 最小化重排和重绘
+
+- 改变元素多种样式的时候，最好用className，一次性完成操作，只修改一次DOM
+
+- 尽量不要在布局信息改变时做查询(会导致渲染队列强制刷新)
+
+- 批量添加DOM，可以先让元素脱离文档流，操作完成后带人文档流，这样只会触发一次重排
+
+- 将需要多次重排的元素，添加定位属性，设置为absolute,fixed，这样此元素就脱离了文档流，不会影响其他元素（比如动画效果，使用 position 属性的 fixed 值或 absolute 值）
+
+- 避免设置多项内联样式
+
+- 避免使用table布局
+
+- 避免使用CSS的JavaScript表达式
+
+- 由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发2次重排
+
+- 在需要经常获取那些引起浏览器重排的属性值时，要缓存到变量
+
 ## 网络耗时统计
 
 Navigation Timing API
@@ -471,3 +537,5 @@ dataSortWorker.addEventListener('message', function(evt) {
 - [Hypertext Transfer Protocol](https://www.w3.org/Protocols/)
 
 - [pagespeed](https://varvy.com/pagespeed/)
+
+- [csstriggers会触发重绘的css属性](https://csstriggers.com/)

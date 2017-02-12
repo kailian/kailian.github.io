@@ -295,6 +295,38 @@ var a = null; // 使用完毕之后，释放内存空间
 
 变量，即通过一个名字将一个值关联起来，以后通过变量就可以引用到该值。所有的变量，如果不加上 var 关键字，则默认的会添加到全局对象的属性。
 
+全局变量
+
+全局变量是global对象(window)的属性
+
+- 使用var显示声明的全局变量
+
+- 不使用var隐示声明的全局变量
+
+```
+var a = 'a';
+b = 'b';
+
+console.log(a); // a
+console.log(b); // b
+console.log(window.a); // a
+console.log(window.b); // b
+
+// 显式声明的全局变量不能被删除
+delete a; // 返回 false
+// 隐式声明的全局变量可以被删除
+delete b; // 返回 true
+console.log(typeof a); // string
+console.log(typeof b); // undefined
+
+console.log(Object.getOwnPropertyDescriptor(window, a));
+//Object {value: "a", writable: true, enumerable: true, configurable: false}
+console.log(Object.getOwnPropertyDescriptor(window, b));
+//Uncaught ReferenceError: b is not defined
+```
+
+使用 var 声明的变量是不可配置的，不能被delete。
+
 变量的作用域
 
 变量被定义的区域即为其作用域，全局变量具有全局作用域；局部变量，比如声明在函数内部的变量则具有局部作用域，在函数的外部是不能直接访问的。

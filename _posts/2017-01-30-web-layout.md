@@ -699,3 +699,5 @@ flex子项单独在侧轴（纵轴）方向上的对齐方式
 - [A Visual Guide to CSS3 Flexbox Properties](https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties)
 
 - [css-grid-flex](http://www.xingbofeng.com/css-grid-flex/)
+
+- [Flex 布局应用](https://gold.xitu.io/post/589965c9128fe1006569cc9d)
