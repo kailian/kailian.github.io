@@ -93,6 +93,12 @@ opcache.fast_shutdown=1
 
 ## php-fpm配置
 
+查看启用的配置项
+
+```
+grep -v "^;" /usr/local/php/etc/php-fpm.conf
+```
+
 ### 进程配置
 
 ``` 
