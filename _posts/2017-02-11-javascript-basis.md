@@ -405,6 +405,8 @@ function 关键字会调用Function 来 new 一个对象，并将参数表和函
 
 只有函数对象才有 prototype属性。
 
+[function函数部分](https://segmentfault.com/a/1190000000660786)
+
 ### 原型对象及原型链
 
 原型(prototype)，是 JavaScript 特有的一个概念，通过使用原型，JavaScript 可以建立其传统 OO 语言中的继承，从而体现对象的层次关系。JavaScript 本身是基于原型的，每个对象都有一个 prototype 的属性，这个 prototype 本身也是一个对象，因此它本身也可以有自己的原型，这样就构成了一个链结构。
@@ -533,6 +535,14 @@ console.log(printName.call(abruzzi));
 
 在 JavaScript 中，内部（嵌套）函数将存储对局部变量的引用（即使在函数返回之后），这些局部变量存在于与函数本身相同的范围中。  这一组引用称为闭包。
 
+三个特性
+
+1.函数嵌套函数
+
+2.函数内部可以引用外部的参数和变量
+
+3.参数和变量不会被垃圾回收机制回收
+
 ```
 function send(name) {
     // Local variable 'name' is stored in the closure
@@ -556,9 +566,7 @@ func(); // Hello Bill
 
 JavaScript闭包是一个拥有许多变量和绑定了这些变量的环境的表达式（通常是一个函数），因而这些变量也是该表达式的一部分。
 
-JavaScript闭包就是在另一个作用域中保存了一份它从上一级函数或者作用域得到的变量，而这些变量是不会随上一级函数的执行完成而销毁。
-
-闭包的表现在函数内对外部作用域上的变量引用，使其常驻内存中，得不到释放。
+JavaScript闭包就是在另一个作用域中保存了一份它从上一级函数或者作用域得到的变量，而这些变量是不会随上一级函数的执行完成而销毁。函数内对外部作用域上的变量引用，使其常驻内存中，得不到释放。
 
 如何从外部读取局部变量？
 
@@ -581,6 +589,12 @@ result(); // 999
 - 让这些变量的值始终保持在内存中
 
 - 模拟面向对象的代码风格
+
+- 设计私有的方法和变量
+
+缺点
+
+常驻内存，会增大内存使用量，使用不当很容易造成内存泄露
 
 ```
 var outter = [];
@@ -803,7 +817,7 @@ var a = null; // 使用完毕之后，释放内存空间
 
 - 如果两个对象互相引用，而不再被第三者所引用，那么这两个互相引用的对象也会被回收。在js中使用闭包，往往会给javascript的垃圾回收器制造难题。尤其是遇到对象间复杂的循环引用时，垃圾回收的判断逻辑非常复杂，搞不好就有内存泄漏的危险。 
 
-引用计数垃圾收集
+引用计数(reference counting)
 
 最简单的垃圾收集算法。此算法把“对象是否不再需要”简化定义为“对象有没有其他对象引用到它”。如果没有引用指向该对象（零引用），对象将被垃圾回收机制回收
 
@@ -823,11 +837,65 @@ o2 = "yo"; // 最初的对象现在已经是零引用了，然而它的属性a�
 oa = null; // a属性的那个对象现在也是零引用了，它可以被垃圾回收了
 ```
 
-标记-清除算法
+标记清除（mark and sweep）
 
 简化定义：对象是否可以获得
 
 这个算法假定设置一个叫做根（root）的对象（在Javascript里，根是全局对象）。定期的，垃圾回收器将从根开始，找所有从根开始引用的对象，然后找这些对象引用的对象……从根开始，垃圾回收器将找到所有可以获得的对象和所有不能获得的对象。
+
+内存问题
+
+在闭包中引入闭包外部的变量时，当闭包结束时此对象无法被垃圾回收（GC）
+
+```
+var a = function() {
+  var largeStr = new Array(1000000).join('x');
+  return function() {
+    return largeStr;
+  }
+}();
+```
+
+DOM泄露，当原有的COM被移除时，子结点引用没有被移除则无法回收。
+
+```
+var select = document.querySelector;
+var treeRef = select('#tree');
+
+//在COM树中leafRef是treeFre的一个子结点
+var leafRef = select('#leaf');
+var body = select('body');
+
+body.removeChild(treeRef);
+
+//#tree不能被回收入，因为treeRef还在
+//解决方法:
+treeRef = null;
+
+//tree还不能被回收，因为叶子结果leafRef还在
+leafRef = null;
+
+//现在#tree可以被释放了。
+```
+
+Timers计（定）时器泄露
+
+```
+for (var i = 0; i < 90000; i++) {
+  var buggyObject = {
+    callAgain: function() {
+      var ref = this;
+      var val = setTimeout(function() {
+        ref.callAgain();
+      }, 90000);
+    }
+  }
+
+  buggyObject.callAgain();
+  //虽然你想回收但是timer还在
+  buggyObject = null;
+}
+```
 
 ## 参考
 
