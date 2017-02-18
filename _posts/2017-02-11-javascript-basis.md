@@ -260,7 +260,52 @@ console.log(array instanceof Array); //true
 
 变量，即通过一个名字将一个值关联起来，以后通过变量就可以引用到该值。
 
-JavaScript 会在执行任何代码之前处理所有变量声明，无论是在条件块中声明还是在其他构造中声明。  JavaScript 一旦找到所有变量，就会执行函数中的代码。  如果在函数内部隐式声明变量（即，该变量出现在赋值表达式的左侧但尚未使用 var 进行声明），则它将创建为全局变量。  
+```
+var a = 2;
+```
+
+JavaScript会拆解为2步，第一，声明 var a;在编译阶段处理，第二，赋值，a=2;在执行阶段处理。
+
+```
+a = 2;
+var a;
+console.log( a ); //2
+```
+
+编译阶段
+
+```
+var a;
+```
+
+执行阶段
+
+```
+a = 2;
+console.log( a );
+```
+
+```
+console.log( a ); //undefined
+var a = 2;
+```
+
+编译阶段
+
+```
+var a;
+```
+
+执行阶段
+
+```
+console.log( a );
+a = 2;
+```
+
+详细可查看[You-Dont-Know-JS](https://github.com/kailian/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch4.md)
+
+JavaScript 会在执行任何代码之前处理所有变量声明，无论是在条件块中声明还是在其他构造中声明。JavaScript 一旦找到所有变量，就会执行函数中的代码。如果在函数内部隐式声明变量（即，该变量出现在赋值表达式的左侧但尚未使用 var 进行声明），则它将创建为全局变量。  
 
 局部变量
 
@@ -533,6 +578,8 @@ console.log(printName.call(abruzzi));
 
 ## 闭包（closure）
 
+> Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.
+
 在 JavaScript 中，内部（嵌套）函数将存储对局部变量的引用（即使在函数返回之后），这些局部变量存在于与函数本身相同的范围中。  这一组引用称为闭包。
 
 三个特性
@@ -596,6 +643,8 @@ result(); // 999
 
 常驻内存，会增大内存使用量，使用不当很容易造成内存泄露
 
+### 循环
+
 ```
 var outter = [];
 function clouseTest() {
@@ -656,6 +705,47 @@ x.invoke = function(){console.log(0);}
 x.invoke = function(){console.log(1);}
 x.invoke = function(){console.log(2);}
 x.invoke = function(){console.log(4);}
+```
+
+```
+for (var i=1; i<=5; i++) {
+    setTimeout( function timer(){
+        console.log( i );
+    }, i*1000 );
+}
+
+// IIFEs
+for (var i=1; i<=5; i++) {
+    (function(){
+        setTimeout( function timer(){
+            console.log( i );
+        }, i*1000 );
+    })();
+}
+
+// IIFEs pass i
+for (var i=1; i<=5; i++) {
+    (function(j){
+        setTimeout( function timer(){
+            console.log( j );
+        }, j*1000 );
+    })( i );
+}
+
+// block scope let
+for (var i=1; i<=5; i++) {
+    let j = i; // yay, block-scope for closure!
+    setTimeout( function timer(){
+        console.log( j );
+    }, j*1000 );
+}
+
+for (let i=1; i<=5; i++) {
+    setTimeout( function timer(){
+        console.log( i );
+    }, i*1000 );
+}
+
 ```
 
 匿名自执行函数
@@ -722,7 +812,7 @@ jack.setName("jack");
 console.log(jack.getName());
 ```
 
-柯里化的概念
+### 柯里化
 
 柯里化就是预先将函数的某些参数传入，得到一个简单的函数，但是预先传入的参数被保存在闭包中，因此会有一些奇特的特性。
 
@@ -766,6 +856,109 @@ var object = {
     }
 };
 console.log(object.getStr()());
+```
+
+### 模块
+
+```
+function CoolModule() {
+    var something = "cool";
+    var another = [1, 2, 3];
+
+    function doSomething() {
+        console.log( something );
+    }
+
+    function doAnother() {
+        console.log( another.join( " ! " ) );
+    }
+
+    //public API for our module
+    return {
+        doSomething: doSomething,
+        doAnother: doAnother
+    };
+}
+
+var foo = CoolModule();
+
+foo.doSomething(); // cool
+foo.doAnother(); // 1 ! 2 ! 3
+```
+
+模块只是函数，可以传参数
+
+```
+function CoolModule(id) {
+    function identify() {
+        console.log( id );
+    }
+
+    return {
+        identify: identify
+    };
+}
+
+var foo1 = CoolModule( "foo 1" );
+var foo2 = CoolModule( "foo 2" );
+
+foo1.identify(); // "foo 1"
+foo2.identify(); // "foo 2"
+```
+
+模块管理
+
+```
+var MyModules = (function Manager() {
+    var modules = {};
+
+    function define(name, deps, impl) {
+        for (var i=0; i<deps.length; i++) {
+            deps[i] = modules[deps[i]];
+        }
+        modules[name] = impl.apply( impl, deps );
+    }
+
+    function get(name) {
+        return modules[name];
+    }
+
+    return {
+        define: define,
+        get: get
+    };
+})();
+
+MyModules.define( "bar", [], function(){
+    function hello(who) {
+        return "Let me introduce: " + who;
+    }
+
+    return {
+        hello: hello
+    };
+} );
+
+MyModules.define( "foo", ["bar"], function(bar){
+    var hungry = "hippo";
+
+    function awesome() {
+        console.log( bar.hello( hungry ).toUpperCase() );
+    }
+
+    return {
+        awesome: awesome
+    };
+} );
+
+var bar = MyModules.get( "bar" );
+var foo = MyModules.get( "foo" );
+
+console.log(
+    bar.hello( "hippo" )
+); // Let me introduce: hippo
+
+foo.awesome(); // LET ME INTRODUCE: HIPPO
 ```
 
 ## 内存管理
