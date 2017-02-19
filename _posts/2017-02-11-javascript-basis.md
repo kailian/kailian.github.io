@@ -549,11 +549,15 @@ console.log(task1.execute("task1")); //execute task_1[ACTIVE]:task1
 console.log(task2.execute("task2")); //execute task_2[STARTING]:task2
 ```
 
-### this
+## this
 
-在 JavaScript 中，this 表示当前上下文，即调用者的引用。
+在 JavaScript 中，this 表示当前上下文，即调用者的引用。this是运行时绑定而不是创建时绑定。即函数在调用时是基于其上下文来绑定的。
 
-call 和 apply 通常用来修改函数的上下文，函数中的 this 指针将被替换为 call 或者 apply的第一个参数。
+this is neither a reference to the function itself, nor is it a reference to the function's lexical scope.
+
+> this is actually a binding that is made when a function is invoked, and what it references is determined entirely by the call-site where the function is called.
+
+bind、call 和 apply 通常用来修改函数的上下文，函数中的 this 指针将被替换为bind、call 或者 apply的第一个参数。
 
 ```
 //定义一个人，名字为jack
