@@ -106,6 +106,8 @@ console.log(typeof array); //object
 console.log(typeof func); //function
 ```
 
+type有六种类型
+
 ```
 var x = 1;
 var y = x;
@@ -370,17 +372,26 @@ Javascript语言的特殊之处，函数内部可以直接读取全局变量。
 
 函数内部声明变量的时候，一定要使用var命令。如果不用的话，实际上声明了一个全局变量。
 
+在顶级作用域中声明的变量将作为全局对象的属性被保存，从这一点上来看，变量其实就是属性。
+
 ## JavaScript对象
 
 JavaScript对象其实就是属性的集合(以及一个原型对象)，这里的集合与数学上的集合是等价的，即具有确定性，无序性和互异性。
 
 属性是由键-值对组成的，即属性的名字和属性的值。属性的名字是一个字符串，而值可以为任意的 JavaScript 对象(JavaScript 中的一切皆对象，包括函数)。
 
+声明形式和构造形式
+
 ```
-//声明一个对象
-var box = new Object();
-box.color = "red";
-box.height = 300;
+//声明
+var myObj = {
+    key: value
+    // ...
+};
+
+//构造
+var myObj = new Object();
+myObj.key = value;
 ```
 
 JavaScript 引擎在初始化时，会构建一个全局对象，在客户端环境中，这个全局对象即为 window。
@@ -411,7 +422,40 @@ window.func = function(id){
 }
 ```
 
-在顶级作用域中声明的变量将作为全局对象的属性被保存，从这一点上来看，变量其实就是属性。
+内建 Objects
+
+子类型对象也称为内建对象
+
+- String
+
+- Number
+
+- Boolean
+
+- Object
+
+- Function
+
+- Array
+
+- Date
+
+- RegExp
+
+- Error
+
+```
+var strPrimitive = "I am a string";
+typeof strPrimitive;                            // "string"
+strPrimitive instanceof String;                    // false
+
+var strObject = new String( "I am a string" );
+typeof strObject;                                 // "object"
+strObject instanceof String;                    // true
+
+// 考察 object 子类型
+Object.prototype.toString.call( strObject );    // [object String]
+```
 
 ### 函数
 
