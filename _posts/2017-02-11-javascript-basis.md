@@ -55,9 +55,7 @@ JavaScript 是一门解释型的语言，特别是在浏览器中的 JavaScript�
 
 ## 基本概念
 
-### 基本类型
-
-在 JavaScript 中，包含5种基本的基本数据类型
+### 语言类型
 
 - 字符串(string)
 
@@ -69,9 +67,13 @@ JavaScript 是一门解释型的语言，特别是在浏览器中的 JavaScript�
 
 - null
 
+- object
+
+- Symbol（ES6新增）
+
 在 JavaScript 中，所有的数字，不论是整型，浮点型，都属于number基本类型。
 
-在内存中都有固定的大小，通过变量来直接访问基本类型的数据。
+5种简单基本数据类型string、boolean、number、null 和undefined。在内存中都有固定的大小，通过变量来直接访问基本类型的数据。
 
 ### 引用类型
 
@@ -80,6 +82,8 @@ JavaScript 是一门解释型的语言，特别是在浏览器中的 JavaScript�
 - array
 
 - function
+
+array和function可看作对object的引用
 
 引用类型大小在原则上是不受任何限制的，通过对其引用的访问来访问它们本身，引用本身是一个地址，即指向真实存储复杂对象的位置。
 
@@ -106,7 +110,12 @@ console.log(typeof array); //object
 console.log(typeof func); //function
 ```
 
-type有六种类型
+typeof只是一个运算符，其返回值并不能作为JS类型系统的依据
+
+null typeof为object的原理
+
+不同的对象在底层都表示为二进制，在JavaScript 中二进制前三位都为0 的话会被判
+断为object 类型，null 的二进制表示是全0，自然前三位也是0，所以执行typeof 时会返回“object”。
 
 ```
 var x = 1;
