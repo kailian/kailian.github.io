@@ -1,0 +1,196 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+
+  <title></title>
+
+  <link rel="stylesheet" href="flip-animations-with-shadow.css">
+  <style>
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: #fcfcfc;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    #container {
+      -webkit-perspective: 1000px;
+      -moz-perspective: 1000px;
+      -ms-perspective: 1000px;
+      -o-perspective: 1000px;
+      perspective: 1000px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .box,
+    .box-back {
+
+      background: url(flip-card-front.jpg) center center no-repeat;
+      background-size: 200px 300px;
+
+      width: 200px;
+      height: 300px;
+      border-radius: 3px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: -150px 0 0 -100px;
+
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+      backface-visibility: hidden;
+
+    }
+
+    .box-back {
+
+      background: url(flip-card-back.jpg) center center no-repeat;
+      background-size: 200px 300px;
+
+      -webkit-transform: rotateY(180deg);
+      -moz-transform: rotateY(180deg);
+      -ms-transform: rotateY(180deg);
+      -o-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+    }
+
+    .livedemo {
+      width: 100px;
+      background: #333;
+      color: #FFF !important;
+      font-size: 14px;
+      padding: 7px 10px;
+      border-radius: 4px;
+      border: none;
+      transition: background 0.3s ease-out;
+
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      margin-left: -50px;
+    }
+
+    .livedemo:hover {
+      background: #50C0FB;
+    }
+
+    #container.active .box,
+    #container.active .box:after,
+    #container.active .box-back:after {
+      -webkit-animation: front 650ms 0s 1 linear forwards;
+      -moz-animation:    front 650ms 0s 1 linear forwards;
+      -o-animation:      front 650ms 0s 1 linear forwards;
+      animation:         front 650ms 0s 1 linear forwards;
+    }
+
+    #container.active .box-back {
+
+      -webkit-animation: back 650ms 0s 1 linear forwards;
+      -moz-animation:    back 650ms 0s 1 linear forwards;
+      -o-animation:      back 650ms 0s 1 linear forwards;
+      animation:         back 650ms 0s 1 linear forwards;
+    }
+
+    #container.active .box:after,
+    #container.active .box-back:after {
+      -webkit-animation-name: shadow;
+      -moz-animation-name:    shadow;
+      -o-animation-name:      shadow;
+      animation-name:         shadow;
+    }
+
+    #container.active .box,
+    #container.active .box-back,
+    #container.active .box:after,
+    #container.active .box-back:after {
+      -webkit-animation-play-state: running;
+      -moz-animation-play-state:    running;
+      -o-animation-play-state:      running;
+      animation-play-state:         running;
+    }
+
+    #container.reverse .box {
+
+      -webkit-transform: scale(1) rotateY(180deg);
+      -moz-transform: scale(1) rotateY(180deg);
+      -ms-transform: scale(1) rotateY(180deg);
+      -o-transform: scale(1) rotateY(180deg);
+      transform: scale(1) rotateY(180deg);
+
+      -webkit-animation-direction: reverse;
+      -moz-animation-direction:    reverse;
+      -o-animation-direction:      reverse;
+      animation-direction:         reverse;
+    }
+
+    #container.reverse .box-back {
+
+      -webkit-transform: scale(1) rotateY(360deg);
+      -moz-transform: scale(1) rotateY(360deg);
+      -ms-transform: scale(1) rotateY(360deg);
+      -o-transform: scale(1) rotateY(360deg);
+      transform: scale(1) rotateY(360deg);
+
+      -webkit-animation-direction: reverse;
+      -moz-animation-direction:    reverse;
+      -o-animation-direction:      reverse;
+      animation-direction:         reverse;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <div class="box"></div>
+    <div class="box-back"></div>
+  </div>
+
+  <button id="animate" class="livedemo">Animate</button>
+
+  <script>
+
+    // shim layer with setTimeout fallback
+    // always got hugz for Paul Irish
+    window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              function( callback ){
+                window.setTimeout(callback, 1000 / 60);
+              };
+    })();
+
+    var goButton = document.getElementById("animate");
+    var container = document.getElementById("container");
+    var animating = false;
+
+    goButton.addEventListener('click', function() {
+
+      if (animating)
+        return;
+
+      container.classList.add('active');
+      animating = true;
+
+      setTimeout(function() {
+        requestAnimFrame(function() {
+          animating = false;
+          container.classList.remove('active');
+          container.classList.toggle('reverse');
+        });
+      }, 680);
+    });
+  </script>
+</body>
+</html>

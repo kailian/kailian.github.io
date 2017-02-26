@@ -63,17 +63,17 @@ JavaScript 是一门解释型的语言，特别是在浏览器中的 JavaScript�
 
 - 布尔值(boolean)
 
-- undefined
+- 未定义（undefined）
 
-- null
+- 空值（null）
 
-- object
+- 对象（object）
 
-- Symbol（ES6新增）
+- 符号（symbol，ES6 中新增）
 
 在 JavaScript 中，所有的数字，不论是整型，浮点型，都属于number基本类型。
 
-5种简单基本数据类型string、boolean、number、null 和undefined。在内存中都有固定的大小，通过变量来直接访问基本类型的数据。
+除了对象外，其他为基本类型。在内存中都有固定的大小，通过变量来直接访问基本类型的数据。
 
 ### 引用类型
 
@@ -83,7 +83,7 @@ JavaScript 是一门解释型的语言，特别是在浏览器中的 JavaScript�
 
 - function
 
-array和function可看作对object的引用
+array和function可看作对object的引用，是object的子类型。
 
 引用类型大小在原则上是不受任何限制的，通过对其引用的访问来访问它们本身，引用本身是一个地址，即指向真实存储复杂对象的位置。
 
@@ -140,11 +140,25 @@ Undefined类型只有一个值，即特殊的undefined。使用var声明变量�
 window.undefined = window.undefined;  
 ```
 
+undefined（未定义）和undeclared（未声明）
+
+```
+var a;
+a; // undefined 已在作用域中声明但还没有赋值的变量
+b; // ReferenceError: b is not defined 没有在作用域中声明过的变量
+```
+
 Null类型只有一个值，即特殊的null。null值表示一个空对象指针。
 
 typeof null返回为object，因为特殊值null被认为是一个空的对象引用。
 
 undefined值是派生自null值的
+
+```
+// 使用复合条件来检测null值的类型
+var a = null;
+(!a && typeof a === "object"); // true
+```
 
 ```
 console.log(undefined == null); //true
@@ -268,6 +282,8 @@ console.log(array instanceof Array); //true
 ```
 
 ### 变量
+
+JavaScript中的变量是没有类型的，只有值才有。
 
 变量，即通过一个名字将一个值关联起来，以后通过变量就可以引用到该值。
 
