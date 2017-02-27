@@ -5,10 +5,7 @@ var cacheName = 'v1';
 
 // Assesto catche
 var assetsToCache = [
-  '/assets/themes/twitter/bootstrap/css/bootstrap.css',
-  '/assets/themes/twitter/bootstrap/js/bootstrap.min.js',
-  '/assets/themes/twitter/css/style.css',
-  '/assets/themes/twitter/js/jquery.js'
+  '/assets/themes/twitter/bootstrap/css/bootstrap.css'
 ];
 
 self.addEventListener('install', function(event) {
@@ -43,6 +40,7 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
   // Get current path
   var requestUrl = new URL(event.request.url);
+
   // Save all resources on origin path only
   if (requestUrl.origin === location.origin) {
       if (requestUrl.pathname === '/') {
@@ -59,7 +57,7 @@ self.addEventListener('fetch', function(event) {
             // If there is no internet connection, try to match the request
             // to some of our cached resources
             return cache.match(event.request);
-          });
+          })
         })
       );
     }
