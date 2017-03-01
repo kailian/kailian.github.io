@@ -128,6 +128,45 @@ sw.js文件被放在这个域的根目录下，和网站同源。这个service w
 
 如果将service worker文件注册为/example/sw.js，那么，service worker只能收到/example/路径下的fetch事件（例如： /example/page1/, /example/page2/）。
 
+```
+// Service Workers
+if ('serviceWorker' in navigator && navigator.onLine) {
+  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+    console.log('ServiceWorker registration successful with scope: ',    registration.scope);
+  }).catch(function(err) {
+    console.log('ServiceWorker registration failed: ', err);
+  });
+
+  var currentPath = window.location.pathname;
+  var cacheButton = document.querySelector('.offline-btn');
+
+  var imageArray = document.querySelectorAll('img');
+  if(cacheButton) {
+    cacheButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      // 缓存当前链接和使用的图片
+      var pageResources = [currentPath];
+      for (i = 0; i < imageArray.length; i++) {
+        pageResources.push(imageArray[i].src);
+      }
+      caches.open('offline-' + currentPath).then(function(cache) {
+        var updateCache = cache.addAll(pageResources);
+
+        updateCache.then(function() {
+          console.log('Article is now available offline.');
+          cacheButton.innerHTML = "☺";
+        });
+
+        updateCache.catch(function (error) {
+          console.log('Article could not be saved offline.');
+          cacheButton.innerHTML = "☹";
+        });
+      });
+    });
+  }
+}
+```
+
 #### 缓存站点的资源
 
 定义需要缓存的文件，然后在sw注册安装后回到cache Api将资源文件写入缓存。如果所有的文件都被缓存成功了，那么service worker就安装成功了。如果任何一个文件下载失败，那么安装步骤就会失败。
