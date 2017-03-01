@@ -5,7 +5,13 @@ var cacheName = 'v1';
 
 // Assesto catche
 var assetsToCache = [
-  '/assets/themes/twitter/bootstrap/css/bootstrap.css'
+  '/assets/themes/twitter/bootstrap/css/bootstrap.css',
+  '/assets/themes/twitter/css/style.css?body=1',
+  '/assets/themes/twitter/css/docs.min.css',
+  '/assets/themes/twitter/js/jquery.js',
+  '/assets/themes/twitter/bootstrap/js/bootstrap.min.js',
+  '/assets/themes/twitter/google-code-prettify/prettify.js',
+  '/assets/themes/twitter/google-code-prettify/desert.css'
 ];
 
 self.addEventListener('install', function(event) {
@@ -57,7 +63,7 @@ self.addEventListener('fetch', function(event) {
             // If there is no internet connection, try to match the request
             // to some of our cached resources
             return cache.match(event.request);
-          })
+          });
         })
       );
     }
