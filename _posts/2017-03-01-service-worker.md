@@ -1,44 +1,20 @@
 ---
 layout: post
 category : web
-title: '渐进式Web应用'
+title: 'service worker'
 tagline: ""
 tags : [web]
 ---
 
-## 渐进式Web应用
-
-- 安全 – 通过 HTTPS 来提供服务来防止网络窥探，保证内容不被篡改。
-
-- 渐进式 – 能够让每一位用户使用，无论用户使用什么浏览器，因为它是始终以渐进增强为原则
-
-- 响应式 – 适应任何环境：桌面电脑、智能手机、平板电脑，或者其他设备。
-
-- 不依赖网络连接 – 通过用 service workers 增强，可以在离线或者低质量网络下工作
-
-- 类原生应用 – 有像原生应用般的交互和导航给用户原生应用般的体验，因为它是建立在 app shell model 上的。
-
-- 持续更新 – 受益于 service worker 的更新进程，应用能够始终保持更新。
-
-- 可发现 – 可识别为“应用程序”，是得益于 W3C manifests 元数据和 service worker 的登记，让搜索引擎能够找到 web 应用。
-
-- 可再次访问 – 通过推送通知等特性让用户再次访问变得容易。
-
-- 可安装 – 允许用户保留对他们有用的应用在主屏幕上，不需要通过应用商店。
-
-- 可链接 – 通过 URL 可以轻松分享应用，不用复杂的安装即可运行。
-
-<!--break-->
-
-如何让你的应用程序能够离线工作？
-
-如何存储数据以在离线时使用？
-
 ## Service Worker 是什么？
 
-service worker 是独立于当前页面的一段运行在浏览器后台进程里的脚本。service worker不需要用户打开 web 页面，也不需要其他交互，异步地运行在一个完全独立的上下文环境，不会对主线程造成阻塞。基于service worker可以实现消息推送，静默更新以及地理围栏等服务。service worker提供一种渐进增强的特性，使用特性检测来渐渐增强，不会在老旧的不支持 service workers 的浏览器中产生影响。
+service worker 是独立于当前页面的一段运行在浏览器后台进程里的脚本。
 
-核心特征是能拦截和处理网络请求，可编程管理响应的缓存。
+service worker不需要用户打开 web 页面，也不需要其他交互，异步地运行在一个完全独立的上下文环境，不会对主线程造成阻塞。基于service worker可以实现消息推送，静默更新以及地理围栏等服务。
+
+service worker提供一种渐进增强的特性，使用特性检测来渐渐增强，不会在老旧的不支持 service workers 的浏览器中产生影响。可以通过service workers解决让应用程序能够离线工作，让存储数据在离线时使用的问题。
+
+<!--break-->
 
 注意事项：
 
@@ -242,17 +218,9 @@ self.addEventListener('activate', function(event) {
 
 ## 参考
 
-- [progressive-web-apps](https://developers.google.com/web/progressive-web-apps/)
-
 - [your-first-pwapp](https://developers.google.com/web/fundamentals/getting-started/codelabs/your-first-pwapp/)
 
 - [service-workers](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)
-
-- [下一代 Web 应用模型 —— Progressive Web App](http://geek.csdn.net/news/detail/135595)
-
-- [关于渐进式 Web 应用，你应该知道的一切](http://www.zcfy.cc/article/everything-you-should-know-about-progressive-web-apps-tutorialzine-2047.html)
-
-- [你需要开发PWA应用吗？](http://mp.weixin.qq.com/s?__biz=MzI5MDM2NjY5Nw==&mid=2247484043&idx=1&sn=0a93b2f32c2d80f43e2579fb56074a1f&chksm=ec21b70ddb563e1bd01a8acf4fbce8aeb0dc35f1110f7f004e3228d9b18605b3aaf7affa496b&mpshare=1&scene=1&srcid=0115m8O4xYwWYNZHgxmoZFe2#rd)
 
 - [渐进式 Web App 的离线存储](https://segmentfault.com/a/1190000006640450)
 
