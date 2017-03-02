@@ -5,6 +5,7 @@ tagline: ''
 ---
 {% include JB/setup %}
 <div id="blog-container">
+  <div id="particles-js"></div>
 <div class="container">
   <div class="row">
     <a class="v-fork-me" href="https://github.com/kailian/kailian.github.io" target="_blank">
@@ -12,15 +13,15 @@ tagline: ''
     </a>
     <div class="col-md-12 pin-container">
       <div class="col-md-8">
-      	<div class="panel panel-default">
-  		  <div class="panel-heading">
-  		  	<span class="glyphicon glyphicon-home"></span>
-  		  	最新文章
-  		  </div>
-  		  <div class="panel-body">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-home"></span>
+          最新文章
+        </div>
+        <div class="panel-body">
           {% for post in paginator.posts %}
           <div class="article-list col-md-12">
-            <div class="article-header">    
+            <div class="article-header">
               <h4>
                 <a href="{{ BASE_PATH }}{{ post.url }}">【{{ post.categories }}】{{ post.title }}</a>
               </h4>
@@ -76,17 +77,18 @@ tagline: ''
           </ul >
           {% endif %}
           </div>
-  		  </div>
-  		</div>
+        </div>
       </div>
-    	<div class="col-md-4">
+      </div>
+      <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-body">
             <span class="col-xs-4"><a href="/2014/08/24/bad-apple"><img src="/images/badapple.gif"></a></span>
             <span class="col-xs-4"><h4>知行合一</h4></span>
             <span class="col-xs-4"><h4>和而不同</h4></span>
           </div>
-        </div> 
+        </div>
+
         <div class="panel panel-default">
           <div class="panel-heading">
             <span class="glyphicon glyphicon-tags icon-margin"></span>
@@ -102,24 +104,24 @@ tagline: ''
               {% endfor %}
           </div>
         </div> 
-        <div>		
-      		<div class="panel panel-default">
-      		  <div class="panel-heading">
-      		  	<span class="glyphicon glyphicon-folder-open icon-margin"></span>
-      		  	分类目录
-      		  </div>
-      		  <div class="panel-body">
-      		    <div class="list-group">
-      			  {% for category in site.categories %} 
+        <div>   
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <span class="glyphicon glyphicon-folder-open icon-margin"></span>
+              分类目录
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+              {% for category in site.categories %} 
                 <a class="list-group-item" href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category | first }}-ref">
-    		    		{{ category | first }} 
+                {{ category | first }} 
                 <span class="badge">{{ category | last | size }}</span>
-      		    	</a>
-      		      {% endfor %}
-      			  </div>
-      		  </div>
-      		</div>
-        		
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+            
           <div class="panel panel-default">
             <div class="panel-heading">
               <span class="glyphicon glyphicon-tasks icon-margin"></span>
@@ -141,10 +143,10 @@ tagline: ''
                 </li>
                </ul>
             </div>
-      	  </div>
-        </div>  
+          </div>
+        </div>
       </div>
-    </div> 	
+    </div>
   </div>
 </div>
 <footer class="blog-footer">
@@ -152,9 +154,22 @@ tagline: ''
     Copyright &copy; 2014-{{ site.time | date: '%Y' }} <a href="https://github.com/kailian">{{ site.author.name }}</a> All Rights Reserved
   </div>
 </footer>
+<style type="text/css">
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width:800px) {
+  #particles-js {
+    display: none;
+  }
+}
+</style>
+<script src="/assets/particles/particles.js"></script>
+<script type="text/javascript">
+particlesJS.load('particles-js', 'assets/particles/particles.json', function() {
+  //console.log('callback - particles.js config loaded');
+});
+</script>
 </div>
-
-
-
-
-

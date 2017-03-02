@@ -22,11 +22,11 @@ img {
 
 @media (max-width:625px) {
   video {
-    width: 100%;
+    width: 90%;
   }
 
   img {
-    width: 100%;
+    width: 90%;
   }
 }
 
@@ -40,7 +40,7 @@ p {
   text-indent:30px;
 }
 
-li P,blockquote P {
+li p,blockquote p {
   text-indent:0px;
 }
 
