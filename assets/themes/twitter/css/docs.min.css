@@ -1254,7 +1254,7 @@ h4 code
 
     border: 1px solid #e1e1e8;
     border-radius: 4px;;
-
+    background-color: #333;
 }.highlight pre
 {
     margin-top: 0;
