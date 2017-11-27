@@ -27,6 +27,7 @@
     <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
     <script src="{{ ASSET_PATH }}/google-code-prettify/prettify.js"></script>
     <script src="{{ ASSET_PATH }}/js/jquery.pin.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
   </head>
   <body data-spy="scroll" data-target="#doc-affix">
     <nav class="navbar navbar-inverse" role="navigation">
@@ -49,7 +50,7 @@
             {% assign group = 'navigation' %}
             {% include JB/pages_list %}
           </ul>
-          <div class="navbar-form navbar-right">       
+          <div class="navbar-form navbar-right">
             <input class="form-control" type="text"  id="blog-search" size="30" placeholder="搜索" required />
           </div>
         </div>
@@ -57,7 +58,7 @@
     </nav>
 
     {{ content }}
-    
+
     <div style="display:none;" class="back-to" id="toolBackTop">
       <a title="返回顶部" onclick="back_to_top();" href="#top" class="back-top">
     返回顶部</a>
