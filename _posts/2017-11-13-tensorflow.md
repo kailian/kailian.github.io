@@ -22,9 +22,9 @@ TensorFlow的主要数据单元是张量
 
 <!--break-->
 
-## get start
-
-[get start](https://www.tensorflow.org/get_started/)
+- [get start](https://www.tensorflow.org/get_started/)
+- [tensorflow](https://github.com/tensorflow/tensorflow)
+- [tensorflow-zh](https://github.com/jikexueyuanwiki/tensorflow-zh)
 
 ## install
 
@@ -154,7 +154,7 @@ mnist.train.labels是一个[55000, 10]的浮点数数组
 
 ![mnist-train-ys](/images/201711/mnist-train-ys.png)
 
-#### 回归分析
+#### Softmax回归
 
 回归分析（Softmax Regressions）是确定两种或两种以上变量间相互依赖的定量关系的一种统计分析方法。
 
