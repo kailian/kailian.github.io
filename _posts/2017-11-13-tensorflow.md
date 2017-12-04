@@ -409,3 +409,18 @@ print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}
 ```
 
 结果：0.9166
+
+## Tensorboard
+
+```
+import tensorflow as tf
+a = tf.constant(1, name="a")
+b = tf.constant(2, name="b")
+x = tf.add(a, b, name="add")
+with tf.Session() as sess:
+    writer = tf.summary.FileWriter('/tmp/tensorboard', sess.graph)
+    sess.run(x)
+    writer.close()
+```
+
+tensorboard  --logdir=/tmp/tensorboard
