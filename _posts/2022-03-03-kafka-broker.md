@@ -6,7 +6,7 @@ tagline: ""
 tags : [bigdata]
 ---
 
-## kafka broker
+## Kafka源码02（Broker）
 
 ![kafka-server-1](/images/202203/kafka/kafka-server-1.png)
 
