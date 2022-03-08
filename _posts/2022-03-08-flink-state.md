@@ -2,7 +2,7 @@
 layout: post
 category : bigdata
 title: ''
-tagline: "Flink State状态以及Checkpoint机制"
+tagline: "Flink State"
 tags : [bigdata]
 ---
 
