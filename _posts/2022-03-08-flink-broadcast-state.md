@@ -2,7 +2,7 @@
 layout: post
 category : bigdata
 title: ''
-tagline: "Flink Broadcast State"
+tagline: "flink-broadcast-state"
 tags : [bigdata]
 ---
 
