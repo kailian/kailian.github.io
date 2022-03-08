@@ -1,11 +1,10 @@
 ---
 layout: post
 category : bigdata
-title: 'flink-state'
+title: 'Flink State状态以及Checkpoint机制'
 tagline: ""
 tags : [bigdata]
 ---
-
 
 ### 问题
 

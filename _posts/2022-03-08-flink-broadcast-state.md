@@ -1,8 +1,8 @@
 ---
 layout: post
 category : bigdata
-title: ''
-tagline: "flink-broadcast-state"
+title: 'Flink Broadcast State'
+tagline: ""
 tags : [bigdata]
 ---
 
