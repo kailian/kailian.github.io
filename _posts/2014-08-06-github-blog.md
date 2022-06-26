@@ -97,6 +97,22 @@ sudo gem install jekyll-paginate
 jekyll server
 ```
 
+```
+mac自带的ruby版本低，需要升级
+
+brew install ruby
+
+curl -L get.rvm.io | bash -s stable
+rvm -v
+
+sudo gem update --system
+sudo gem install jekyll
+sudo gem install jekyll-paginate
+sudo gem install webrick
+
+jekyll server
+```
+
 ![Alt kailian.github.io](/images/kailian.png)
 
 https://github.com/jekyll/jekyll/wiki/sites 
